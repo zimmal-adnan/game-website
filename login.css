@@ -1,0 +1,156 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body{
+    background-color: #b2b2b2;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.black-box{
+    background-color: black;
+    border-left: 2px solid white;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    height: 33rem;
+    width: 55%;
+    width: 35rem;
+    border-radius: 1rem 0 0 1rem;
+    padding: 7rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;  
+}
+
+
+.text-block{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35rem;
+    height: 32.8rem; 
+}
+
+.translucent-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 1rem 1rem 0;
+    border-right: 2px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    background-color: white;
+    opacity: 0.35;
+}
+
+
+.text{
+    position: relative;
+    z-index: 2;
+    color: black;
+    text-align: right;
+    padding: 6rem;
+}
+
+
+.black-box h1{
+    color: white;
+    font-size: 2.5rem;
+    position: relative;
+    top: -20px;
+}
+
+/*https://codepen.io/lucasyem/pen/ZEEYKdj*/
+.form a{
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+    display: block;
+    flex-direction: column;
+}
+
+.sign-up{
+    color: grey;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.input-container{
+    position:relative;
+	margin-bottom: 2rem; 
+}
+
+.input-container label{
+	position: absolute;
+    left: 0px;
+    top: -10px;
+	font-size: 1.3rem;
+	color:black;
+    pointer-events: none;
+    transition: all 0.5s ease-out;
+}
+
+.input-container input{ 
+  border:0;
+  border-bottom:1px solid white;
+  background:transparent;
+  width: 20rem;
+  padding: 8px 0 5px 0;
+  font-size: 1.1rem;
+  font-family: "Lato";
+  color: white;
+}
+
+.input-container input:focus{ 
+ outline:none;
+ border-bottom:1px solid rgb(183, 183, 183);
+ transition: all 0.3s ease;
+}
+
+.input-container input:focus ~ label,
+.input-container input:not(:placeholder-shown) ~ label {
+    top: -10px;
+    font-size: 12px;
+    color: rgb(183, 183, 183);
+}
+
+
+.username-button{
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  height: 40px;
+  width: 10rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  transition: all 0.5s;
+}
+
+.username-button:hover {
+    opacity: .75;
+}
+  
+.username-button:focus {
+    box-shadow: rgba(0, 0, 0, .3) 0 0 10px;
+}
+
+
+

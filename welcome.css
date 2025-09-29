@@ -1,0 +1,146 @@
+body{
+    background-color: #b2b2b2;
+    margin: 0%;
+}
+
+.thick-line{
+    border: none;
+    border-top: 0.7rem solid black;
+    width: 100%;
+    margin-top: -0.2rem;
+    border-radius: 30px;
+
+}
+
+.thin-line{
+    width: 85%;
+    margin-left: 0;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+
+h1{
+    text-align: center;
+    font-size: 3.5rem;
+    margin-top: 0;
+}
+
+.page-navigation{
+    text-decoration: none;
+    border-right: 1px solid black; 
+    padding-right: 1rem;
+    margin-right: 0.2rem; 
+    display: inline-block; 
+    color: black;
+}
+
+.page-navigation:last-child {
+    border-right: none;
+}
+
+nav a{
+    font-size: 1.2rem;
+    padding-left: 1rem;
+}
+
+header div {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.registration{
+    font-size: 1rem;
+    border-right: 1px solid black; 
+    text-decoration: none;
+    padding: 1.1rem;
+    margin-right: 0.2rem;
+    margin-top: -1.3rem;
+    border-radius: 20px;
+    color: white;
+    background-color: black;
+}
+
+
+
+.registration:last-child{
+    margin-right: 0.5rem;
+}
+
+main{
+    display: flex;
+}
+
+.white-box{
+    border: 0.1rem solid black;
+    background-color: white;
+    margin: 3rem 7rem;
+    height: auto;
+    width: 80rem;
+    padding-bottom: 3rem;
+    border-radius: 30px; 
+    display: flex;
+    
+}
+
+.white-box p{
+    margin-top: 0rem;
+    font-size: 1rem;
+    padding-right: 2rem;
+}
+
+.text-block {
+    display: flex;
+    flex-direction: column;   
+    padding-left: 3rem;
+    padding-top: 0.8rem;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.image-placement{
+    padding-right: 3rem;
+    padding-top: 2rem;
+    width: 50%;
+    box-sizing: border-box;
+    height: auto;
+}
+
+.white-box img{
+    width: 5rem;
+    height: 5rem;
+}
+
+.white-box button{  
+    align-self: center;  
+    width: 12rem;   
+    margin-top: 1rem;      
+    padding: 0.5rem 1rem;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.white-box h2{
+    font-size: 3rem;
+}
+
+.white-box h3{
+    font-size: 1.8rem;
+    margin-top: -2rem;
+}
+
+footer{
+    background-color: black;
+    padding: 1rem 5rem;
+    border-radius: 40px 40px 0 0;
+    border: 1px solid white;
+}
+
+footer p{
+    color: white;
+    font-size: 1.2rem;
+}
