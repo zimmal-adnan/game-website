@@ -41,7 +41,7 @@ main{
     object-fit: cover;    
 }
 
-.black-box{
+.black-box, .black-box2{
     background-color: black;
     border-left: 2px solid white;
     border-top: 2px solid white;
@@ -53,6 +53,11 @@ main{
     padding: 7rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;  
+    position: relative;
+}
+
+.black-box2{
+    padding: 3.5rem 7rem;
 }
 
 
@@ -90,12 +95,14 @@ main{
 }
 
 
-.black-box h1{
+.heading{
     color: white;
     font-size: 2.5rem;
     position: relative;
     top: -20px;
 }
+
+
 
 /*https://codepen.io/lucasyem/pen/ZEEYKdj*/
 .form a{
@@ -178,10 +185,10 @@ main{
     color: white;
     text-decoration: none;
     display: flex;
-    margin-top: -1.5rem;
-    position: relative;
-    top: -3rem;
-    left: -5rem;
     font-size: 0.8rem;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+
 }
 
