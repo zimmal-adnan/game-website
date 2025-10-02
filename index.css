@@ -12,6 +12,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Ignis';
+  src: url('Ignis et Glacies Sharp.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 
 body{
     background-color: #b2b2b2;
@@ -24,10 +32,11 @@ main{
 
 .thick-line{
     border: none;
-    border-top: 0.7rem solid black;
+    border-top: 2rem solid black;
     width: 100%;
     margin-top: -0.2rem;
-    border-radius: 30px;
+    position: relative;
+    z-index: 10;
 
 }
 
@@ -44,7 +53,7 @@ h1{
     font-family: 'Blanka';
     text-align: center;
     font-size: 3.5rem;
-    margin-top: 0;
+    margin-top: -1rem;
     text-shadow: 3px 3px 3px rgb(111, 111, 111);
 }
 
@@ -55,6 +64,7 @@ h1{
 
 
 .page-navigation{
+    font-family: "norwester";
     text-decoration: none;
     border-right: 1px solid black; 
     padding-right: 1rem;
@@ -77,14 +87,29 @@ header div {
     justify-content: flex-end;
 }
 
-.registration{
+header p{
+    position: relative;
+    z-index: 50;
+    font-family: 'norwester';
+    text-align: right;
+    margin-top: -2rem;
+    color: rgb(184, 184, 184);
     font-size: 1rem;
+    margin-right: 0.5rem;
+    opacity: 0.85;
+}
+
+.registration{
+    position:relative;
+    z-index: 10;
+    font-family: 'norwester';
+    font-size: 1.1rem;
     border-right: 1px solid black; 
     text-decoration: none;
-    padding: 1.1rem;
-    margin-right: 0.2rem;
+    padding: 0.8rem 1.6rem;
+    margin-right: 0.4rem;
     margin-top: -1.3rem;
-    border-radius: 20px;
+    border-radius: 15px;
     color: white;
     background-color: black;
 }
@@ -101,7 +126,7 @@ main{
 
 .white-box{
     position: relative; 
-    border: 0.1rem solid black;
+    border: 0.2rem solid black;
     background-color: white;
     margin: 3rem 7rem;
     height: auto;
@@ -120,13 +145,13 @@ main{
     margin-top: 0rem;
     font-size: 1rem;
     padding-right: 2rem;
+    font-family: 'norwester';
 }
 
 .text-block {
     position: relative;
     z-index: 1;
     color: black; 
-    max-width: 70%;
 }
 
 .image-placement{
@@ -144,11 +169,12 @@ main{
     width: 100%;
     height: 100%;
     object-fit: cover; 
-    opacity: 0.3; 
+    opacity: 0.4; 
     z-index: 0;
 }
 
 .white-box button{  
+    font-family: 'norwester';
     align-self: center;  
     width: 12rem;   
     margin-top: 1rem;      
@@ -159,10 +185,16 @@ main{
     border-radius: 10px;
     cursor: pointer;
     font-size: 1.5rem;
+    border: 2px solid white;
+
 }
 
 .white-box h2{
-    font-size: 3rem;
+    font-size: 2.8rem;
+    font-family: 'Ignis';
+    background-color: black;
+    color: white;
+    text-shadow: 2px 2px 0px grey;
 }
 
 .white-box h3{
@@ -171,9 +203,9 @@ main{
 }
 
 footer{
-    background: linear-gradient(to bottom, #b2b2b2 0%, #737373 15%, #373737 30%, black 50%);
+    background: linear-gradient(to bottom, #b2b2b2, #262626);
     padding: 1rem 5rem;
-    height: 14rem;
+    height: 8rem;
     
 }
 
@@ -184,17 +216,22 @@ footer p{
 }
 
 footer h2{
+    font-family: 'norwester';
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1rem;
 }
 
 .copyright{
+    font-family: 'Lucida Sans';
     display: flex;
+    color: rgb(151, 151, 151);
     justify-content: center;
     align-items: center;
     font-size: 0.7rem;
+    margin-top: 2rem;
 }
 
 .socials {
@@ -206,6 +243,6 @@ footer h2{
 
 .socials i {
     color: white;
-    margin: 0 0.7rem; 
-    font-size: 1.5rem; 
+    margin: 0 0.5rem; 
+    font-size: 1.7rem; 
 }
