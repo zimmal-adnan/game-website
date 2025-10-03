@@ -22,8 +22,9 @@
 
 
 body{
-    background-color: #b2b2b2;
     margin: 0%;
+    background: linear-gradient(to right, #dddddd 50%, #b4b4b4 50%);
+    overflow-x: hidden;
 }
 
 main{
@@ -36,7 +37,7 @@ main{
     width: 100%;
     margin-top: -0.2rem;
     position: relative;
-    z-index: 10;
+    z-index: 2;
 
 }
 
@@ -89,7 +90,7 @@ header div {
 
 header p{
     position: relative;
-    z-index: 50;
+    z-index: 3;
     font-family: 'norwester';
     text-align: right;
     margin-top: -2rem;
@@ -101,7 +102,7 @@ header p{
 
 .registration{
     position:relative;
-    z-index: 10;
+    z-index: 1;
     font-family: 'norwester';
     font-size: 1.1rem;
     border-right: 1px solid black; 
@@ -115,13 +116,14 @@ header p{
 }
 
 
-
 .registration:last-child{
-    margin-right: 0.5rem;
+    margin-right: 0.8rem;
 }
 
 main{
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .white-box{
@@ -129,8 +131,8 @@ main{
     border: 0.2rem solid black;
     background-color: white;
     margin: 3rem 7rem;
-    height: auto;
-    width: 80rem;
+    height: 20rem;
+    width: 60rem;
     padding: 3rem;
     border-radius: 30px; 
     display: flex;
@@ -141,18 +143,33 @@ main{
     
 }
 
-.white-box p{
-    margin-top: 0rem;
-    font-size: 1rem;
-    padding-right: 2rem;
-    font-family: 'norwester';
-}
 
 .text-block {
     position: relative;
-    z-index: 1;
     color: black; 
 }
+
+.paragraph-block {
+    width: 100%;               
+    background-color: rgba(0,0,0,0.3);
+    padding: 1rem;
+    display: flex;             
+    justify-content: center;   
+    margin-top: 5em;
+   
+}
+
+
+.paragraph-block p {
+    max-width: 45%;            
+    font-size: 1.5rem;
+    font-family: 'norwester';
+    text-align: center;        
+    margin: 0;   
+    pointer-events: none;              
+}
+
+
 
 .image-placement{
     padding-right: 3rem;
@@ -170,43 +187,64 @@ main{
     height: 100%;
     object-fit: cover; 
     opacity: 0.4; 
-    z-index: 0;
 }
 
-.white-box button{  
+.text-split{
+    color: white;
+}
+
+.gradient-border{
+    position: relative;
+    background: radial-gradient(circle, white 0%, #e6e6e6 30%, rgb(0, 0, 0) 100%);
+    border-radius: 10px;
+    width: fit-content;  
+    height: fit-content;  
+    padding: 2px;
+    margin: 1rem auto 0 auto;  
+    display: flex;  
+    justify-content: center;  
+}
+
+.play-button{  
     font-family: 'norwester';
     align-self: center;  
-    width: 12rem;   
-    margin-top: 1rem;      
+    width: 12rem;       
     padding: 0.5rem 1rem;
-    background: black;
+    background: rgb(49, 49, 49);
     color: white;
     border: none;
-    border-radius: 10px;
     cursor: pointer;
     font-size: 1.5rem;
-    border: 2px solid white;
+    position: relative;
+    border-radius: 10px;
 
 }
+
+
+
 
 .white-box h2{
     font-size: 2.8rem;
     font-family: 'Ignis';
     background-color: black;
     color: white;
+    letter-spacing: 4px;
+    margin-top: 2rem;
+    padding: 0.5rem;
+    width: 100rem;
     text-shadow: 2px 2px 0px grey;
 }
 
-.white-box h3{
-    font-size: 1.8rem;
-    margin-top: -2rem;
-}
-
 footer{
-    background: linear-gradient(to bottom, #b2b2b2, #262626);
+    background: linear-gradient(to bottom, #dddddd, black) left / 50% 100% no-repeat,
+    linear-gradient(to bottom, #b4b4b4, black) right / 50% 100% no-repeat;
     padding: 1rem 5rem;
     height: 8rem;
-    
+}
+
+footer hr{
+    border: none;
+    border-top: 2px solid white;
 }
 
 footer p{
@@ -222,7 +260,10 @@ footer h2{
     justify-content: center;
     align-items: center;
     font-size: 1rem;
+    word-spacing: 2px;
 }
+
+
 
 .copyright{
     font-family: 'Lucida Sans';
@@ -245,4 +286,42 @@ footer h2{
     color: white;
     margin: 0 0.5rem; 
     font-size: 1.7rem; 
+}
+
+footer span{
+    color: black;
+}
+
+
+.ribbon {
+  font-size: 1.3rem;
+  font-family: 'norwester';
+  color: #fff;
+    width: 13rem;
+  text-wrap: wrap;
+  text-align: right;
+}
+.ribbon {
+  --f: .05em; 
+  --r: 1.2em; 
+  position: absolute;
+  bottom: 10px;
+  right: calc(-1*var(--f));
+  padding: 0.8rem 1.8rem;
+  background: black;
+  border-top: var(--f) solid #0005;
+  border-left: var(--r) solid #0000;
+  clip-path: 
+    polygon(0 100%,100% 100%,100% var(--f),calc(100% - var(--f)) 0,
+      calc(100% - var(--f)) var(--f),0 var(--f),
+      var(--r) calc(50% + var(--f)/2));
+}
+
+.ribbon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 3px dotted white;
+  clip-path: inherit; 
+
 }
