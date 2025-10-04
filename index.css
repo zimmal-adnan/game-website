@@ -68,20 +68,57 @@ h1{
     font-family: "norwester";
     text-decoration: none;
     border-right: 1px solid black; 
-    padding-right: 1rem;
     margin-right: 0.2rem; 
-    display: inline-block; 
     color: black;
-}
-
-.page-navigation:last-child {
-    border-right: none;
 }
 
 nav a{
     font-size: 1.2rem;
-    padding-left: 1rem;
 }
+
+.links > a {
+	color: black;
+	padding: .5em 0.8em;
+	text-align: center;
+	text-decoration: none;
+	transition: all .5s;
+}
+
+.links > a:hover {
+	background: #ffffff06;
+	color: grey;
+}
+.links > .line {
+	background: black;
+	height: 1px;
+	pointer-events: none;
+}
+
+.links {
+	display: grid;
+	grid-template-columns: repeat(var(--items), 8rem);
+	position: relative;
+    width: fit-content;
+    margin-left: 0;
+}
+.links > .line {
+	opacity: 0;
+	transition: all .5s;
+	position: absolute;
+	bottom: 0;
+    margin-left: -3px;
+	left: var(--left, calc(100% / var(--items) * (var(--index) - 1)));
+	width: var(--width, calc(100% / var(--items)));
+	--index: 0;
+}
+.links > a:hover ~ .line {
+	opacity: 1;
+}
+
+.links > a:nth-of-type(1):hover ~ .line { --index: 1; }
+.links > a:nth-of-type(2):hover ~ .line { --index: 2; }
+.links > a:nth-of-type(3):hover ~ .line { --index: 3; }
+
 
 header div {
     display: flex;
@@ -104,15 +141,45 @@ header p{
     position:relative;
     z-index: 1;
     font-family: 'norwester';
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     border-right: 1px solid black; 
     text-decoration: none;
     padding: 0.8rem 1.6rem;
     margin-right: 0.4rem;
-    margin-top: -1.3rem;
+    margin-top: -3.2rem;
     border-radius: 15px;
     color: white;
     background-color: black;
+
+    height: 5rem;
+    display: flex;
+    align-items: flex-end;
+    box-sizing: border-box;
+
+    overflow: hidden;
+    transition: transform 0.6s ease, color 0.4s ease, background-color 0.6s ease;
+    transform: translateY(0);
+}
+
+.registration::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background-color: white;
+    transition: height 0.6s ease;
+    z-index: -1;
+}
+
+.registration:hover {
+    color: black;
+    transform: translateY(1.5rem);
+}
+
+.registration:hover::before {
+    height: 100%;
 }
 
 
@@ -140,7 +207,7 @@ main{
     align-items: center;      
     text-align: center;      
     overflow: hidden; 
-    
+    box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -195,26 +262,37 @@ main{
 
 .gradient-border{
     position: relative;
-    background: radial-gradient(circle, white 0%, #e6e6e6 30%, rgb(0, 0, 0) 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
     border-radius: 10px;
     width: fit-content;  
     height: fit-content;  
-    padding: 2px;
+    padding: 2.5px;
     margin: 1rem auto 0 auto;  
     display: flex;  
     justify-content: center;  
+    animation: rotate 4s linear infinite;
 }
+
+@keyframes rotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    80% {
+        filter: hue-rotate(360deg);
+    }
+}
+
 
 .play-button{  
     font-family: 'norwester';
     align-self: center;  
-    width: 12rem;       
+    width: 14rem;       
     padding: 0.5rem 1rem;
-    background: rgb(49, 49, 49);
-    color: white;
+    background: rgb(48, 48, 48);
+    color: rgb(210, 210, 210);
     border: none;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 2rem;
     position: relative;
     border-radius: 10px;
 
@@ -272,21 +350,8 @@ footer h2{
     justify-content: center;
     align-items: center;
     font-size: 0.7rem;
-    margin-top: 2rem;
 }
 
-.socials {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.5rem 0;
-}
-
-.socials i {
-    color: white;
-    margin: 0 0.5rem; 
-    font-size: 1.7rem; 
-}
 
 footer span{
     color: black;
@@ -324,4 +389,75 @@ footer span{
   border: 3px dotted white;
   clip-path: inherit; 
 
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -1.8rem;
+}
+
+ul li {
+  list-style: none;
+}
+
+ul li a {
+  width: 2rem;
+  height: 2rem;
+  background-color: #fff;
+  text-align: center;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  display: block;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #fff;
+  z-index: 1;
+}
+
+ul li a .icon {
+  position: relative;
+  color: #262626;
+  transition: .5s;
+  z-index: 3;
+  top: 6px;
+}
+
+ul li a:hover .icon {
+  color: #fff;
+  transform: rotateY(360deg);
+}
+
+ul li a:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f00;
+  transition: .5s;
+  z-index: 2;
+}
+
+ul li a:hover:before {
+  top: 0;
+}
+
+ul li:nth-child(1) a:before{
+  background: #3b5999;
+}
+
+ul li:nth-child(2) a:before{
+  background: #55acee;
+}
+
+ul li:nth-child(3) a:before {
+  background: #0077b5;
+}
+
+ul li:nth-child(4) a:before {
+  background: #dd4b39;
 }

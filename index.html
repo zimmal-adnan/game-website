@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome!</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/4fc40ea9d1.js" crossorigin="anonymous"></script>
+
     
 </head>
 <body>
@@ -21,12 +23,13 @@
     </header>
 
     
-    <nav>  
+    <nav class = "navigation">  
         <hr class = "thin-line">
-        <div style = "padding-left: 1rem;">
+        <div class = "links" style = "--items: 3;">
             <a class = "page-navigation" href="welcome.html">HOME</a>   
             <a class = "page-navigation" href="game.html">GAME</a>  
-            <a class = "page-navigation" href="leaderboard.html">LEADERBOARD</a>
+            <a class = "page-navigation" href="leaderboard.html" style = "border-right: none;">LEADERBOARD</a>
+            <span class="line"></span>
         </div>      
     </nav>
 
@@ -56,12 +59,20 @@
     <footer>
         <hr style = "width: 30rem;">
         <h2>Join The ‎ <span>INV</span>ERT Community</h2>
-        <div class = "socials">
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-x-twitter"></i>
-            <i class="fa-brands fa-tiktok"></i>
-            <i class="fa-brands fa-youtube"></i>
-        </div>
+        
+        <ul>
+            <li>
+                <a href="#">
+                <i class="fab fa-facebook-f icon"></i>    </a>
+            </li>
+            <li>
+                <a href="#"><i class="fab fa-twitter icon"></i></a>
+            </li>
+            <li>
+                <a href="#"><i class="fab fa-linkedin-in icon"></i></a></li>
+            <li>
+                <a href="#"><i class="fab fa-google-plus-g icon"></i></a></li>
+        </ul>
         
         <p class = "copyright">©Copyright. Made by Zimmal Adnan. All Rights Reserved.</p>
     </footer>
