@@ -1,3 +1,26 @@
+@font-face {
+  font-family: 'Blanka';
+  src: url('Blanka-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Norwester';
+  src: url('norwester.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ignis';
+  src: url('Ignis et Glacies Sharp.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 html, body {
   height: 100%;
   margin: 0;
@@ -50,7 +73,7 @@ main{
     width: 100%;
     width: 35rem;
     border-radius: 1rem 0 0 1rem;
-    padding: 7rem;
+    padding: 5rem 7rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;  
     position: relative;
@@ -97,26 +120,31 @@ main{
 
 .heading{
     color: white;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     position: relative;
     top: -20px;
+    font-family: 'Ignis';
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 0px grey;
 }
 
 
 
 /*https://codepen.io/lucasyem/pen/ZEEYKdj*/
 .form a{
+    font-family: 'norwester';
     font-size: 1rem;
-    color: white;
+    color: rgb(174, 174, 174);
     text-decoration: none;
     display: block;
     flex-direction: column;
 }
 
 .sign-up{
-    color: grey;
+    color: rgb(255, 255, 255);
     font-weight: bold;
     font-size: 1rem;
+
 }
 
 .input-container{
@@ -128,10 +156,12 @@ main{
 	position: absolute;
     left: 0px;
     top: -10px;
-	font-size: 1.3rem;
+	font-size: 1.4rem;
 	color:black;
     pointer-events: none;
     transition: all 0.5s ease-out;
+    font-family: "norwester";
+    letter-spacing: 1px;
 }
 
 .input-container input{ 
@@ -143,6 +173,7 @@ main{
   font-size: 1.1rem;
   font-family: "Lato";
   color: white;
+  font-family: 'norwester';
 }
 
 .input-container input:focus{ 
@@ -162,15 +193,15 @@ main{
 .username-button{
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
   cursor: pointer;
   font-weight: bold;
-  font-size: 15px;
-  height: 40px;
+  font-size: 1.5rem;
+  height: 50px;
   width: 10rem;
   margin-bottom: 1rem;
   margin-top: 2rem;
   transition: all 0.5s;
+  font-family: 'norwester';
 }
 
 .username-button:hover {
@@ -189,6 +220,19 @@ main{
     position: absolute;
     top: 1rem;
     left: 1rem;
-
+    font-family: 'norwester';
 }
+
+.text h1{
+    font-family: 'norwester';
+    font-size: 2.8rem;
+    text-align: right;
+    letter-spacing: 1px;
+}
+
+.text p{
+    font-size: 1.2rem;
+    font-family: 'norwester';
+}
+
 

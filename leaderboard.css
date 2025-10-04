@@ -60,18 +60,22 @@ main{
     border-radius: 35px;
     width: 18rem;
     height: 25rem;
+    box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.3);
 }
 
 #normal-box{
     background-color: black;
-    color: white;
+    border: 2px solid white;
 }
 
-hr{
+
+
+main hr{
     border: 1px solid black;
     position: relative;
     width: 70%;
     margin-top: -1rem;
+    
 }
 
 .leaderboard-box h2{
@@ -83,6 +87,64 @@ hr{
     margin-top: 1.2rem;
 }
 
+
+.username-points{
+    font-family: 'norwester';
+    margin-top: 1.5rem;
+    padding-left: 0;
+    list-style: none;
+    counter-reset: list-counter;
+}
+
+.points, .normal-points{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-bottom: 0.9rem;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    height: 2.5rem;
+    font-size: 1.3rem;
+    counter-increment: list-counter;
+    position: relative;
+    background-color: black;
+    color: white;
+}
+
+.normal-points{
+    background-color: white;
+    color: black;
+}
+
+.points:nth-child(n+4)::before, .normal-points:nth-child(n+4)::before{
+    content: counter(list-counter) ". ";
+    position: absolute;
+    left: 0.8rem;
+}
+
+.points:nth-child(1), .normal-points:nth-child(1){
+    background-color: rgb(218, 188, 22);
+}
+
+.points:nth-child(2), .normal-points:nth-child(2){
+    background-color: rgb(173, 173, 173);
+}
+
+.points:nth-child(3), .normal-points:nth-child(3){
+    background-color: #b97532; 
+}
+
+.icon-position{
+    position: absolute;
+    left: 0.6rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+
+
 .score-strip{
     background-color: black;
     color: white;
@@ -90,7 +152,7 @@ hr{
     text-align: center;
     align-items: center;
     justify-content: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     height: 3rem;
 }
 
