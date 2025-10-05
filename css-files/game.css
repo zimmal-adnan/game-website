@@ -1,0 +1,21 @@
+.game-border{
+    margin:  4rem 2rem;
+    width: 90vw;
+    height: 90vh;
+    background-color: black;
+    border: 5px solid white;
+    border-radius: 20px;
+    padding: 2rem 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-game{
+    border-radius: 20px;
+    width: 90vw;
+    height: 92vh;
+    position: relative;
+    background-color: white;
+}
