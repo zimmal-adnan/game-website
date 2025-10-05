@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome!</title>
+    <link rel="icon" type="image/png" href="INVERT.png">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/4fc40ea9d1.js" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
 
     
 </head>
@@ -24,13 +26,21 @@
 
     
     <nav class = "navigation">  
-        <hr class = "thin-line">
+        <div class = "upper">
+            <hr class = "thin-line">
+            <div class = "logo">
+                <img src = "INVERT.png">
+            </div>
+        </div>
+        
         <div class = "links" style = "--items: 3;">
             <a class = "page-navigation" href="index.html">HOME</a>   
             <a class = "page-navigation" href="game.html">GAME</a>  
             <a class = "page-navigation" href="leaderboard.html" style = "border-right: none;">LEADERBOARD</a>
             <span class="line"></span>
-        </div>      
+        </div>  
+        
+        
     </nav>
 
     <main>
@@ -42,7 +52,14 @@
                     <p>a world split between light and <span class = "text-split">shadow - survival depends on your </span>ability to switch <span class = "text-split">between realities.</span></p>
                 </div>
                 <div class = "gradient-border">
-                    <button class = "play-button">PLAY NOW!</button>
+                    <button class="play-button">
+                        PLAY NOW!
+                        <span class="arrows">
+                            <i class="fas fa-angle-right"></i>
+                            <i class="fas fa-angle-right"></i>
+                            <i class="fas fa-angle-right"></i>
+                        </span>
+                    </button>
                 </div>
                 
             </div>
@@ -53,7 +70,10 @@
     </main>
 
     <aside>
-        <div class="ribbon">Psst.. drag me to learn how to play</div>
+        <div id = "ribbon" class="ribbon">Psst.. drag me to learn how to play</div>
+        <div id = "instruction-box" class = "instruction-box">
+            <h2> HI!!! </h2>
+        </div>
     </aside>
 
     <footer>
@@ -83,6 +103,7 @@
         </div>
         <p class = "copyright">©Copyright. Made by Zimmal Adnan. All Rights Reserved.</p>
     </footer>
+    
 </body>
 </html>
 

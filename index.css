@@ -21,10 +21,14 @@
 
 
 
+
+
 body{
     margin: 0%;
     background: linear-gradient(to right, #dddddd 50%, #b4b4b4 50%);
     overflow-x: hidden;
+    
+    
 }
 
 main{
@@ -41,11 +45,38 @@ main{
 
 }
 
+.upper{
+    width: 100vw;
+    display: flex;
+}
 .thin-line{
     width: 85%;
     margin-left: 0;
     margin-right: auto;
     border: 1px solid black;
+}
+
+.logo img{
+    width: 8rem;
+    height: 8rem;
+    border-radius: 30%;  
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    box-shadow: 0px 0px 15px 5px rgba(64, 64, 64, 0.6);
+}
+
+
+.logo{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    right: 1rem;
+    position: relative;
+    
 }
 
 
@@ -69,6 +100,7 @@ h1{
     text-decoration: none;
     border-right: 1px solid black; 
     margin-right: 0.2rem; 
+
     color: black;
 }
 
@@ -118,6 +150,8 @@ nav a{
 .links > a:nth-of-type(1):hover ~ .line { --index: 1; }
 .links > a:nth-of-type(2):hover ~ .line { --index: 2; }
 .links > a:nth-of-type(3):hover ~ .line { --index: 3; }
+
+
 
 
 header div {
@@ -271,6 +305,11 @@ main{
     display: flex;  
     justify-content: center;  
     animation: rotate 4s linear infinite;
+    transition: all 0.3s ease;
+}
+
+.gradient-border:hover {
+    padding: 4px;
 }
 
 @keyframes rotate {
@@ -282,23 +321,64 @@ main{
     }
 }
 
-
 .play-button{  
-    font-family: 'norwester';
-    align-self: center;  
-    width: 14rem;       
-    padding: 0.5rem 1rem;
+    font-family: 'Norwester', sans-serif;
+    width: 14rem;
+    padding: 0.75rem 1rem;
     background: rgb(48, 48, 48);
     color: rgb(210, 210, 210);
     border: none;
     cursor: pointer;
-    font-size: 2rem;
+    padding-left: 2.5rem;
+    font-size: 1.8rem;
     position: relative;
     border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 
 }
 
+.play-button .arrows {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 2rem;
+    left: 3rem;
+}
 
+.play-button .arrows i {
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: all 0.3s ease;
+    color: #00f2fe;
+    position: absolute;
+}
+
+/* Positioning arrows slightly apart */
+.play-button .arrows i:nth-child(1) { left: 0;   transition-delay: 0s; }
+.play-button .arrows i:nth-child(2) { left: 13px; transition-delay: 0.1s; }
+.play-button .arrows i:nth-child(3) { left: 26px; transition-delay: 0.2s; }
+
+
+.play-button:hover {
+    text-indent: -3rem;
+    width: 16rem;
+
+}
+
+.play-button:hover .arrows i {
+    opacity: 1;
+    transform: translateX(0);
+
+}
+
+.play-button:active {
+    transform: scale(0.97);
+}
 
 
 .white-box h2{
@@ -321,6 +401,7 @@ footer{
     margin-left: auto;
     margin-right: auto;
     max-width: 100rem;
+ 
     position: relative;
 
 }
@@ -328,13 +409,16 @@ footer{
 footer hr{
     border: none;
     border-top: 2px solid white;
+    
 }
 
 footer p{
     color: white;
     font-size: 1rem;
     text-align: center;
+
 }
+
 
 footer h2{
     font-family: 'norwester';
@@ -344,6 +428,7 @@ footer h2{
     align-items: center;
     font-size: 1rem;
     word-spacing: 2px;
+  
 }
 
 
@@ -380,13 +465,18 @@ footer span{
 
 
 .ribbon {
-  font-size: 1.3rem;
-  font-family: 'norwester';
-  color: #fff;
+    font-size: 1.3rem;
+    font-family: 'norwester';
+    color: #fff;
     width: 13rem;
-  text-wrap: wrap;
-  text-align: right;
+    text-wrap: wrap;
+    text-align: right;
+    cursor: grab;
+    user-select: none;
+    transition: transform 0.3s ease;
 }
+
+
 .ribbon {
   --f: .05em; 
   --r: 1.2em; 
@@ -403,6 +493,26 @@ footer span{
       var(--r) calc(50% + var(--f)/2));
 }
 
+.instruction-box {
+    position: absolute;
+    bottom: 10px;
+    right: -400px; 
+    width: 400px; 
+    height: 300px;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 2rem;
+    overflow: hidden;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Norwester', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+}
+
 .ribbon::before {
   content: '';
   position: absolute;
@@ -417,6 +527,7 @@ ul {
     justify-content: center;
     align-items: center;
     margin-left: -1.8rem;
+    
 }
 
 ul li {
@@ -481,4 +592,33 @@ ul li:nth-child(3) a:before {
 
 ul li:nth-child(4) a:before {
   background: #dd4b39;
+}
+
+
+.circle{
+    position: absolute;
+    border-radius: 50%;
+    background: rgb(0, 0, 0, 0.3);
+    animation: float linear infinite;
+    opacity: 0;
+    bottom: 0;
+    z-index: -5;
+  
+}
+
+@keyframes float {
+    from {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    to {
+        transform: translateY(-100vh) translateX(50px) rotate(360deg);
+        opacity: 0;
+    }
 }
