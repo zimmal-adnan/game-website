@@ -1,20 +1,20 @@
 @font-face {
   font-family: 'Blanka';
-  src: url('Blanka-Regular.otf') format('truetype');
+  src: url('../Fonts/Blanka-Regular.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Norwester';
-  src: url('norwester.otf') format('truetype');
+  src: url('../Fonts/norwester.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Ignis';
-  src: url('Ignis et Glacies Sharp.ttf') format('truetype');
+  src: url('../Fonts/Ignis et Glacies Sharp.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -280,7 +280,7 @@ main{
     height: auto;
 }
 
-.white-box img{
+.white-box-image{
     position: absolute;
     top: 0;
     left: 0;
@@ -384,13 +384,36 @@ main{
 .white-box h2{
     font-size: 2.8rem;
     font-family: 'Ignis';
-    background-color: black;
+    display: flex;
     color: white;
     letter-spacing: 4px;
     margin-top: 2rem;
     padding: 0.5rem;
     width: 100rem;
     text-shadow: 2px 2px 0px grey;
+    align-items: center;
+    justify-content: center;
+}
+
+.black{
+    position: relative;
+    background-color: black;
+}
+
+.halftone-left, .halftone-right{
+    position: absolute;
+    width: 10rem;
+    height: 4.25rem;
+    filter: brightness(0) invert(1);
+    opacity: 0.6;
+}
+
+.halftone-left{
+    left: 14rem;
+}
+.halftone-right{
+    transform: scaleX(-1);
+    right: 14rem;
 }
 
 footer{
@@ -401,7 +424,6 @@ footer{
     margin-left: auto;
     margin-right: auto;
     max-width: 100rem;
- 
     position: relative;
 
 }
@@ -495,22 +517,34 @@ footer span{
 
 .instruction-box {
     position: absolute;
-    bottom: 10px;
-    right: -400px; 
-    width: 400px; 
-    height: 300px;
-    background-color: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 2rem;
+    bottom: 0.6rem;
+    right: -31.3rem; 
+    width: 28rem;
+    height: 25rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: black;
+    padding: 1.5rem;
     overflow: hidden;
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Norwester', sans-serif;
+    font-family: 'norwester', sans-serif;
     font-size: 1.2rem;
     text-align: center;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    
+    
+}
+
+.inner-box{
+    background-color: white;
+    border: 5px solid black;
+    border-radius: 15px;
+    height: 24rem;
+    width: 28rem;
+    
 }
 
 .ribbon::before {

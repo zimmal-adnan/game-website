@@ -1,23 +1,25 @@
 @font-face {
   font-family: 'Blanka';
-  src: url('Blanka-Regular.otf') format('truetype');
+  src: url('../Fonts/Blanka-Regular.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Norwester';
-  src: url('norwester.otf') format('truetype');
+  src: url('../Fonts/norwester.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Ignis';
-  src: url('Ignis et Glacies Sharp.ttf') format('truetype');
+  src: url('../Fonts/Ignis et Glacies Sharp.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+
+
 
 
 
@@ -94,6 +96,7 @@ main hr{
     padding-left: 0;
     list-style: none;
     counter-reset: list-counter;
+    perspective: 1000;
 }
 
 .points, .normal-points{
@@ -111,7 +114,35 @@ main hr{
     position: relative;
     background-color: black;
     color: white;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
 }
+
+.points:hover{
+    transform: rotateY(180deg);
+}
+
+.front-side, .back-side{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+}
+
+
+
+.back-side{
+  background: #8b5cf6;
+  color: white;
+  transform: rotateY(180deg);  
+}
+
+
+
 
 .normal-points{
     background-color: white;

@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => { //waits for the HTML docum
         const deltaX = currentMouseX - initialMouseX; //figures out how far you have pulled the ribbon to the left
        
 
-        if(deltaX < -400){ //if mouse moves than 400px to the left
-            currentTranslateX = -400;
+        if(deltaX < -500){ //if mouse moves than 400px to the left
+            currentTranslateX = -500;
         }
         else if (deltaX > 0) { //if mouse moves too far to the right
             currentTranslateX = 0;     
