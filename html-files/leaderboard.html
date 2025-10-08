@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
     <link rel="stylesheet" href="../css-files/leaderboard.css">
-    <link rel="icon" type="image/png" href="INVERT.png">
+    <script src="../index.js"></script>
+    <link rel="icon" type="image/png" href="../Images/INVERT.png">
     <link rel="stylesheet" href="../css-files/index.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/4fc40ea9d1.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <div id = "cursor-dot" class = "cursor-dot"></div>
+    <div id = "cursor-outline"class = "cursor-outline"></div>
     <header>
         <hr class = "thick-line">
         <p>Think you can survive the switch? Join now to prove it!</p>
@@ -42,6 +45,20 @@
         </div>      
     </nav>
 
+    <section class = "score-strip">
+        <div class="arrows-left">
+            <i class="fas fa-angle-left"></i>
+            <i class="fas fa-angle-left"></i>
+            <i class="fas fa-angle-left"></i>
+        </div>
+        <div class="arrows-right">
+            <i class="fas fa-angle-right"></i>
+            <i class="fas fa-angle-right"></i>
+            <i class="fas fa-angle-right"></i>
+        </div>
+        <h2>YOUR BEST: 900 PTS.</h2>
+    </section>
+
     <main>
         <div class = "leaderboard-box">
             <h2>EASY</h2>
@@ -57,11 +74,11 @@
                 </li>
                 <li class = "points">
                     <img src = "../Images/second-prize.png" class="icon-position">
-                    <span>Username 1</span>
+                    <span>Username 2</span>
                 </li>
                 <li class = "points">
                     <img src = "../Images/third-place.png" class="icon-position">
-                    <span>Username 1</span>
+                    <span>Username 3</span>
                 </li>
                 <li class = "points">Username 4</li>
                 <li class = "points">Username 5</li>
@@ -75,15 +92,15 @@
             <hr style = "border: 2px solid white">
             <ol class = "username-points">
                 <li class = "normal-points">
-                    <img src = "medal (1).png" class="icon-position">
+                    <img src = "../Images/medal (1).png" class="icon-position">
                     <span>Username 1</span>
                 </li>
                 <li class = "normal-points">
-                    <img src = "second-prize.png" class="icon-position">
+                    <img src = "../Images/second-prize.png" class="icon-position">
                     <span>Username 1</span>
                 </li>
                 <li class = "normal-points">
-                    <img src = "third-place.png" class="icon-position">
+                    <img src = "../Images/third-place.png" class="icon-position">
                     <span>Username 1</span>
                 </li>
                 <li class = "normal-points">Username 4</li>
@@ -96,15 +113,15 @@
             <hr>
             <ol class = "username-points">
                 <li class = "points">
-                    <img src = "medal (1).png" class="icon-position">
+                    <img src = "../Images/medal (1).png" class="icon-position">
                     <span>Username 1</span>
                 </li>
                 <li class = "points">
-                    <img src = "second-prize.png" class="icon-position">
+                    <img src = "../Images/second-prize.png" class="icon-position">
                     <span>Username 1</span>
                 </li>
                 <li class = "points">
-                    <img src = "third-place.png" class="icon-position">
+                    <img src = "../Images/third-place.png" class="icon-position">
                     <span>Username 1</span>
                 </li>
                 <li class = "points">Username 4</li>
@@ -113,19 +130,7 @@
         </div>
     </main>
 
-    <section class = "score-strip">
-        <div class="arrows-left">
-            <i class="fas fa-angle-left"></i>
-            <i class="fas fa-angle-left"></i>
-            <i class="fas fa-angle-left"></i>
-        </div>
-        <div class="arrows-right">
-            <i class="fas fa-angle-right"></i>
-            <i class="fas fa-angle-right"></i>
-            <i class="fas fa-angle-right"></i>
-        </div>
-        <h2>YOUR BEST: 900 PTS.</h2>
-    </section>
+    
 
     <footer>
         <hr style = "width: 30rem;">
