@@ -22,14 +22,36 @@
 
 
 
-
 body{
     margin: 0%;
     background: linear-gradient(to right, #dddddd 50%, #b4b4b4 50%);
     overflow-x: hidden;
-    
-    
+    cursor: none;
+   
 }
+
+.cursor-dot{
+    width: 10px;
+    height: 10px;
+    background-color: black
+}
+
+.cursor-outline{
+    width: 30px;
+    height: 30px;
+    border: 2px solid white;
+}
+
+.cursor-dot, .cursor-outline{
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 1000;
+    pointer-events: none;
+}
+
 
 main{
     flex: 1;
@@ -69,7 +91,7 @@ main{
 
 
 .logo{
-    width: 15%;
+    width: 14%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -256,9 +278,10 @@ main{
     padding: 1rem;
     display: flex;             
     justify-content: center;   
-    margin-top: 5em;
+    margin-top: 5em;   
    
 }
+
 
 
 .paragraph-block p {
@@ -267,7 +290,8 @@ main{
     font-family: 'norwester';
     text-align: center;        
     margin: 0;  
-    pointer-events: none;              
+    pointer-events: none;   
+    text-shadow: 0px 0px 3px rgb(29, 29, 29);           
 }
 
 
@@ -328,7 +352,7 @@ main{
     background: rgb(48, 48, 48);
     color: rgb(210, 210, 210);
     border: none;
-    cursor: pointer;
+    cursor: none;
     padding-left: 2.5rem;
     font-size: 1.8rem;
     position: relative;
@@ -367,7 +391,6 @@ main{
 .play-button:hover {
     text-indent: -3rem;
     width: 16rem;
-
 }
 
 .play-button:hover .arrows i {
@@ -386,19 +409,21 @@ main{
     font-family: 'Ignis';
     display: flex;
     color: white;
-    letter-spacing: 4px;
+    letter-spacing: 10px;
     margin-top: 2rem;
     padding: 0.5rem;
     width: 100rem;
     text-shadow: 2px 2px 0px grey;
     align-items: center;
     justify-content: center;
+    
 }
 
 .black{
     position: relative;
     background-color: black;
 }
+
 
 .halftone-left, .halftone-right{
     position: absolute;
@@ -551,7 +576,8 @@ footer span{
   content: '';
   position: absolute;
   inset: 0;
-  border: 3px dotted white;
+  border-top: 3px dotted white;
+  border-bottom: 3px dotted white;
   clip-path: inherit; 
 
 }
