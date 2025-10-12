@@ -26,3 +26,7 @@
     display: block;
     border-radius: 20px;
 }
+
+.game-over{
+    opacity: 0;
+}
