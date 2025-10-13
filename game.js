@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = container.clientHeight;
 
     let gameOver = false;
+    
+    let lastUsedLanes = [];
+    let isBlackWorld = false;
 
     //===PLAYER===
     class Player{
@@ -44,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     //===OBSTACLES===
-    let gameSpeed = 4;
+    let gameSpeed = 5;
     const obstacles = [];
     const laneCount = 5;
     const laneWidth = canvas.width / laneCount;
@@ -136,9 +139,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 laneIndex = Math.floor(Math.random() * laneCount);
             } while (usedLanes.has(laneIndex));
             usedLanes.add(laneIndex);
+
             const x = laneIndex * laneWidth + (laneWidth / 2);
-            const y = -70;
-            const color = ["red", "green", "yellow", "purple"][Math.floor(Math.random() * 4)];
+            const y = -70; 
+            const color = isBlackWorld ? "black" : ["red", "green", "yellow", "purple"][Math.floor(Math.random() * 4)];
+
             
             //Pick a random obstacle to spawn
             const shapeType = Math.floor(Math.random() * 4);
@@ -166,9 +171,10 @@ document.addEventListener("DOMContentLoaded", () => {
             obstacles.push(obstacle); 
         }
        
+        lastUsedLanes = Array.from(usedLanes);
         
         //spawn next object at random times
-        const nextSpawnDelay = getRandomInt(400, 800);
+        const nextSpawnDelay = getRandomInt(600, 1000);
         setTimeout(spawnObstacle, nextSpawnDelay);
     }
 
@@ -184,6 +190,69 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     //===RESTART GAME===
     document.getElementById('restart').addEventListener('click', () => window.location.reload());
+
+    function switchWorld() {
+        if (gameOver) return;
+
+        isBlackWorld = !isBlackWorld;
+
+        const laneObstacles = {};
+        for (const obs of obstacles) {
+            const laneIndex = Math.floor((obs.x + (obs.size || obs.width || obs.radius * 2) / 2) / laneWidth);
+            if (!laneObstacles[laneIndex] || obs.y > laneObstacles[laneIndex].y) {
+                laneObstacles[laneIndex] = obs; 
+            }
+        }
+
+        const usedLanes = Object.keys(laneObstacles).map(n => parseInt(n));
+
+        const allLanes = [...Array(laneCount).keys()];
+        const unusedLanes = allLanes.filter(lane => !usedLanes.includes(lane));
+
+        const refY = Object.values(laneObstacles).length > 0
+            ? Object.values(laneObstacles)[0].y
+            : -70;
+
+        obstacles.length = 0;
+
+        for (let laneIndex of unusedLanes) {
+            const x = laneIndex * laneWidth + (laneWidth / 2);
+            const y = refY; 
+            const color = isBlackWorld ? "black" : "red"; 
+            const shapeType = Math.floor(Math.random() * 4);
+            let obstacle;
+
+            switch (shapeType) {
+                case 0: {
+                    const size = getRandomInt(40, 80);
+                    obstacle = new Square(x - size / 2, y, size, color);
+                    break;
+                }
+                case 1: {
+                    const rectangleWidth = getRandomInt(40, 80);
+                    const rectangleHeight = getRandomInt(40, 70);
+                    obstacle = new Rectangle(x - rectangleWidth / 2, y, rectangleWidth, rectangleHeight, color);
+                    break;
+                }
+                case 2: {
+                    const radius = getRandomInt(10, 30);
+                    obstacle = new Circle(x - radius, y, radius, color);
+                    break;
+                }
+                case 3: {
+                    const triangleSize = getRandomInt(30, 60);
+                    obstacle = new Triangle(x - triangleSize / 2, y, triangleSize, color);
+                    break;
+                }
+            }
+
+            obstacles.push(obstacle);
+        }
+
+        lastUsedLanes = unusedLanes;
+    }
+
+
 
     
     //===RUN GAME===
@@ -231,5 +300,10 @@ document.addEventListener("DOMContentLoaded", () => {
     Update();
     spawnObstacle();
 
-});
+    document.addEventListener('keydown', (event) => {
+        if(event.key === "b"){
+            switchWorld()
+        }
+    })
 
+});
