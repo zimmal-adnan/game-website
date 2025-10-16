@@ -144,14 +144,16 @@ main{
     color: white;
     font-size: 3.1rem;
     position: relative;
-    top: -20px;
+    top: -30px;
     margin-bottom: 0.7rem;
     font-family: 'Ignis';
     letter-spacing: 3px;
     text-shadow: 2px 2px 0px grey;
 }
 
-
+.form{
+    margin-top: -1.5rem;
+}
 
 /*https://codepen.io/lucasyem/pen/ZEEYKdj*/
 .form a{
@@ -173,6 +175,14 @@ main{
 
 .sign-up:hover{
     font-size: 1.2rem;
+}
+
+.feedback{
+    font-family: "ignis";
+    color: white;
+    font-size: 1rem;
+    position: relative;
+    margin-top: -35px;
 }
 
 
@@ -251,7 +261,7 @@ main{
 }
 
 
-.username-button{
+.submit-button, .submitSignUp-button{
   background-color: white;
   border-radius: 8px;
   cursor: pointer;
@@ -260,16 +270,16 @@ main{
   height: 50px;
   width: 10rem;
   margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   transition: all 0.5s;
   font-family: 'norwester';
 }
 
-.username-button:hover {
+.submit-button:hover, .submitSignUp-button:hover {
     opacity: .75;
 }
   
-.username-button:focus {
+.submit-button:focus, .submitSignUp-button:focus {
     box-shadow: rgba(0, 0, 0, .3) 0 0 10px;
 }
 
