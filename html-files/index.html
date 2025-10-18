@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css-files/index.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/4fc40ea9d1.js" crossorigin="anonymous"></script>
-    <script src="../index.js"></script>
+    <script type = "text/javascript" src="../index.js" defer></script>
 
     
 </head>
@@ -17,10 +17,12 @@
     <div id = "cursor-outline"class = "cursor-outline"></div>
     <header>
         <hr class = "thick-line">
-        <p>Think you can survive the switch? Join now to prove it!</p>
-        <div>
-            <a class = "registration" href = "login.html">LOGIN</a>
-            <a class = "registration" href = "signup.html">SIGNUP</a>
+        <p id = "call-to-action">Think you can survive the switch? Join now to prove it!</p>
+        <div class = "register">
+            <a style = "opacity: 1;" class = "registration" id = "login-button" href = "login.html">LOGIN</a>
+            <a style = "opacity: 1;" class = "registration" id = "signup-button" href = "signup.html">SIGNUP</a>
+            <p style = "opacity: 0;" id = "user" class = "user">Username</p>
+            <img style = "opacity: 0;" id = "user-profile" class = "user-profile" src = "../Images/profile.jpg">
         </div>
         <h1>INV<span class = "letters">ERT</span></h1>
 
@@ -110,4 +112,3 @@
     
 </body>
 </html>
-

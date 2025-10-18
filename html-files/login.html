@@ -9,8 +9,8 @@
     <script src="https://kit.fontawesome.com/4fc40ea9d1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css-files/login.css">
     <link rel="icon" type="image/png" href="../Images/INVERT.png">
-    <script src = "../login.js"></script>
-    <script src = "../index.js"></script>
+    <script type = "text/javascript" src = "../login.js" defer></script>
+    <script type = "text/javascript" src = "../index.js" defer></script>
  
 </head>
 <body>
@@ -23,25 +23,26 @@
         <div class = "black-box">
             <a href = "index.html" class = "back-page">← Back To Home</a>
             <h1 class = "heading">LOGIN!</h1>
-            <form class = "form">
+            <form id = "form" class = "form">
+                <h2 class = "feedback" id = "feedback"></h2>
                 <div class = "input-container">
-                    
-                    <input placeholder="Your name..." />  
+                    <input id="username" name = "username" type="text" placeholder="Your name..." required>  
                     <label>ENTER USERNAME</label>
                 </div>
 
                 <div class = "input-container">
-                    <input type = "password" id = "password" placeholder="Your password..." />
+                    <input type="password" id = "password" name = "password" placeholder="Your password..." required>
                     <label>ENTER PASSWORD</label>
                     <div class="eye-toggle">
                         <i id="eye-icon" class="fas fa-eye"></i>
                         <i id="eye-slash" class="fas fa-eye-slash"></i>
                     </div>
                 </div>
-                <button class = "submit-button">LOGIN</button>
+
+                <button type = "submit" id = "submit-button" class = "submit-button" >LOGIN</button>
                 <a href = "signup.html" >Don't have an account? <span class = "sign-up">Sign up</span></a>
 
-            </div>
+            </form>
         </div>
         <div class = "text-block">
             <div class = "translucent-box"></div>
@@ -51,9 +52,6 @@
                     Your journey starts with a single login.</p>           
             </div>
         </div>
-
-        
-
     </main>
 </body>
 </html>

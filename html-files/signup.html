@@ -9,8 +9,8 @@
 
     <link rel="stylesheet" href="../css-files/login.css">
     <link rel="icon" type="image/png" href="../Images/INVERT.png">
-    <script src = "../login.js"></script>
-    <script src = "../index.js"></script>
+    <script type = "text/javascript" src = "../login.js" defer></script>
+    <script type = "text/javascript" src = "../index.js" defer></script>
     
 </head>
 <body>
@@ -20,20 +20,20 @@
         <img src = "../Images/black.png">
     </div>
     <main>
-        <div class = "black-box2">
+        <div class = "black-box">
             <a href = "index.html" class = "back-page">← Back To Home</a>
             <h1 class = "heading">Signup!</h1>
-            <form class = "form">
+            <form id = "form" class = "form">
                 <h2 class = "feedback" id = "feedback"></h2>
+
                 <div class = "input-container">
-                    
-                    <input id="signUpUsername" type="text" placeholder="Your name...">  
-                    <label>ENTER USERNAME</label>
+                    <input id="username" name = "username" type="text" placeholder="Your name..." required>  
+                    <label for = "username">ENTER USERNAME</label>
                 </div>
 
                 <div class = "input-container">
-                    <input type="password" id = "password" name = "password" placeholder="Your password...">
-                    <label>ENTER PASSWORD</label>
+                    <input type="password" id = "password" name = "password" placeholder="Your password..." required>
+                    <label for = "password">ENTER PASSWORD</label>
                     <div class="eye-toggle">
                         <i id="eye-icon" class="fas fa-eye"></i>
                         <i id="eye-slash" class="fas fa-eye-slash"></i>
@@ -41,16 +41,23 @@
                 </div>
 
                 <div class = "input-container">
-                    <input type="password" id = "passwordAgain" placeholder="Your password (again)...">
-                    <label>ENTER PASSWORD (AGAIN)</label>
+                    <input type="password" id = "passwordAgain" name = "passwordAgain" placeholder="Your password (again)..." required>
+                    <label for = "passwordAgain">ENTER PASSWORD (AGAIN)</label>
                 </div>
 
                 <div class = "input-container">
-                    <input type = "email" id = "email" name = "email" placeholder = "Enter email">
-                    <label>ENTER EMAIL</label> 
+                    <input type = "email" id = "email" name = "email" placeholder = "Enter email" required>
+                    <label for = "email">ENTER EMAIL</label> 
                 </div>
 
-                <button id = "submit-button" class = "submit-button" >SIGNUP</button>
+                <div class="input-container-profile">
+                    <label class ="profile-picture-label">UPLOAD A PROFILE PICTURE (RECOMMENDED)</label>
+                    <img src="../Images/profile.jpg" id="profile-picture" class="profile-picture" alt="Profile Picture">
+                    <input id="input-file" type="file" accept="image/jpeg, image/png, image/jpg"> 
+                </div>
+
+
+                <button type = "submit" id = "submit-button" class = "submit-button" >SIGNUP</button>
                 <a href = "login.html" >Already have an account? <span class = "sign-up">Login</span></a>
 
             </form>

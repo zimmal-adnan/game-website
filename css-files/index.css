@@ -193,8 +193,18 @@ header p{
     opacity: 0.85;
 }
 
+.register{
+    position: relative;            
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
 .registration{
-    position:relative;
+    position: absolute;
+    right: 0;
+    top: 0;
     z-index: 1;
     font-family: 'norwester';
     font-size: 1.3rem;
@@ -211,10 +221,19 @@ header p{
     display: flex;
     align-items: flex-end;
     box-sizing: border-box;
+    
 
     overflow: hidden;
-    transition: transform 0.6s ease, color 0.4s ease, background-color 0.6s ease;
+    transition: all 0.5s ease;
     transform: translateY(0);
+}
+
+#signup-button {
+    right: 0.8rem;
+}
+
+#login-button {
+    right: 8rem; 
 }
 
 .registration::before {
@@ -225,7 +244,7 @@ header p{
     width: 100%;
     height: 0%;
     background-color: white;
-    transition: height 0.6s ease;
+    transition: all 0.6s ease;
     z-index: -1;
 }
 
@@ -241,6 +260,24 @@ header p{
 
 .registration:last-child{
     margin-right: 0.8rem;
+}
+
+.user{
+    position: relative;
+    top: 2rem;
+    font-size: 1.2rem;
+    color: black;
+    left: -10px;
+}
+
+.user-profile{
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    position: relative;
+    top: -5px;
+    left: -10px;
+    border: 2px solid black;
 }
 
 main{
@@ -382,7 +419,7 @@ main{
     position: absolute;
 }
 
-/* Positioning arrows slightly apart */
+
 .play-button .arrows i:nth-child(1) { left: 0;   transition-delay: 0s; }
 .play-button .arrows i:nth-child(2) { left: 13px; transition-delay: 0.1s; }
 .play-button .arrows i:nth-child(3) { left: 26px; transition-delay: 0.2s; }
@@ -682,3 +719,4 @@ ul li:nth-child(4) a:before {
         opacity: 0;
     }
 }
+

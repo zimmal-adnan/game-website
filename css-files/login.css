@@ -1,3 +1,5 @@
+
+/*----FONTS----*/
 @font-face {
   font-family: 'Blanka';
   src: url('../Fonts/Blanka-Regular.otf') format('truetype');
@@ -19,13 +21,21 @@
   font-style: normal;
 }
 
-
-
+/*----BASE STYLE----*/
 html, body {
-  height: 100%;
-  margin: 0;
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
 }
 
+body{
+    background-color: #b2b2b2;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+/*----CURSOR----*/
 .cursor-dot{
     width: 10px;
     height: 10px;
@@ -48,13 +58,8 @@ html, body {
     pointer-events: none;
 }
 
-body{
-    background-color: #b2b2b2;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
 
+/*----LAYOUT----*/
 main{
     display: flex;
     align-items: stretch;
@@ -62,7 +67,6 @@ main{
     box-sizing: border-box;
     width: 100%;
     margin: auto;
-
 }
 
 .background-image{
@@ -74,47 +78,48 @@ main{
     height: 100%;
     z-index: -1;          
     overflow: hidden;
-
 }
 
 .background-image img {
     width: 95%;
     background-repeat: no-repeat;
-    height: 90%;
+    height: 95%;
     border-radius: 2rem;
     border: 3px solid grey;
     object-fit: cover;    
 }
 
-.black-box, .black-box2{
+
+/*----FORM CONTAINER----*/
+.black-box {
     background-color: black;
     border-left: 2px solid white;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
-    height: 33rem;
+    height: 36rem;
     width: 100%;
     width: 35rem;
     border-radius: 1rem 0 0 1rem;
-    padding: 5rem 7rem;
+    padding: 4rem 5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;  
     position: relative;
-}
-
-.black-box2{
-    padding: 3.5rem 7rem;
+    overflow-y: auto;
 }
 
 
-.text-block{
+
+/*----TEXT ON THE RIGHT SIDE----*/
+.text-block {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 35rem;
-    height: 32.8rem; 
+    height: 36rem; 
     box-sizing: border-box;
 }
+
 
 .translucent-box{
     position: absolute;
@@ -130,7 +135,6 @@ main{
     opacity: 0.35;
 }
 
-
 .text{
     position: relative;
     z-index: 2;
@@ -139,7 +143,20 @@ main{
     padding: 6rem;
 }
 
+.text h1{
+    font-family: 'norwester';
+    font-size: 2.8rem;
+    text-align: right;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0px grey;
+}
 
+.text p{
+    font-size: 1.2rem;
+    font-family: 'norwester';
+}
+
+/*----HEADING AND NAVIGATION TO HOME PAGE----*/
 .heading{
     color: white;
     font-size: 3.1rem;
@@ -149,138 +166,6 @@ main{
     font-family: 'Ignis';
     letter-spacing: 3px;
     text-shadow: 2px 2px 0px grey;
-}
-
-.form{
-    margin-top: -1.5rem;
-}
-
-/*https://codepen.io/lucasyem/pen/ZEEYKdj*/
-.form a{
-    font-family: 'norwester';
-    font-size: 1rem;
-    color: rgb(174, 174, 174);
-    text-decoration: none;
-    display: block;
-    flex-direction: column;
-   
-}
-
-.sign-up{
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    font-size: 1rem;
-    transition: font-size 0.4s ease;
-}
-
-.sign-up:hover{
-    font-size: 1.2rem;
-}
-
-.feedback{
-    font-family: "ignis";
-    color: white;
-    font-size: 1rem;
-    position: relative;
-    margin-top: -35px;
-}
-
-
-.input-container{
-    position:relative;
-	margin-bottom: 2rem; 
-
-}
-
-.input-container label{
-	position: absolute;
-    left: 0px;
-    top: -10px;
-	font-size: 1.4rem;
-	color:black;
-    pointer-events: none;
-    transition: all 0.5s ease-out;
-    font-family: "norwester";
-    letter-spacing: 1px;
-}
-
-.input-container input{ 
-  border:0;
-  border-bottom:1px solid white;
-  background:transparent;
-  width: 20rem;
-  padding: 8px 0 5px 0;
-  font-size: 1.1rem;
-  font-family: "Lato";
-  color: white;
-  font-family: 'norwester';
-}
-
-.input-container input:focus{ 
- outline:none;
- border-bottom:1px solid rgb(183, 183, 183);
- transition: all 0.3s ease;
-}
-
-.input-container input:focus ~ label,
-.input-container input:not(:placeholder-shown) ~ label {
-    top: -10px;
-    font-size: 12px;
-    color: rgb(183, 183, 183);
-}
-
-::placeholder{
-    color: rgba(187, 187, 187, 0.3);
-}
-
-.eye-toggle {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-}
-
-#eye-icon, #eye-slash{
-    left: -10px;
-    color: white;
-    position: absolute;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-}
-
-#eye-icon{
-    opacity: 0;
-    pointer-events: none;
-}
-
-#eye-slash{
-    opacity: 1;
-    pointer-events: auto;
-}
-
-
-.submit-button, .submitSignUp-button{
-  background-color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.5rem;
-  height: 50px;
-  width: 10rem;
-  margin-bottom: 1rem;
-  margin-top: 0.5rem;
-  transition: all 0.5s;
-  font-family: 'norwester';
-}
-
-.submit-button:hover, .submitSignUp-button:hover {
-    opacity: .75;
-}
-  
-.submit-button:focus, .submitSignUp-button:focus {
-    box-shadow: rgba(0, 0, 0, .3) 0 0 10px;
 }
 
 .back-page{
@@ -319,19 +204,214 @@ main{
     left: 0;
 }
 
-
-.text h1{
-    font-family: 'norwester';
-    font-size: 2.8rem;
-    text-align: right;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 0px grey;
+/*----FORM ON THE LEFT SIDE----*/
+.form{
+    margin-top: -1.5rem;
 }
 
+/*https://codepen.io/lucasyem/pen/ZEEYKdj*/
+.form a{
+    font-family: 'norwester';
+    font-size: 1rem;
+    color: rgb(174, 174, 174);
+    text-decoration: none;
+    display: block;
+    flex-direction: column;
+}
 
-.text p{
+.sign-up{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 1rem;
+    transition: font-size 0.4s ease;
+}
+
+.sign-up:hover{
     font-size: 1.2rem;
+}
+
+.feedback{
+    font-family: "ignis";
+    color: red;
+    font-size: 0.8rem;
+    position: relative;
+    margin-top: -35px;
+    margin-bottom: 1.5rem;
+    min-height: 1rem;
+}
+
+/*----INPUT FIELDS ON FORM----*/
+.input-container{
+    position:relative;
+	margin-bottom: 2rem; 
+}
+
+.input-container label {
+	position: absolute;
+    left: 0px;
+    top: -10px;
+	font-size: 1.4rem;
+	color:black;
+    pointer-events: none;
+    transition: all 0.5s ease-out;
+    font-family: "norwester";
+    letter-spacing: 1px;
+}
+
+
+.input-container input{ 
+    border:0;
+    border-bottom:1px solid white;
+    background:transparent;
+    width: 100%;
+    padding: 8px 0 5px 0;
+    font-size: 1.1rem;
+    font-family: "Lato";
+    color: white;
     font-family: 'norwester';
 }
 
+.input-container input:focus{ 
+    outline:none;
+    border-bottom:1px solid rgb(183, 183, 183);
+    transition: all 0.3s ease;
+}
+
+.input-container input:focus ~ label,
+.input-container input:not(:placeholder-shown) ~ label {
+    top: -10px;
+    font-size: 12px;
+    color: rgb(183, 183, 183);
+}
+
+::placeholder{
+    color: rgba(187, 187, 187, 0.3);
+}
+
+/*----PASSWORD TOGGLE----*/
+.eye-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+}
+
+#eye-icon, #eye-slash{
+    left: -10px;
+    color: white;
+    position: absolute;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+#eye-icon{
+    opacity: 0;
+    pointer-events: none;
+}
+
+#eye-slash{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/*----PROFILE PICTURE----*/
+.input-container-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+}
+
+.input-container-profile:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.profile-picture-label {
+    position: relative;
+    pointer-events: auto;
+    color: rgb(183, 183, 183);
+    font-family: "norwester";
+    font-size: 0.85rem;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.3s ease;
+}
+
+.profile-picture {
+    margin-top: 1rem;
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 100rem;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.profile-picture:hover {
+    transform: scale(1.05);
+    border-color: white;
+    box-shadow: 
+        0 6px 25px rgba(255, 255, 255, 0.3),
+        inset 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+#input-file {
+  display: none;
+}
+
+/*----SUBMIT FORM BUTTON----*/
+.submit-button {
+  background-color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5rem;
+  height: 50px;
+  width: 10rem;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  transition: all 0.5s;
+  font-family: 'norwester';
+}
+
+.submit-button:hover {
+    opacity: .75;
+}
+  
+.submit-button:focus {
+    box-shadow: rgba(0, 0, 0, .3) 0 0 10px;
+}
+
+
+/*----ERROR INPUT----*/
+.input-container.incorrect input {
+    border-bottom: 2px solid #ff5555;
+    background-color: rgba(255, 0, 0, 0.08);
+    animation: shake 0.5s ease;
+}
+
+.input-container.incorrect label {
+    color: #ff5555;
+    text-shadow: 0 0 10px rgba(255, 85, 85, 0.5);
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
 
