@@ -25,7 +25,11 @@ const username = document.getElementById('username');
 const password = document.getElementById('password');
 const passwordAgain = document.getElementById('passwordAgain');
 const email = document.getElementById('email');
+const birthdate = document.getElementById('date');
+const termsCheckbox = document.getElementById('terms-checkbox');
+const termsContainer = document.getElementById('terms-container');
 const feedback = document.getElementById('feedback');
+
 const submitButton =  document.getElementById('submit-button');
 
 let isValid = false;
@@ -35,22 +39,27 @@ form.addEventListener('submit', (e) => {
     let errors = [];
 
     if(email){
-        errors = getSignUpFormErrors(username.value, password.value, passwordAgain.value, email.value);
+        errors = getSignUpFormErrors(username.value, password.value, passwordAgain.value, email.value, birthdate.value);
+        
         if (errors.length === 0) {
+            buttonCorrectAnimation(true);
             const userData = {
                 username: username.value.trim(),
                 email: email.value.trim(),
                 password: password.value.trim(),
+                birthdate: birthdate.value,
                 profilePicture: localStorage.getItem('profileImage') || '../Images/profile.jpg',
                 isLoggedIn: true
             };
 
-            localStorage.setItem('userData', JSON.stringify(userData));
-          
+            localStorage.setItem('userData', JSON.stringify(userData));    
             feedback.innerHTML = "Signup successful! Welcome!"
             
 
             setTimeout(() => {window.location.href = "index.html"}, 3000);
+        }
+        else{
+            buttonCorrectAnimation(false);
         }
     }
     else{
@@ -63,29 +72,51 @@ form.addEventListener('submit', (e) => {
                     feedback.innerHTML = "No account found. Please sign up first.";
                     username.parentElement.classList.add('incorrect');
                     password.parentElement.classList.add('incorrect');
+                    buttonCorrectAnimation(false);
                    
                 }
                 else if (username.value.trim() === storedData.username && password.value.trim() === storedData.password){
                     storedData.isLoggedIn = true;
+                    localStorage.setItem('userData', JSON.stringify(storedData)); 
                     feedback.innerHTML = "Login Successful!";      
                     setTimeout(() => {window.location.href = "index.html"}, 3000);
+                    buttonCorrectAnimation(true);
                 }
                 else{
                     feedback.innerHTML = "Invalid username or password";
                     username.parentElement.classList.add('incorrect');
                     password.parentElement.classList.add('incorrect');
+                    buttonCorrectAnimation(false); 
                 }
             }
+        else{
+            buttonCorrectAnimation(false);  
         }
+    }
         
-
     if (errors.length > 0){
         feedback.innerHTML = errors.join(". ")
         return;
     }
 });
 
-function getSignUpFormErrors(usernameValue, passwordValue, passwordAgainValue, emailValue){
+function buttonCorrectAnimation(isValid) {
+    submitButton.classList.remove("animate-success", "animate-error");
+
+    if (isValid) {
+        submitButton.classList.add("animate-success");
+    } else {
+        submitButton.classList.add("animate-error");
+    }
+    
+    setTimeout(() => {
+        submitButton.classList.remove("animate-success", "animate-error");
+    }, 3000);
+}
+
+let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+function getSignUpFormErrors(usernameValue, passwordValue, passwordAgainValue, emailValue, birthdateValue){
     let errors = [];
 
     if(usernameValue.trim() === "" || usernameValue == null){
@@ -100,24 +131,55 @@ function getSignUpFormErrors(usernameValue, passwordValue, passwordAgainValue, e
     }
     if(passwordAgainValue.trim() === "" || passwordAgainValue == null){
         errors.push("Please enter your password again");
-        passwordAgain.parentElement.classList.add('incorrect');
-       
+        passwordAgain.parentElement.classList.add('incorrect');  
     }
+
+    if (passwordValue.length < 6){
+        errors.push("Password must have at least 6 characters");
+        password.parentElement.classList.add('incorrect');     
+    }
+    if(passwordAgainValue !== passwordValue){
+        errors.push("Password is not the same");
+        password.parentElement.classList.add('incorrect');
+        passwordAgain.parentElement.classList.add('incorrect');  
+    }
+
     if(emailValue.trim() === "" || emailValue == null){
         errors.push("Please enter an email");
         email.parentElement.classList.add('incorrect');
-        
     }
-    if (passwordValue.length < 6){
-        errors.push("Password must have at least 6 characters");
-        password.parentElement.classList.add('incorrect');
-        
+
+    if(!regex.test(emailValue)){
+        errors.push("Please enter a correct email address");
+        email.parentElement.classList.add('incorrect');
     }
-    if(passwordAgainValue !== passwordValue){
-        errors.push("Password is not the same!");
-        password.parentElement.classList.add('incorrect');
-        passwordAgain.parentElement.classList.add('incorrect');
-        
+
+    if(birthdateValue === "" || birthdateValue == null){
+        errors.push("Please enter your date of birth");
+        birthdate.parentElement.classList.add('incorrect');
+    }
+
+    if(birthdate && birthdateValue != ""){
+        const birth = new Date(birthdateValue);
+        const currentDate = new Date();
+
+        let age = currentDate.getFullYear() - birth.getFullYear();
+        const monthDifference = currentDate.getMonth() - birth.getMonth();
+        if (monthDifference < 0 || (monthDifference === 0 && currentDate.getDate() < birth.getDate())) {
+            age--;
+        }
+
+        if(age < 8){
+            errors.push("Sorry, you must be at least 8 years old to sign up");
+            birthdate.parentElement.classList.add('incorrect');
+        }
+    }
+
+    
+
+    if(termsCheckbox && !termsCheckbox.checked){
+        errors.push("Please agree to the Terms & Conditions");
+        termsContainer.classList.add('error');
     }
 
     return errors;
@@ -142,7 +204,7 @@ function getLoginFormErrors(usernameValue, passwordValue){
     return errors;
 }
 
-const allInputs = [username, password, passwordAgain, email].filter(input => input != null);
+const allInputs = [username, password, passwordAgain, email, birthdate].filter(input => input != null);
 
 allInputs.forEach(input => {
     input.addEventListener("input", () => {
@@ -175,3 +237,25 @@ inputFile.addEventListener("change", () => {
     }
 })
 
+const termsLink = document.getElementById('terms-link');
+const hiddenBox = document.getElementById('hidden-box');
+
+
+let hoverTimeout;
+
+const showBox = () => {
+    clearTimeout(hoverTimeout); 
+    hiddenBox.classList.add('show');
+};
+
+const hideBox = () => {
+    hoverTimeout = setTimeout(() => {
+        hiddenBox.classList.remove('show');
+    }, 500);
+};
+
+termsLink.addEventListener('mouseenter', showBox);
+termsLink.addEventListener('mouseleave', hideBox);
+
+hiddenBox.addEventListener('mouseenter', showBox);
+hiddenBox.addEventListener('mouseleave', hideBox);

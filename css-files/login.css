@@ -105,7 +105,9 @@ main{
     box-sizing: border-box;  
     position: relative;
     overflow-y: auto;
+    overflow-x: hidden;
 }
+
 
 
 
@@ -325,7 +327,7 @@ main{
     flex-direction: column;
     margin-bottom: 3rem;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(55, 55, 55, 0.3);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.4s ease;
@@ -375,27 +377,93 @@ main{
 
 /*----SUBMIT FORM BUTTON----*/
 .submit-button {
-  background-color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.5rem;
-  height: 50px;
-  width: 10rem;
-  margin-bottom: 1rem;
-  margin-top: 0.5rem;
-  transition: all 0.5s;
-  font-family: 'norwester';
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.5rem;
+    height: 50px;
+    width: 10rem;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    transition: all 0.5s;
+    font-family: 'norwester';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-button span, 
+.submit-button svg {
+	position: absolute;
+	color: #838383;
+	fill: transparent;
+	letter-spacing: 2px;
+    font-weight: bold;
 }
 
 .submit-button:hover {
-    opacity: .75;
-}
-  
-.submit-button:focus {
-    box-shadow: rgba(0, 0, 0, .3) 0 0 10px;
+  opacity: 0.8;
 }
 
+.submit-button.animate-success {
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid #747474;
+  border-left: 4px solid #747474;
+  border-bottom: 4px solid #747474;
+  animation: spin 2s 500ms forwards;
+}
+
+.submit-button.animate-success span {
+  color: transparent;
+}
+
+.submit-button.animate-success svg.checkmark {
+  animation: check 500ms 2300ms forwards;
+}
+
+.submit-button.animate-error {
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid #c90000;
+  border-left: 4px solid #c90000;
+  border-bottom: 4px solid #c90000;
+  animation: spin 2s 500ms forwards;
+}
+
+.submit-button.animate-error span {
+  color: transparent;
+}
+
+.submit-button.animate-error svg.cross {
+  animation: cross 500ms 2300ms forwards;
+}
+  
+
+@keyframes spin {
+	80% {
+		border: 4px solid transparent;
+		border-left: 4px solid #303a52;
+	}
+	100% {
+		transform: rotate(1080deg);
+		border: 4px solid #303a52;
+	}
+}
+
+@keyframes check {
+	to {
+		fill: #17b978;
+	}
+}
+
+@keyframes cross {
+  to {
+    fill: #ff304f;
+  }
+}
 
 /*----ERROR INPUT----*/
 .input-container.incorrect input {
@@ -415,3 +483,120 @@ main{
     20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
+
+.terms-container{
+    color: white;
+    position: relative;
+}
+
+.terms-link, .terms-label {
+    font-family: "norwester";
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.terms-link{
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-decoration: underline;
+}
+
+
+.hidden-box {
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    margin-top: 20px;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    width: 100%;
+    max-width: 20rem;
+    max-height: 10rem;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.hidden-box.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.hidden-box h3 {
+    font-family: 'Ignis';
+    font-size: 1.6rem;
+    color: black;
+    margin-top: 0rem;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 0px grey;
+    margin-bottom: 1rem;
+
+}
+
+.hidden-box h4 {
+    font-family: 'norwester';
+    font-size: 1rem;
+    color: black;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+    margin-top: 2rem;
+}
+
+.hidden-box p {
+    font-family: 'norwester';
+    font-size: 0.85rem;
+    color: rgb(183, 183, 183);
+    line-height: 1.6;
+    margin-top: 0.5rem;
+}
+
+.hidden-box ul {
+    font-family: 'norwester';
+    font-size: 0.85rem;
+    color: rgb(183, 183, 183);
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+#terms-checkbox {
+    width: 1.1rem;
+    height: 1.1rem;
+    cursor: pointer;
+    color: white;
+    appearance: none;
+    border: 2px solid white;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s ease;
+    top: 5px;
+}
+
+
+#terms-checkbox:checked {
+    background-color: white;
+    border-color: grey;
+}
+
+#terms-checkbox:checked::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.input-container input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(1); 
+}
