@@ -137,6 +137,11 @@ const loginButton = document.getElementById('login-button');
 const signupButton = document.getElementById('signup-button');
 const userElement = document.getElementById('user');
 const userProfilePicture = document.getElementById('user-profile');
+
+const logOut = document.getElementById('log-out');
+const logOutDropDown = document.getElementById('logout-dropdown');
+const logOutButton = document.getElementById("logout-dropdown-button");
+
 const callToAction = document.getElementById('call-to-action');
 
 if(storedData && storedData.isLoggedIn === true){
@@ -160,6 +165,13 @@ if(storedData && storedData.isLoggedIn === true){
         userProfilePicture.src = storedData.profilePicture || '../Images/profile.jpg';
         userProfilePicture.style.opacity = '1';
     }
+    if(logOut){
+        logOut.style.opacity = '1';
+        logOut.addEventListener('mouseover', () => {
+            logOutButton.style.opacity = '1';
+            logOutDropDown.style.opacity = '1';
+        })
+    }
 }
 else{
     if(callToAction){
@@ -180,7 +192,47 @@ else{
     if(userProfilePicture){
         userProfilePicture.style.opacity = '0';
     }
+    if(logOut){
+        logOut.style.opacity = '0';
+        logOutDropDown.style.opacity = '0';
+        logOutButton.style.opacity = '0';
+    }
+}
+
+if(logOutButton){
+    logOutButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        logOutDropDown.classList.toggle("show");
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        
+        if(userData){
+            userData.isLoggedIn = false;
+            localStorage.setItem('userData', JSON.stringify(userData));
+            window.location.reload();
+        }
+    });
 }
 
 
+
+
+if (logOut && logOutDropDown && logOutButton) {
+    const showBox = () => {
+        logOutDropDown.style.opacity = '1';
+        logOutDropDown.style.visibility = 'visible';
+    };
+
+    const hideBox = () => {
+        logOutDropDown.style.opacity = '0';
+        logOutDropDown.style.visibility = 'hidden';
+    };
+
+    logOut.addEventListener('mouseenter', showBox);
+    logOutDropDown.addEventListener('mouseenter', showBox);
+    logOutButton.addEventListener('mouseenter', showBox);
+
+    logOut.addEventListener('mouseleave', hideBox);
+    logOutDropDown.addEventListener('mouseleave', hideBox);
+    logOutButton.addEventListener('mouseleave', hideBox);
+}
 
