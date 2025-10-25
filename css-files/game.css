@@ -1,15 +1,40 @@
+@font-face {
+  font-family: 'Blanka';
+  src: url('../Fonts/Blanka-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Norwester';
+  src: url('../Fonts/norwester.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ignis';
+  src: url('../Fonts/Ignis et Glacies Sharp.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 .game-border{
     margin:  4rem 2rem;
     width: 90vw;
-    height: 90vh;
+    height: 90vh; 
     background-color: black;
     border: 5px solid white;
     border-radius: 20px;
-    padding: 2rem 1rem;
+    padding: 1rem;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0px 25px 5px rgba(94, 94, 94, 0.4);
 }
 
 .main-game{
@@ -27,6 +52,144 @@
     border-radius: 20px;
 }
 
-.game-over{
+
+.game-over-screen, .game-start-screen{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 10;
+    border-radius: 20px;
     opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.game-start-screen{
+    gap: 1.5rem;
+    background: linear-gradient(120deg, rgba(30, 30, 30, 0.8) 0%, rgba(0, 0, 0, 0.55) 50%, rgba(30, 30, 30, 0.8) 100%);
+}
+
+
+
+.play-easy, .play-normal, .play-hard{
+    font-family: "norwester";
+    font-weight: bold;
+    background-color: black;
+    color: black;
+    padding: 1rem 2.5rem;
+    font-size: 2rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    margin-top: 0;
+    position: relative;
+    letter-spacing: 5px;
+}
+
+.play-easy {
+    background-color: rgb(64, 167, 64);
+    border: 5px solid rgb(0, 99, 0);
+    color: rgb(0, 99, 0);
+}
+
+.play-normal{
+    background-color: rgb(255, 225, 0);
+    border: 5px solid rgb(180, 159, 0);
+    color: rgb(180, 159, 0);
+}
+
+.play-hard{
+    background-color: rgb(174, 0, 0);
+    border: 5px solid rgb(119, 0, 0);
+    color: rgb(119, 0, 0);
+}
+
+
+.game-over-screen{
+    background: linear-gradient(120deg, rgba(145, 145, 145, 0.4) 0%, rgba(40, 40, 40, 0.3) 50%, rgba(145, 145, 145, 0.4) 100%);
+    backdrop-filter: blur(5px);
+}
+
+.game-over-screen h3{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-family: "norwester";
+    color: rgb(0, 0, 0);
+    font-size: 2.5rem;
+    text-wrap: wrap;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    text-shadow: 0px 0px 6px rgba(146, 0, 0, 0.8);
+}
+
+
+.restart{
+    font-family: "norwester";
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    color: #ffffff;
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    border: 3px solid #ff4444;
+    border-radius: 15px;
+    margin-top: 0;
+    position: relative;
+    letter-spacing: 4px;
+}
+
+
+.score{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: rgb(32, 32, 32);
+    font-family: "Ignis";
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.5rem 1.5rem;
+    border-radius: 13px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    text-shadow: 0px 0px 5px rgba(30, 30, 30, 0.5);
+    box-shadow: 0 0px 10px 3px rgba(100, 100, 100, 0.2);
+    background: rgb(227, 227, 227, 0.6);
+}
+
+.controls{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.controls p{
+    color: white;
+    font-family: "norwester";
+}
+.control-buttons button{
+    margin: 0 1rem;
+    background-color: black;
+    border: 2px dashed white;
+    color: white;
+    border-radius: 10px;
+    padding: 0.7rem 2rem;
+    font-family: "norwester";
+    font-size: 1.1rem;
+    margin-top: 1.6rem; 
+    transition: all 0.5s ease;
+    letter-spacing: 3px;
+}
+
+.control-buttons button:hover{
+    background-color: rgba(120, 120, 120, 0.6);
+}
+
+.controls img{
+    width: 3rem;
+    height: 3rem;
 }
