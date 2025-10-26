@@ -8,10 +8,10 @@ canvas.height = container.clientHeight;
 
 let gameOver = false;
 
-
-
-//remembers which lanes obstacles last appeared in
-let lastUsedLanes = [];
+function getRandomInt(min, max){
+    //generates random integer
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 let isBlackWorld = false;
 
@@ -124,104 +124,95 @@ class Rectangle extends Obstacle {
         context.fillRect(this.x, this.y, this.width, this.height);
     }
 }
-
-class Circle extends Obstacle {
-    constructor(x, y, radius, color) {
+class WideRectangle extends Obstacle {
+    constructor(x, y, width, height, color, laneSpan) {
         super(x, y, color);
-        this.radius = radius;
-    }
-
-
-    draw() {
-        context.beginPath();
-        context.arc(this.x + this.radius, this.y + this.radius, this.radius, 0, Math.PI * 2);
-        context.fillStyle = this.color;
-        context.fill();
-    }
-}
-
-class Triangle extends Obstacle {
-    constructor(x, y, size, color) {
-        super(x, y, color);
-        this.size = size;
+        this.width = width;
+        this.height = height;
+        this.laneSpan = laneSpan;
     }
 
     draw() {
-        context.beginPath();
-        context.moveTo(this.x + this.size / 2, this.y);
-        context.lineTo(this.x, this.y + this.size);
-        context.lineTo(this.x + this.size, this.y + this.size);
-        context.closePath();
         context.fillStyle = this.color;
-        context.fill();
+        context.fillRect(this.x, this.y, this.width, this.height);
     }
 }
+
 
 
 //===SPAWNING OBSTACLES===
-function getRandomInt(min, max){
-    //generates random integer
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+
+//remembers which lanes obstacles last appeared in
+let lastUsedLanes = [];
 
 //make sure obstacles appear in a lane and not in a random position
 function spawnObstacle(){
-    if(gameOver) return; //freezes obstacles when game is over
+    if(gameOver) return;
 
-    const obstacleNumber = getRandomInt(1, 4); //randomly picks how many obstacles to spawn
-    
-    const usedLanes = new Set(); //Set ensures each obstacle spawns in a different lane
-    
+    // Randomly decide if this spawn should be a wide rectangle (20% chance)
+    const spawnWideRectangle = Math.random() < 0.2;
 
-    for (let i = 0; i < obstacleNumber; i++){        
-        let laneIndex; //random number between 0 to 4
+    if(spawnWideRectangle) {
+        // Spawn a wide rectangle that covers 2-4 lanes
+        const laneSpan = getRandomInt(2, 4);
         
-        //this will happen at least once
-        do {
-            //pick 0 to 4
-            laneIndex = Math.floor(Math.random() * laneCount);
-        } 
-        //returns true if laneIndex is already in the usedLanes Set
-        //keep trying is lane is already used
-        while (usedLanes.has(laneIndex)); 
-        usedLanes.add(laneIndex); //mark used lane as used
-
-        //spawns in the horizontal center of the lane
-        const x = laneIndex * laneWidth + (laneWidth / 2);
-        const y = -70; 
-        const color = isBlackWorld ? "black" : ["red", "green", "yellow", "purple"][Math.floor(Math.random() * 4)];
-
+        // Pick a random starting lane that allows the rectangle to fit
+        const maxStartLane = laneCount - laneSpan;
+        const startLane = Math.floor(Math.random() * (maxStartLane + 1));
         
-        //Pick a random obstacle to spawn
-        const shapeType = Math.floor(Math.random() * 4);
-        let obstacle;
-
-        switch (shapeType) {
-            case 0:
-                const size = getRandomInt(40, 80);
-                obstacle = new Square(x - size / 2, y, size, color);
-                break;
-            case 1:
-                const rectangleWidth = getRandomInt(40, 80);
-                const rectangleHeight = getRandomInt(80, 70);
-                obstacle = new Rectangle(x - rectangleWidth / 2, y, rectangleWidth, rectangleHeight, color);
-                break;
-            case 2:
-                const radius = getRandomInt(10, 30);
-                obstacle = new Circle(x - radius, y, radius, color);
-                break;
-            case 3:
-                const triangleSize = getRandomInt(30, 60);
-                obstacle = new Triangle(x - triangleSize / 2, y, triangleSize, color);
-                break;
+        // Calculate position and size
+        const x = startLane * laneWidth;
+        const y = -70;
+        const width = laneSpan * laneWidth;
+        const height = getRandomInt(40, 70);
+        const color = isBlackWorld ? "black" : "red";
+        
+        const obstacle = new WideRectangle(x, y, width, height, color, laneSpan);
+        obstacles.push(obstacle);
+        
+        // Mark all covered lanes as used
+        const usedLanes = [];
+        for(let i = 0; i < laneSpan; i++) {
+            usedLanes.push(startLane + i);
         }
-        obstacles.push(obstacle); 
+        lastUsedLanes = usedLanes;
+        
+    } else {
+        // Original logic for spawning multiple small obstacles
+        const obstacleNumber = getRandomInt(1, 4);
+        const usedLanes = new Set();
+
+        for (let i = 0; i < obstacleNumber; i++){        
+            let laneIndex;
+            
+            do {
+                laneIndex = Math.floor(Math.random() * laneCount);
+            } 
+            while (usedLanes.has(laneIndex)); 
+            usedLanes.add(laneIndex);
+
+            const x = laneIndex * laneWidth + (laneWidth / 2);
+            const y = -70; 
+            const color = isBlackWorld ? "black" : "red";
+
+            const shapeType = Math.floor(Math.random() * 2);
+            let obstacle;
+
+            switch (shapeType) {
+                case 0:
+                    const size = getRandomInt(40, 80);
+                    obstacle = new Square(x - size / 2, y, size, color);
+                    break;
+                case 1:
+                    const rectangleWidth = getRandomInt(40, 80);
+                    const rectangleHeight = getRandomInt(80, 70);
+                    obstacle = new Rectangle(x - rectangleWidth / 2, y, rectangleWidth, rectangleHeight, color);
+                    break;
+            }
+            obstacles.push(obstacle); 
+        }     
+        lastUsedLanes = Array.from(usedLanes);
     }
-    
-    //keeps a record for which lanes were just used
-    lastUsedLanes = Array.from(usedLanes);
-    
-    //spawn next object at random times
     const nextSpawnDelay = getRandomInt(600, 1000);
     setTimeout(spawnObstacle, nextSpawnDelay);
 }
@@ -249,7 +240,7 @@ function showGameOver(){
     finalScore.textContent = finalScoreValue;
     
     //get current user from localStorage
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let currentUser = JSON.parse(localStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('currentUser'));
     const allUsers = JSON.parse(localStorage.getItem('allUsers')) || {}; //get allUsers from localStorage
     
     //if user is logged in, get user's credentials
@@ -288,87 +279,139 @@ function showGameOver(){
     restart.addEventListener('click', () => window.location.reload());
 }
 
+let canSwitch = true;
+let switchCooldown = 5000;
+const gameFeedback = document.getElementById("game-feedback");
 
-
-//toggle world switching
 function switchWorld() {
-    if (gameOver) return; //stops the function (cannot switch)
+    if (gameOver) return;
 
-    //toggles the world state
+    if (!canSwitch) {
+        gameFeedback.textContent = "Cannot switch!" + count;
+        return;
+    }
+
     isBlackWorld = !isBlackWorld;
-
-    //dictionary: key => lane index & value => obstacle in that lane
-    const laneObstacles = {};
+    canSwitch = false;
     
-    //starts a loop for every existing obstacle on screen
+    let count = 5;
+    gameFeedback.textContent = `Cannot switch! ${count}s`;
+
+    const countDownInterval = setInterval(() => {
+        count--;
+        if (count <= 0) {
+            clearInterval(countDownInterval);
+            gameFeedback.textContent = ""; 
+        } 
+        else {
+            gameFeedback.textContent = `Cannot switch! ${count}s`;
+        }
+    }, 1000);
+
+    setTimeout(() => {
+        canSwitch = true;
+    }, switchCooldown);
+
+    
+
+    // Track which lanes are occupied by obstacles
+    const occupiedLanes = new Set();
+    
+    // Find all lanes that have obstacles
     for (const obs of obstacles) {
-        //finds out which lane the obstacle belongs to
-        const laneIndex = Math.floor((obs.x + (obs.size || obs.width || obs.radius * 2) / 2) / laneWidth);
-        
-        //if no obstacle in that lane or if the obstacle's vertical position is lower on screen
-        if (!laneObstacles[laneIndex] || obs.y > laneObstacles[laneIndex].y) {
-            //store the current obstacle as the most relevant one for that lane
-            laneObstacles[laneIndex] = obs; 
+        if (obs instanceof WideRectangle) {
+            // For wide rectangles, mark all lanes they cover
+            const startLane = Math.floor(obs.x / laneWidth);
+            for (let i = 0; i < obs.laneSpan; i++) {
+                occupiedLanes.add(startLane + i);
+            }
+        } else {
+            // For regular obstacles, find their lane
+            const laneIndex = Math.floor((obs.x + (obs.size || obs.width / 2)) / laneWidth);
+            occupiedLanes.add(laneIndex);
         }
     }
 
-    //gets an array of all the lane numbers and converts them from strings to integers
-    const usedLanes = Object.keys(laneObstacles).map(n => parseInt(n));
+    // Get the reference Y position from existing obstacles
+    const refY = obstacles.length > 0 ? obstacles[0].y : -70;
 
-    //creates an array of all the lane indices
+    // Find all empty lanes
     const allLanes = [...Array(laneCount).keys()];
+    const emptyLanes = allLanes.filter(lane => !occupiedLanes.has(lane));
 
-    //stores lanes that are unused
-    const unusedLanes = allLanes.filter(lane => !usedLanes.includes(lane));
-
-    //gives an array of the obstacles stored and checks if there is at least one obstacle
-    //if there are obstacles, use the Y position of the first osbtacle
-    //if no obstacles, use -70
-    const refY = Object.values(laneObstacles).length > 0 ? Object.values(laneObstacles)[0].y : -70;
-
-    //clears all existing obstacles from the screen and resets it
+    // Clear all existing obstacles
     obstacles.length = 0;
 
-    //spawning new obstacles in empty lanes
-    for (let laneIndex of unusedLanes) {
-        const x = laneIndex * laneWidth + (laneWidth / 2);
-        const y = refY; 
-        const color = isBlackWorld ? "black" : "red"; 
-        const shapeType = Math.floor(Math.random() * 4);
-        
-        let obstacle;
+    // Decide whether to spawn a wide rectangle or multiple small obstacles
+    const spawnWideRectangle = emptyLanes.length >= 2 && Math.random() < 0.3;
 
-        switch (shapeType) {
-            case 0: {
-                const size = getRandomInt(40, 80);
-                obstacle = new Square(x - size / 2, y, size, color);
-                break;
+    if (spawnWideRectangle) {
+        // Spawn a wide rectangle in the empty lanes
+        const maxLaneSpan = Math.min(4, emptyLanes.length);
+        const laneSpan = getRandomInt(2, maxLaneSpan);
+        
+        // Find consecutive empty lanes or use available ones
+        let startLane = emptyLanes[0];
+        
+        // Try to find consecutive lanes if possible
+        for (let i = 0; i <= emptyLanes.length - laneSpan; i++) {
+            let consecutive = true;
+            for (let j = 1; j < laneSpan; j++) {
+                if (emptyLanes[i + j] !== emptyLanes[i] + j) {
+                    consecutive = false;
+                    break;
+                }
             }
-            case 1: {
-                const rectangleWidth = getRandomInt(40, 80);
-                const rectangleHeight = getRandomInt(40, 70);
-                obstacle = new Rectangle(x - rectangleWidth / 2, y, rectangleWidth, rectangleHeight, color);
-                break;
-            }
-            case 2: {
-                const radius = getRandomInt(10, 30);
-                obstacle = new Circle(x - radius, y, radius, color);
-                break;
-            }
-            case 3: {
-                const triangleSize = getRandomInt(30, 60);
-                obstacle = new Triangle(x - triangleSize / 2, y, triangleSize, color);
+            if (consecutive) {
+                startLane = emptyLanes[i];
                 break;
             }
         }
-
+        
+        const x = startLane * laneWidth;
+        const y = refY;
+        const width = laneSpan * laneWidth;
+        const height = getRandomInt(40, 70);
+        const color = isBlackWorld ? "black" : "red";
+        
+        const obstacle = new WideRectangle(x, y, width, height, color, laneSpan);
         obstacles.push(obstacle);
+        
+        lastUsedLanes = [];
+        for (let i = 0; i < laneSpan; i++) {
+            lastUsedLanes.push(startLane + i);
+        }
+        
+    } else {
+        // Spawn regular obstacles in empty lanes
+        for (let laneIndex of emptyLanes) {
+            const x = laneIndex * laneWidth + (laneWidth / 2);
+            const y = refY;
+            const color = isBlackWorld ? "black" : "red";
+            const shapeType = Math.floor(Math.random() * 2);
+            
+            let obstacle;
+
+            switch (shapeType) {
+                case 0: {
+                    const size = getRandomInt(40, 80);
+                    obstacle = new Square(x - size / 2, y, size, color);
+                    break;
+                }
+                case 1: {
+                    const rectangleWidth = getRandomInt(40, 80);
+                    const rectangleHeight = getRandomInt(40, 70);
+                    obstacle = new Rectangle(x - rectangleWidth / 2, y, rectangleWidth, rectangleHeight, color);
+                    break;
+                }
+            }
+
+            obstacles.push(obstacle);
+        }
+
+        lastUsedLanes = emptyLanes;
     }
-
-    //stores which lanes were just used for the next world switch
-    lastUsedLanes = unusedLanes;
 }
-
 
 function StartGame(){
     const gameStartScreen = document.getElementById('game-start-screen');
@@ -404,8 +447,6 @@ difficultyButtons.forEach(difficulty => {
             difficultyName = "hard";
         }
 
-        
-
         Update();
         spawnObstacle();
     });
@@ -416,6 +457,7 @@ difficultyButtons.forEach(difficulty => {
 function Update(){
     if(gameOver) return;
 
+    //erases the previous frame to prepare for a new one
     context.clearRect(0, 0, canvas.width, canvas.height);
     player.draw();
 
@@ -425,19 +467,24 @@ function Update(){
 
     for (let i = obstacles.length - 1; i >= 0; i--) {
         const obs = obstacles[i];
-        obs.update();
+        obs.update(); //move obstacle down
 
+        //if the obstacles y position is greater than the canvas' height remove it from the array
         if (obs.y > canvas.height) {
-            obstacles.splice(i, 1);
-            continue;
+            obstacles.splice(i, 1); //remove from obstacle array
+            continue; //no need to check for collision jump to the next obstacle
         }
 
         //===PLAYER AND OBSTACLE COLLISION===
         if(
+            //left side
             obs.x < player.x + player.width &&
-            obs.x + (obs.size || obs.width || obs.radius * 2) > player.x &&
+            //right side
+            obs.x + (obs.size || obs.width) > player.x &&
+            //top side
             obs.y < player.y + player.height &&
-            obs.y + (obs.size || obs.height || obs.radius * 2) > player.y
+            //bottom side
+            obs.y + (obs.size || obs.height) > player.y
         ){
             showGameOver();
             return;
@@ -459,8 +506,8 @@ document.addEventListener('keydown', (event) => {
 });
 
 document.addEventListener('keydown', (event) => {
-    if(event.key === "b"){
-        switchWorld()
+    if(event.key === "B" || event.key === "b"){
+        switchWorld();
     }
 })
 

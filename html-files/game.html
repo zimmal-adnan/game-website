@@ -59,9 +59,11 @@
         <div class = "game-border">
             <div class = "main-game">
                 <div id = "score" class = "score">SCORE: 0</div>
+                <div id = "game-feedback"></div>
                 <canvas></canvas>
                 
                 <div id = "game-start-screen" class = "game-start-screen">
+                    <h2 id = "select" class = "select">CHOOSE YOUR DIFFICULTY</h1>
                     <button id = "play-easy" class = "play-easy">EASY</button>
                     <button id = "play-normal" class = "play-normal">NORMAL</button>
                     <button id = "play-hard" class = "play-hard">HARD</button>
@@ -80,9 +82,12 @@
                     <button id = "right"> RIGHT </button>
                 </div>
                 <p>OR USE</p>
-                <img src = "../Images/keyboard_key_right.png">
+                <div class = "control-keys" id = "control-keys">
+                    <img src = "../Images/Left_Key.png">
+                    <img src = "../Images/Right_Key.png">
+                </div>
+                <p>ON YOUR KEYBOARD</p>
             </div> 
-
         </div>
     </main>
 
