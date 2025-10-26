@@ -163,7 +163,7 @@ main{
     color: white;
     font-size: 3.1rem;
     position: relative;
-    top: -30px;
+    top: -0.5rem;
     margin-bottom: 0.7rem;
     font-family: 'Ignis';
     letter-spacing: 3px;
@@ -208,7 +208,7 @@ main{
 
 /*----FORM ON THE LEFT SIDE----*/
 .form{
-    margin-top: -1.5rem;
+    margin-top: 2rem;
 }
 
 /*https://codepen.io/lucasyem/pen/ZEEYKdj*/
@@ -300,7 +300,7 @@ main{
     align-items: center;
 }
 
-#eye-icon, #eye-slash{
+#eye-icon, #eye-slash, #eye-icon2, #eye-slash2{
     left: -10px;
     color: white;
     position: absolute;
@@ -308,12 +308,12 @@ main{
     transition: opacity 0.3s ease;
 }
 
-#eye-icon{
+#eye-icon, #eye-icon2{
     opacity: 0;
     pointer-events: none;
 }
 
-#eye-slash{
+#eye-slash, #eye-slash2{
     opacity: 1;
     pointer-events: auto;
 }
@@ -325,7 +325,7 @@ main{
     align-items: center;
     text-align: center;
     flex-direction: column;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     padding: 1rem;
     background: rgba(55, 55, 55, 0.3);
     border-radius: 12px;
@@ -484,12 +484,15 @@ main{
 }
 
 
-.terms-container{
+.terms-checkbox-container, .remember-checkbox-container{
     color: white;
     position: relative;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
 }
 
-.terms-link, .terms-label {
+.terms-checkbox-label, .terms,
+.remember-checkbox-label {
     font-family: "norwester";
     font-size: 1rem;
     color: white;
@@ -497,7 +500,7 @@ main{
     transition: all 0.3s ease;
 }
 
-.terms-link{
+.terms{
     font-weight: bold;
     font-size: 1.1rem;
     text-decoration: underline;
@@ -566,7 +569,7 @@ main{
     margin-top: 0.5rem;
 }
 
-#terms-checkbox {
+#terms-checkbox, #remember-checkbox {
     width: 1.1rem;
     height: 1.1rem;
     cursor: pointer;
@@ -580,12 +583,12 @@ main{
 }
 
 
-#terms-checkbox:checked {
+#terms-checkbox:checked, #remember-checkbox:checked {
     background-color: white;
     border-color: grey;
 }
 
-#terms-checkbox:checked::after {
+#terms-checkbox:checked::after, #remember-checkbox:checked::after {
     content: "✓";
     position: absolute;
     top: 50%;

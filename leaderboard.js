@@ -1,22 +1,25 @@
 const allScores = JSON.parse(localStorage.getItem('allScores'));
-const userScore = allScores[storedData.username];
-
-const highestUserScore = document.getElementById("highest-user-score");
+const userScore = storedData ? allScores[storedData.username] : null;
 
 const easyHighestScore = document.getElementById("easy-highest-score");
 const normalHighestScore = document.getElementById("normal-highest-score");
 const hardHighestScore = document.getElementById("hard-highest-score");
 
-easyHighestScore.textContent = "EASY: " + userScore.highestScore["easy"]
-normalHighestScore.textContent = "NORMAL: " + userScore.highestScore["normal"]
-hardHighestScore.textContent = "HARD: " + userScore.highestScore["hard"]
 
-
-if(!storedData || storedData.isLoggedIn === false){
-    highestUserScore.textContent = "YOUR BEST: 0";
+if (storedData && storedData.isLoggedIn && userScore) {
+    easyHighestScore.textContent = "EASY: " + userScore.highestScore["easy"];
+    normalHighestScore.textContent = "NORMAL: " + userScore.highestScore["normal"];
+    hardHighestScore.textContent = "HARD: " + userScore.highestScore["hard"];
+} else {
+    easyHighestScore.textContent = "EASY: 0";
+    normalHighestScore.textContent = "NORMAL: 0";
+    hardHighestScore.textContent = "HARD: 0";
 }
 
+
 function updateLeaderboard(difficulty, difficultyUsername, difficultyScore){
+    
+    
     let players = {};
 
     for(const username in allScores){
@@ -32,12 +35,9 @@ function updateLeaderboard(difficulty, difficultyUsername, difficultyScore){
     leaderboardScore.forEach(usernameSpan => usernameSpan.textContent = "0");
 
     sortedPlayers.forEach(([username, score], index) => {
-        if(leaderboardUsername[index]){
-            leaderboardUsername[index].textContent = username;
-        }
-        if(leaderboardScore[index]){
-            leaderboardScore[index].textContent = score;
-        }
+        leaderboardUsername[index].textContent = username;
+        leaderboardScore[index].textContent = score;
+        
     })
   
 }

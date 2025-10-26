@@ -44,11 +44,20 @@
                 <div class="input-container">
                     <input type="password" id="passwordAgain" name="passwordAgain" placeholder="Your password (again)..." required>
                     <label for="passwordAgain">ENTER PASSWORD (AGAIN)</label>
+                    <div class="eye-toggle">
+                        <i id="eye-icon2" class="fas fa-eye"></i>
+                        <i id="eye-slash2" class="fas fa-eye-slash"></i>
+                    </div>
                 </div>
 
                 <div class="input-container">
                     <input type="email" id="email" name="email" placeholder="Enter email" required>
                     <label for="email">ENTER EMAIL</label> 
+                </div>
+
+                <div class="input-container">
+                    <input type="tel" id="telephone" name="telephone" placeholder="Enter phone number" required>
+                    <label for="telephone">ENTER PHONE NUMBER</label> 
                 </div>
 
                 <div class="input-container">
@@ -62,10 +71,10 @@
                     <input id="input-file" type="file" accept="image/jpeg, image/png, image/jpg"> 
                 </div>
 
-                <div class="terms-container" id="terms-container">      
-                    <input type="checkbox" id="terms-checkbox" name="terms">
-                    <label for="terms-checkbox" class="terms-label">
-                        I agree to the <span id="terms-link" class="terms-link">Terms & Conditions</span>
+                <div class="terms-checkbox-container" id="terms-checkbox-container">      
+                    <input type="checkbox" id="terms-checkbox" name="terms-checkbox">
+                    <label for="terms-checkbox" class="terms-checkbox-label">
+                        I agree to the <span id="terms" class="terms">Terms & Conditions</span>
                     </label>
                 </div>
 

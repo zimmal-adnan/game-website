@@ -133,7 +133,7 @@ linksAndButtons.forEach(element => {
 });
 
 
-const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+let currentUser = JSON.parse(localStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('currentUser'));
 const allUsers = JSON.parse(localStorage.getItem('allUsers')) || {};
 const storedData = currentUser ? allUsers[currentUser.username] : null;
 
@@ -215,6 +215,7 @@ if(logOutButton){
             allUsers[currentUser.username].isLoggedIn = false;
             localStorage.setItem('allUsers', JSON.stringify(allUsers));
             localStorage.removeItem('currentUser');
+            sessionStorage.removeItem('currentUser');
             window.location.reload();
         }
     });
@@ -288,12 +289,12 @@ if(!storedData || storedData.isLoggedIn === false){
 else if (storedData && storedData.isLoggedIn === true){
     if(playButton && gradientBorder){
         playButton.addEventListener('mouseenter', () => {
-            gradientBorder.style.padding = '4px';
+            gradientBorder.style.padding = '5px';
             playButton.style.textIndent = '-3rem';
             playButton.style.width = '16rem';
         })
         playButton.addEventListener('mouseleave', () => {
-            gradientBorder.style.padding = '2.5px';
+            gradientBorder.style.padding = '4px';
             playButton.style.textIndent = '0';
             playButton.style.width = '14rem';
         })

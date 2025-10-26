@@ -39,7 +39,21 @@
                     </div>
                 </div>
 
-                <button type = "submit" id = "submit-button" class = "submit-button" >LOGIN</button>
+                <div class="remember-checkbox-container" id="remember-checkbox-container">      
+                    <input type="checkbox" id="remember-checkbox" name="remember-checkbox">
+                    <label for="remember-checkbox" class="remember-checkbox-label">REMEMBER ME</label>
+                </div>
+
+                <button type="submit" id="submit-button" class="submit-button">
+                    <span>LOGIN</span>
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20.285 2l-11.285 11.292-5.285-5.292-3.715 3.708 9 9.292 15-15.292z" />
+                    </svg>
+
+                    <svg class="cross" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M18.3 5.71L12 12l6.3 6.29-1.41 1.41L10.59 13.41 4.3 19.7 2.89 18.29 9.17 12 2.89 5.71 4.3 4.3 10.59 10.59 16.89 4.3z"/>
+                    </svg>
+                </button>
                 <a href = "signup.html" >Don't have an account? <span class = "sign-up">Sign up</span></a>
 
             </form>
