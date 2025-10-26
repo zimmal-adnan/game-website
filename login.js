@@ -52,10 +52,13 @@ form.addEventListener('submit', (e) => {
                 isLoggedIn: true
             };
 
-            localStorage.setItem('userData', JSON.stringify(userData));    
-            feedback.innerHTML = "Signup successful! Welcome!"
-            
+            let allUsers = JSON.parse(localStorage.getItem('allUsers'));
+            allUsers[userData.username] = userData;
 
+            localStorage.setItem('allUsers', JSON.stringify(allUsers));
+            localStorage.setItem('currentUser', JSON.stringify({username: userData.username}));
+
+            feedback.innerHTML = "Signup successful! Welcome!"
             setTimeout(() => {window.location.href = "index.html"}, 3000);
         }
         else{
@@ -66,7 +69,8 @@ form.addEventListener('submit', (e) => {
         errors = getLoginFormErrors(username.value, password.value);
 
         if(errors.length === 0){
-            const storedData = JSON.parse(localStorage.getItem('userData'));
+            let allUsers = JSON.parse(localStorage.getItem('allUsers'));
+            const storedData = allUsers[username.value.trim()];
 
                 if (!storedData) {
                     feedback.innerHTML = "No account found. Please sign up first.";
@@ -75,9 +79,13 @@ form.addEventListener('submit', (e) => {
                     buttonCorrectAnimation(false);
                    
                 }
-                else if (username.value.trim() === storedData.username && password.value.trim() === storedData.password){
+                else if (storedData && password.value.trim() === storedData.password){
                     storedData.isLoggedIn = true;
-                    localStorage.setItem('userData', JSON.stringify(storedData)); 
+
+                    allUsers[username.value.trim()] = storedData;
+                    localStorage.setItem('allUsers', JSON.stringify(allUsers));
+                    localStorage.setItem('currentUser', JSON.stringify({username: storedData.username}));
+
                     feedback.innerHTML = "Login Successful!";      
                     setTimeout(() => {window.location.href = "index.html"}, 3000);
                     buttonCorrectAnimation(true);
@@ -220,22 +228,26 @@ allInputs.forEach(input => {
 let profilePicture = document.getElementById("profile-picture");
 let inputFile = document.getElementById("input-file");
 
-profilePicture.addEventListener("click", () => {
-    inputFile.click();
-});
+if(profilePicture){
+    profilePicture.addEventListener("click", () => {
+        inputFile.click();
+    });
+}
 
 
-inputFile.addEventListener("change", () => {
-    const file = inputFile.files[0];
-    if(file){
-        const reader =  new FileReader();
-        reader.onload = function (e) {
-            profilePicture.src = e.target.result;
-            localStorage.setItem("profileImage", e.target.result);
-        };
-        reader.readAsDataURL(file);
-    }
-})
+if(inputFile){
+    inputFile.addEventListener("change", () => {
+        const file = inputFile.files[0];
+        if(file){
+            const reader =  new FileReader();
+            reader.onload = function (e) {
+                profilePicture.src = e.target.result;
+                localStorage.setItem("profileImage", e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    })
+}
 
 const termsLink = document.getElementById('terms-link');
 const hiddenBox = document.getElementById('hidden-box');
@@ -254,8 +266,10 @@ const hideBox = () => {
     }, 500);
 };
 
-termsLink.addEventListener('mouseenter', showBox);
-termsLink.addEventListener('mouseleave', hideBox);
+if(termsLink && hiddenBox){
+    termsLink.addEventListener('mouseenter', showBox);
+    termsLink.addEventListener('mouseleave', hideBox);
 
-hiddenBox.addEventListener('mouseenter', showBox);
-hiddenBox.addEventListener('mouseleave', hideBox);
+    hiddenBox.addEventListener('mouseenter', showBox);
+    hiddenBox.addEventListener('mouseleave', hideBox);
+}

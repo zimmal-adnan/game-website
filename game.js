@@ -248,23 +248,40 @@ function showGameOver(){
     const finalScore = document.getElementById('finalScore');
     finalScore.textContent = finalScoreValue;
     
-    const storedData = JSON.parse(localStorage.getItem('userData'));
+    //get current user from localStorage
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const allUsers = JSON.parse(localStorage.getItem('allUsers')) || {}; //get allUsers from localStorage
+    
+    //if user is logged in, get user's credentials
+    const storedData = currentUser ? allUsers[currentUser.username] : null;
 
     if(storedData && storedData.isLoggedIn === true){
-        
-        let userScore = JSON.parse(localStorage.getItem('userScore')) || {
-            username: storedData.username,
-            scores: scores,
-            highestScore: highestScore
-        };
 
+        //JSON object to store scores of every user who has played
+        let allScores = JSON.parse(localStorage.getItem('allScores')) || {};
+        
+        //if the current user doesn't have a score record, it makes a record for them
+        if(!allScores[storedData.username]){
+            allScores[storedData.username] = {
+                username: storedData.username,
+                scores: scores,
+                highestScore: highestScore
+            };
+        }
+
+        //get current user's score object
+        let userScore = allScores[storedData.username];
+
+        //add finalScoreValue to the array corresponding to the current difficulty
         userScore.scores[difficultyName].push(finalScoreValue);
 
         userScore.highestScore["easy"] = Math.max(...userScore.scores.easy, 0);
         userScore.highestScore["normal"] = Math.max(...userScore.scores.normal, 0);
         userScore.highestScore["hard"] = Math.max(...userScore.scores.hard, 0);
         
-        localStorage.setItem('userScore', JSON.stringify(userScore));
+        //updating and saving modified userScore to allScore
+        allScores[storedData.username] = userScore;
+        localStorage.setItem('allScores', JSON.stringify(allScores));
     }
 
     const restart = document.getElementById('restart');
