@@ -1,39 +1,47 @@
-const cursorDot = document.getElementById("cursor-dot");
-    const cursorOutline = document.getElementById("cursor-outline");
+const allScores = JSON.parse(localStorage.getItem('allScores'));
+const userScore = allScores[storedData.username];
 
-    window.addEventListener("mousemove", function(e) {
-        const posX = e.clientX;
-        const posY = e.clientY;
+const highestUserScore = document.getElementById("highest-user-score");
 
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
+const easyHighestScore = document.getElementById("easy-highest-score");
+const normalHighestScore = document.getElementById("normal-highest-score");
+const hardHighestScore = document.getElementById("hard-highest-score");
+
+easyHighestScore.textContent = "EASY: " + userScore.highestScore["easy"]
+normalHighestScore.textContent = "NORMAL: " + userScore.highestScore["normal"]
+hardHighestScore.textContent = "HARD: " + userScore.highestScore["hard"]
 
 
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, {duration: 500, fill: "forwards"});
+if(!storedData || storedData.isLoggedIn === false){
+    highestUserScore.textContent = "YOUR BEST: 0";
+}
+
+function updateLeaderboard(difficulty, difficultyUsername, difficultyScore){
+    let players = {};
+
+    for(const username in allScores){
+        players[username] = allScores[username].highestScore[difficulty]
+    }
+
+    const sortedPlayers = Object.entries(players).sort((a, b) => b[1] - a[1]).slice(0,5);
+
+    const leaderboardUsername = document.querySelectorAll(difficultyUsername);
+    const leaderboardScore = document.querySelectorAll(difficultyScore);
+
+    leaderboardUsername.forEach(usernameSpan => usernameSpan.textContent = "No Player");
+    leaderboardScore.forEach(usernameSpan => usernameSpan.textContent = "0");
+
+    sortedPlayers.forEach(([username, score], index) => {
+        if(leaderboardUsername[index]){
+            leaderboardUsername[index].textContent = username;
+        }
+        if(leaderboardScore[index]){
+            leaderboardScore[index].textContent = score;
+        }
     })
+  
+}
 
-    const linksAndButtons = document.querySelectorAll('a, button');
-    
-    linksAndButtons.forEach(element =>{
-        element.style.cursor = 'none';
-    })
-
-    linksAndButtons.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            cursorOutline.style.borderColor = 'black';
-            cursorOutline.style.transform = 'scale(1.3)';
-            cursorDot.style.transform = 'scale(1.3)';
-            cursorDot.style.backgroundColor = 'white';
-            cursorOutline.style.transition = "all 0.5s ease";
-        });
-
-        element.addEventListener('mouseleave', () => {
-             cursorDot.style.backgroundColor = 'black';
-            cursorOutline.style.borderColor = 'white';
-            cursorOutline.style.transform = 'scale(1)';
-            cursorDot.style.transform = 'scale(1)';
-        });
-    });
+updateLeaderboard("easy", ".easy-username", ".easy-back-side");
+updateLeaderboard("normal", ".normal-username", ".normal-back-side");
+updateLeaderboard("hard", ".hard-username", ".hard-back-side");
