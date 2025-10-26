@@ -198,6 +198,7 @@ header p{
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-left: 40rem;
 
 }
 
@@ -466,9 +467,7 @@ main{
     transition: all 0.3s ease;
 }
 
-.gradient-border:hover {
-    padding: 4px;
-}
+
 
 @keyframes rotate {
     0% {
@@ -522,10 +521,6 @@ main{
 .play-button .arrows i:nth-child(3) { left: 26px; transition-delay: 0.2s; }
 
 
-.play-button:hover {
-    text-indent: -3rem;
-    width: 16rem;
-}
 
 .play-button:hover .arrows i {
     opacity: 1;
@@ -537,6 +532,11 @@ main{
     transform: scale(0.97);
 }
 
+.play-button-link{
+    text-decoration: none;
+    color: rgb(172, 172, 172);
+    position: relative;
+}
 
 .white-box h2{
     font-size: 2.8rem;
@@ -815,5 +815,23 @@ ul li:nth-child(4) a:before {
         transform: translateY(-100vh) translateX(50px) rotate(360deg);
         opacity: 0;
     }
+}
+
+.login-popup {
+    font-family: "norwester";
+    background-color: white;
+    color: black;
+    opacity: 0;
+    font-size: 0.5rem;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    position: absolute;
+    padding: 0.5rem 1rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow:inset 0px 0px 10px 4px rgba(61, 61, 61, 0.2);
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
