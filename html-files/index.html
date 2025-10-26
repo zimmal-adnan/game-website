@@ -46,7 +46,7 @@
         
         <div class = "links" style = "--items: 3;">
             <a class = "page-navigation" href="index.html">HOME</a>   
-            <a class = "page-navigation" href="game.html">GAME</a>  
+            <a id = "game-navigation-link" class = "page-navigation" href="game.html">GAME</a>  
             <a class = "page-navigation" href="leaderboard.html" style = "border-right: none;">LEADERBOARD</a>
             <span class="line"></span>
         </div>  
@@ -68,20 +68,19 @@
                 <div class = "paragraph-block">
                     <p>a world split between light and <span class = "text-split">shadow - survival depends on your </span>ability to switch <span class = "text-split">between realities.</span></p>
                 </div>
-                <div class = "gradient-border">
-                    <button class="play-button"><a href = "game.html" style = "text-decoration: none; color: rgb(172, 172, 172);">PLAY NOW!</a>
-                        <span class="arrows">
+                <div id = "gradient-border" class = "gradient-border">
+                    <button type = "button" id = "play-button" class="play-button"><a href = "game.html" id = "play-button-link" class = "play-button-link">PLAY NOW!</a>
+                        <span id = "arrows" class="arrows">
                             <i class="fas fa-angle-right"></i>
                             <i class="fas fa-angle-right"></i>
                             <i class="fas fa-angle-right"></i>
                         </span>
                     </button>
-                </div>
-                
-            </div>
-    
-           
-                    
+                </div>          
+            </div>             
+        </div>
+         <div id = login-popup class = login-popup>
+            <h2>Please login to play!</h2>
         </div>
     </main>
 

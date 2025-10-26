@@ -125,14 +125,18 @@ linksAndButtons.forEach(element => {
     });
 
     element.addEventListener('mouseleave', () => {
-            cursorDot.style.backgroundColor = 'black';
+        cursorDot.style.backgroundColor = 'black';
         cursorOutline.style.borderColor = 'white';
         cursorOutline.style.transform = 'scale(1)';
         cursorDot.style.transform = 'scale(1)';
     });
 });
 
-const storedData = JSON.parse(localStorage.getItem('userData'));
+
+const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+const allUsers = JSON.parse(localStorage.getItem('allUsers')) || {};
+const storedData = currentUser ? allUsers[currentUser.username] : null;
+
 const loginButton = document.getElementById('login-button');
 const signupButton = document.getElementById('signup-button');
 const userElement = document.getElementById('user');
@@ -203,11 +207,14 @@ if(logOutButton){
     logOutButton.addEventListener('click', (e) => {
         e.stopPropagation();
         logOutDropDown.classList.toggle("show");
-        const userData = JSON.parse(localStorage.getItem('userData'));
+
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let allUsers = JSON.parse(localStorage.getItem('allUsers'));
         
-        if(userData){
-            userData.isLoggedIn = false;
-            localStorage.setItem('userData', JSON.stringify(userData));
+        if(currentUser && allUsers[currentUser.username]){
+            allUsers[currentUser.username].isLoggedIn = false;
+            localStorage.setItem('allUsers', JSON.stringify(allUsers));
+            localStorage.removeItem('currentUser');
             window.location.reload();
         }
     });
@@ -236,3 +243,59 @@ if (logOut && logOutDropDown && logOutButton) {
     logOutButton.addEventListener('mouseleave', hideBox);
 }
 
+const playButton = document.getElementById('play-button');
+const loginPopup = document.getElementById("login-popup");
+const gameNavLink = document.getElementById("game-navigation-link");
+const gradientBorder = document.getElementById("gradient-border");
+
+
+if(!storedData || storedData.isLoggedIn === false){
+    if(playButton && gradientBorder){
+        const playButtonLink = document.getElementById("play-button-link");
+        const arrows = document.getElementById("arrows");
+
+        gradientBorder.style.opacity = '0.65';
+        playButton.style.transform = 'none';
+        playButton.style.color = 'grey';
+        playButtonLink.style.left = '-10px';
+
+        playButtonLink.removeAttribute('href');
+        if (arrows) {
+            arrows.remove(); 
+        }
+
+        playButton.addEventListener('mouseenter', () => {
+            if (loginPopup) {
+                loginPopup.style.opacity = '1';
+                loginPopup.style.visibility = 'visible';
+            }
+        });
+
+        playButton.addEventListener('mouseleave', () => {
+            if (loginPopup) {
+                loginPopup.style.opacity = '0';
+                loginPopup.style.visibility = 'hidden';
+            }
+        }); 
+    }
+
+    if (gameNavLink) {
+        gameNavLink.style.pointerEvents = 'none';
+        gameNavLink.style.opacity = '0.7';
+        gameNavLink.style.color = 'grey';
+    }
+}
+else if (storedData && storedData.isLoggedIn === true){
+    if(playButton && gradientBorder){
+        playButton.addEventListener('mouseenter', () => {
+            gradientBorder.style.padding = '4px';
+            playButton.style.textIndent = '-3rem';
+            playButton.style.width = '16rem';
+        })
+        playButton.addEventListener('mouseleave', () => {
+            gradientBorder.style.padding = '2.5px';
+            playButton.style.textIndent = '0';
+            playButton.style.width = '14rem';
+        })
+    }
+}
