@@ -1,5 +1,6 @@
-const allScores = JSON.parse(localStorage.getItem('allScores'));
-const userScore = storedData ? allScores[storedData.username] : null;
+const allScores = JSON.parse(localStorage.getItem('allScores')) || {};
+
+const userScore = storedData && allScores[storedData.username] ? allScores[storedData.username] : null;
 
 const easyHighestScore = document.getElementById("easy-highest-score");
 const normalHighestScore = document.getElementById("normal-highest-score");
@@ -18,7 +19,7 @@ if (storedData && storedData.isLoggedIn && userScore) {
 
 
 function updateLeaderboard(difficulty, difficultyUsername, difficultyScore){
-    
+    const allScores = JSON.parse(localStorage.getItem('allScores')) || {};
     
     let players = {};
 
@@ -35,12 +36,42 @@ function updateLeaderboard(difficulty, difficultyUsername, difficultyScore){
     leaderboardScore.forEach(usernameSpan => usernameSpan.textContent = "0");
 
     sortedPlayers.forEach(([username, score], index) => {
-        leaderboardUsername[index].textContent = username;
-        leaderboardScore[index].textContent = score;
+        if (leaderboardUsername[index]) leaderboardUsername[index].textContent = username;
+        if (leaderboardScore[index]) leaderboardScore[index].textContent = score;
         
     })
   
 }
+
+function createLeaderboard(difficulty, containerSelector, listClassName) {
+    const list = document.querySelector(containerSelector)
+    
+    function addEntries(){
+        const li = document.createElement('li');
+        li.classList.add(listClassName);
+        list.appendChild(li);
+
+        const frontSide = document.createElement('div');
+        frontSide.classList.add('front-side');
+        li.appendChild(frontSide);
+
+        const username = document.createElement('span');
+        username.classList.add(`${difficulty}-username`);
+        frontSide.appendChild(username);
+
+        const backSide= document.createElement('div');
+        backSide.classList.add(`${difficulty}-back-side`);
+        li.appendChild(backSide);
+    }
+
+    while (list.children.length < 5){
+        addEntries();
+    }
+}
+
+createLeaderboard("easy", ".easy-list", "points");
+createLeaderboard("normal", ".normal-list", "normal-points");
+createLeaderboard("hard", ".hard-list", "points");
 
 updateLeaderboard("easy", ".easy-username", ".easy-back-side");
 updateLeaderboard("normal", ".normal-username", ".normal-back-side");

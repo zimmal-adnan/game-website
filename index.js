@@ -198,6 +198,7 @@ else{
     }
     if(logOut){
         logOut.style.opacity = '0';
+        logOut.style.pointerEvents = 'none';
         logOutDropDown.style.opacity = '0';
         logOutButton.style.opacity = '0';
     }
@@ -208,14 +209,16 @@ if(logOutButton){
         e.stopPropagation();
         logOutDropDown.classList.toggle("show");
 
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const currentUser = JSON.parse(localStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('currentUser'));
         let allUsers = JSON.parse(localStorage.getItem('allUsers'));
         
         if(currentUser && allUsers[currentUser.username]){
             allUsers[currentUser.username].isLoggedIn = false;
             localStorage.setItem('allUsers', JSON.stringify(allUsers));
+            
             localStorage.removeItem('currentUser');
             sessionStorage.removeItem('currentUser');
+            
             window.location.reload();
         }
     });
