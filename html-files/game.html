@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css-files/game.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/4fc40ea9d1.js" crossorigin="anonymous"></script>
-    <script type = "text/javascript" src = "../game.js" defer></script>
+    <script type = "module" src = "../game.js" defer></script>
     <script type = "text/javascript" src = "../index.js" defer></script>
     
 </head>
@@ -20,17 +20,14 @@
     <header>
         <hr class = "thick-line">
         <p id = "call-to-action">Think you can survive the switch? Join now to prove it!</p>
-        <div class = "register">
+        <div class = "logo">
+            <img src = "../Images/INVERT.png">
+        </div>
+        <div class = "register-game">
             <a style = "opacity: 1;" class = "registration" id = "login-button" href = "login.html">LOGIN</a>
             <a style = "opacity: 1;" class = "registration" id = "signup-button" href = "signup.html">SIGNUP</a>
             <p style = "opacity: 0;" id = "user" class = "user">Username</p>
             <img style = "opacity: 0;" id = "user-profile" class = "user-profile" src = "../Images/profile.jpg">
-            <button style = "opacity: 0;"  id = "log-out" class = "log-out">
-                <img src = "../Images/down.png">
-            </button>
-            <div id = "logout-dropdown" class ="logout-dropdown">
-                <button class="logout-dropdown-button" id="logout-dropdown-button" style = "opacity: 0;">Log Out</button>
-            </div>
         </div>
         <h1>GAME<span class = "letters">PLAY</span></h1>
 
@@ -40,9 +37,6 @@
     <nav class = "navigation">  
         <div class = "upper">
             <hr class = "thin-line">
-            <div class = "logo">
-                <img src = "../Images/INVERT.png">
-            </div>
         </div>
         
         <div class = "links" style = "--items: 3;">
@@ -57,11 +51,16 @@
     
     <main>
         <div class = "game-border">
+            <div class = "tutorial">
+                <p> Struggling to play? Check the tutorial <a href = "index.html" style = "color: white;">HERE!</a></p>
+            </div>
             <div class = "main-game">
                 <div id = "score" class = "score">SCORE: 0</div>
                 <div id = "game-feedback"></div>
-                <canvas></canvas>
+
+                <canvas id = "canvas"></canvas>
                 
+                <div id="game-countdown" class="game-countdown"></div>
                 <div id = "game-start-screen" class = "game-start-screen">
                     <h2 id = "select" class = "select">CHOOSE YOUR DIFFICULTY</h1>
                     <button id = "play-easy" class = "play-easy">EASY</button>
@@ -71,23 +70,38 @@
                 
                 <div id = "game-over-screen" class = "game-over-screen">    
                     <h3 id = "gameOverText" class = "game-over-text"></h3>
-                    <h2 id = "finalScore"></h2>
-                    <button id = "restart" class = "restart">RESTART</button>
+                    <div class = "final-score-bg">
+                        <h2 id = "finalScore" class = "finalScore"></h2>
+                    </div>          
+                    <button id = "restart" class = "restart">RESTART <i class="fas fa-redo"></i></button>
                 </div> 
                
             </div>
-            <div class = "controls">
-                <div class = "control-buttons" id = "control-buttons">
-                    <button id = "left"> LEFT </button>
-                    <button id = "right"> RIGHT </button>
+            <div class="controls">
+                <div class="control-buttons" id="control-buttons">
+                    <div class="top-control-buttons">
+                        <button id="left"> LEFT </button>
+                        <button id="right"> RIGHT </button>
+                    </div>
+                    <button id="switch-world">
+                        <span class="left-half">SWITCH</span><span class="right-half"> WORLD</span>
+                    </button>           
                 </div>
                 <p>OR USE</p>
-                <div class = "control-keys" id = "control-keys">
-                    <img src = "../Images/Left_Key.png">
-                    <img src = "../Images/Right_Key.png">
+                <div class="keyboard-controls">
+                    <div class="control-keys" id="control-keys">
+                        <img src="../Images/Left_Key.png">
+                        <img src="../Images/Right_Key.png">
+                        <p>For movement</p>
+                    </div>
+                    <div id="slash"></div>
+                    <div class="switch-keys">
+                        <img src="../Images/KeyB.png">
+                        <p>To switch worlds</p>
+                    </div>
                 </div>
-                <p>ON YOUR KEYBOARD</p>
-            </div> 
+                <p class="keyboard-text">ON YOUR KEYBOARD</p>
+            </div>
         </div>
     </main>
 
@@ -99,16 +113,17 @@
         
         <ul>
             <li>
-                <a href="#">
-                <i class="fab fa-facebook-f icon"></i>    </a>
+                <a href="https://www.facebook.com/InvertGame/" target="_blank"><i class="fa-brands fa-facebook-f icon"></i></a>
             </li>
             <li>
-                <a href="#"><i class="fab fa-twitter icon"></i></a>
+                <a href="https://www.x.com/InvertGame/" target="_blank"><i class="fa-brands fa-x-twitter icon"></i></a>
             </li>
             <li>
-                <a href="#"><i class="fab fa-linkedin-in icon"></i></a></li>
+                <a href="https://www.instagram.com/InvertGame/" target="_blank"><i class="fa-brands fa-instagram icon"></i></a>
+            </li>
             <li>
-                <a href="#"><i class="fab fa-google-plus-g icon"></i></a></li>
+                <a href="https://www.snapchat.com/InvertGame/" target="_blank"><i class="fa-brands fa-snapchat icon"></i></a>
+            </li>
         </ul>
         
 
