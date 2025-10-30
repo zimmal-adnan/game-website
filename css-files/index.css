@@ -1,3 +1,4 @@
+/*----FONTS USED----*/
 @font-face {
   font-family: 'Blanka';
   src: url('../Fonts/Blanka-Regular.otf') format('truetype');
@@ -20,16 +21,19 @@
 }
 
 
-
-
 body{
     margin: 0%;
     background: linear-gradient(to right, #dddddd 50%, #b4b4b4 50%);
     overflow-x: hidden;
-    cursor: none;
-   
+    cursor: none; /*Hide default cursor for custom cursor*/
 }
 
+main{
+    flex: 1;
+}
+
+
+/*----CURSOR----*/
 .cursor-dot{
     width: 10px;
     height: 10px;
@@ -52,11 +56,7 @@ body{
     pointer-events: none;
 }
 
-
-main{
-    flex: 1;
-}
-
+/*----WEBSITE HEADER----*/
 .thick-line{
     border: none;
     border-top: 2rem solid black;
@@ -64,114 +64,7 @@ main{
     margin-top: -0.2rem;
     position: relative;
     z-index: 2;
-
 }
-
-.upper{
-    width: 100vw;
-    display: flex;
-}
-.thin-line{
-    width: 85%;
-    margin-left: 0;
-    margin-right: auto;
-    border: 1px solid black;
-}
-
-.logo img{
-    top: 10px;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 20%;  
-    position: absolute;
-    border: 2px solid black;
-    box-shadow: 0px 0px 5px 2px rgba(64, 64, 64, 0.6);
-}
-
-
-.logo{
-    width: 14%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    position: relative;  
-    left: 1rem;
-}
-
-
-h1{
-    letter-spacing: 15px;
-    font-family: 'Blanka';
-    text-align: center;
-    font-size: 3.5rem;
-    margin-top: -1rem;
-    text-shadow: 3px 3px 3px rgb(111, 111, 111);
-}
-
-.letters{
-    color: white;
-}
-
-
-
-.page-navigation{
-    font-family: "norwester";
-    text-decoration: none;
-    border-right: 1px solid black; 
-    margin-right: 0.2rem; 
-
-    color: black;
-}
-
-nav a{
-    font-size: 1.2rem;
-}
-
-.links > a {
-	color: black;
-	padding: .5em 0.8em;
-	text-align: center;
-	text-decoration: none;
-	transition: all .5s;
-}
-
-.links > a:hover {
-	background: #ffffff06;
-	color: grey;
-}
-.links > .line {
-	background: black;
-	height: 1px;
-	pointer-events: none;
-}
-
-.links {
-	display: grid;
-	grid-template-columns: repeat(var(--items), 8rem);
-	position: relative;
-    width: fit-content;
-    margin-left: 0;
-}
-.links > .line {
-	opacity: 0;
-	transition: all 0.5s;
-	position: absolute;
-	bottom: 0;
-    margin-left: -3px;
-	left: var(--left, calc(100% / var(--items) * (var(--index) - 1)));
-	width: var(--width, calc(100% / var(--items)));
-	--index: 0;
-}
-.links > a:hover ~ .line {
-	opacity: 1;
-}
-
-.links > a:nth-of-type(1):hover ~ .line { --index: 1; }
-.links > a:nth-of-type(2):hover ~ .line { --index: 2; }
-.links > a:nth-of-type(3):hover ~ .line { --index: 3; }
-
-
-
 
 header div {
     display: flex;
@@ -190,15 +83,39 @@ header p{
     opacity: 0.85;
 }
 
+
+
+/*----WEBSITE LOGO----*/
+.logo img{
+    top: 10px;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 20%;  
+    position: absolute;
+    border: 2px solid black;
+    box-shadow: 0px 0px 5px 2px rgba(64, 64, 64, 0.6);
+}
+
+.logo{
+    width: 14%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;  
+    left: 1rem;
+}
+
+
+/*----SIGNUP/LOGIN BUTTONS OR USERNAME/PROFILE PICTURE----*/
 .register, .register-game{
     position: relative;            
     display: flex;
     align-items: center;
     justify-content: flex-end;
     margin-left: 40rem;
-
 }
 
+/*Signup/Login buttons*/
 .registration{
     position: absolute;
     right: 0;
@@ -214,13 +131,10 @@ header p{
     border-radius: 15px;
     color: white;
     background-color: black;
-
     height: 5rem;
     display: flex;
     align-items: flex-end;
     box-sizing: border-box;
-    
-
     overflow: hidden;
     transition: all 0.5s ease;
     transform: translateY(0);
@@ -234,6 +148,9 @@ header p{
     right: 8rem; 
 }
 
+/*Signup/Login buttons hover effect*/
+
+/*Sliding white background*/
 .registration::before {
     content: "";
     position: absolute;
@@ -248,18 +165,19 @@ header p{
 
 .registration:hover {
     color: black;
-    transform: translateY(1.5rem);
+    transform: translateY(1.5rem); /*Slide button downward on hover*/
 }
 
 .registration:hover::before {
     height: 100%;
 }
 
-
 .registration:last-child{
     margin-right: 0.8rem;
 }
 
+
+/*Username/Profile picture*/
 .user{
     position: relative;
     top: 1.2rem;
@@ -280,6 +198,7 @@ header p{
     transition: all 0.5s ease;
 }
 
+/*Dropdown icon*/
 .log-out{
     display: flex;
     align-items: center;
@@ -291,7 +210,7 @@ header p{
     width: 1rem;
     opacity: 0;
     height: 1rem;
-    visibility: hidden;
+    visibility: hidden; /*Hide until username/profile picture is hovered over*/
     transition: all 0.4s ease;
     position: absolute;
     right: 0;
@@ -312,20 +231,20 @@ header p{
     border-radius: 100px;
 }
 
+/*Shift username and profile on hover*/
 .register:hover .user-profile {
     left: -3rem;
     box-shadow: 0 0px 5px 5px rgba(74, 74, 74, 0.2);
 }
-
 .register:hover .user {
     left: -3rem;
 }
 
+/*Show log out dropdown on icon hover*/
 .register:hover .log-out {
     visibility: visible;
     transform: translateX(-1rem); 
 }
-
 .logout-dropdown{
     position: absolute;
     display: flex;
@@ -345,7 +264,6 @@ header p{
     z-index: 200;    
     box-shadow: 0px 0px 8px 5px rgba(84, 84, 84, 0.3);
 }
-
 .logout-dropdown:before {
     content: "";
     position: absolute;
@@ -359,6 +277,7 @@ header p{
     border-bottom: 13px solid transparent;
 }
 
+/*Log out button*/
 .logout-dropdown-button{
     background: transparent;
     font-family: "norwester";
@@ -375,12 +294,98 @@ header p{
     background-color: rgb(229, 229, 229)
 }
 
+
+/*----NAVIGATION BAR----*/
+.upper{
+    width: 100vw;
+    display: flex;
+}
+
+.thin-line{
+    width: 85%;
+    margin-left: 0;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+/*Website heading*/
+h1{
+    letter-spacing: 15px;
+    font-family: 'Blanka';
+    text-align: center;
+    font-size: 3.5rem;
+    margin-top: -1rem;
+    text-shadow: 3px 3px 3px rgb(111, 111, 111);
+}
+.letters{
+    color: white;
+}
+
+/*Navigation links*/
+.page-navigation{
+    font-family: "norwester";
+    text-decoration: none;
+    border-right: 1px solid black; 
+    margin-right: 0.2rem; 
+    font-size: 1.2rem;
+    color: black;
+}
+
+/*Navigation links hover effect*/
+.links > a {
+	color: black;
+	padding: .5em 0.8em;
+	text-align: center;
+	text-decoration: none;
+	transition: all .5s;
+}
+
+.links > a:hover {
+	background: #ffffff06;
+	color: grey;
+}
+
+.links > .line {
+	background: black;
+	height: 1px;
+	pointer-events: none;
+}
+
+.links {
+	display: grid;
+	grid-template-columns: repeat(var(--items), 8rem); /*Evenly space navigation links*/
+	position: relative;
+    width: fit-content;
+    margin-left: 0;
+}
+.links > .line {
+	opacity: 0;
+	transition: all 0.5s;
+	position: absolute;
+	bottom: 0;
+    margin-left: -3px;
+	left: var(--left, calc(100% / var(--items) * (var(--index) - 1))); /*Position an underline based on the hover link*/
+	width: var(--width, calc(100% / var(--items)));
+	--index: 0;
+}
+
+.links > a:hover ~ .line {
+	opacity: 1;
+}
+
+.links > a:nth-of-type(1):hover ~ .line { --index: 1; }
+.links > a:nth-of-type(2):hover ~ .line { --index: 2; }
+.links > a:nth-of-type(3):hover ~ .line { --index: 3; }
+
+
+/*----MAIN CONTENT----*/
 main{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/*----CENTRAL WHITE BOX----*/
 .white-box{
     position: relative; 
     border: 0.2rem solid black;
@@ -398,143 +403,6 @@ main{
     box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.2);
 }
 
-
-.text-block {
-    position: relative;
-    color: black; 
-}
-
-.paragraph-block {
-    width: 100%;               
-    background-color: rgba(0,0,0,0.3);
-    padding: 1rem;
-    display: flex;             
-    justify-content: center;   
-    margin-top: 5em;   
-   
-}
-
-
-
-.paragraph-block p {
-    max-width: 45%;            
-    font-size: 1.5rem;
-    font-family: 'norwester';
-    text-align: center;        
-    margin: 0;  
-    pointer-events: none;   
-    text-shadow: 0px 0px 3px rgb(29, 29, 29);           
-}
-
-
-
-.image-placement{
-    padding-right: 3rem;
-    padding-top: 2rem;
-    width: 50%;
-    box-sizing: border-box;
-    height: auto;
-}
-
-.white-box-image{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    opacity: 0.4; 
-}
-
-.text-split{
-    color: white;
-}
-
-.gradient-border{
-    position: relative;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
-    border-radius: 10px;
-    width: fit-content;  
-    height: fit-content;  
-    padding: 4px;
-    margin: 1rem auto 0 auto;  
-    display: flex;  
-    justify-content: center;  
-    animation: rotate 4s linear infinite;
-    transition: all 0.3s ease;
-}
-
-
-
-@keyframes rotate {
-    0% {
-        filter: hue-rotate(0deg);
-    }
-    80% {
-        filter: hue-rotate(360deg);
-    }
-}
-
-.play-button{  
-    font-family: 'Norwester', sans-serif;
-    width: 14rem;
-    padding: 0.75rem 1rem;
-    background: rgb(48, 48, 48);
-    color: rgb(210, 210, 210);
-    border: none;
-    cursor: none;
-    padding-left: 2.5rem;
-    font-size: 2rem;
-    position: relative;
-    border-radius: 10px;
-    text-align: center;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-
-}
-
-.play-button .arrows {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    width: 2rem;
-    left: 3rem;
-}
-
-.play-button .arrows i {
-    opacity: 0;
-    transform: translateX(-6px);
-    transition: all 0.3s ease;
-    color: #00f2fe;
-    position: absolute;
-}
-
-
-.play-button .arrows i:nth-child(1) { left: 0;   transition-delay: 0s; }
-.play-button .arrows i:nth-child(2) { left: 13px; transition-delay: 0.1s; }
-.play-button .arrows i:nth-child(3) { left: 26px; transition-delay: 0.2s; }
-
-
-
-.play-button:hover .arrows i {
-    opacity: 1;
-    transform: translateX(0);
-
-}
-
-.play-button:active {
-    transform: scale(0.97);
-}
-
-.play-button-link{
-    text-decoration: none;
-    color: rgb(172, 172, 172);
-    position: relative;
-}
-
 .white-box h2{
     font-size: 2.8rem;
     font-family: 'Ignis';
@@ -550,11 +418,16 @@ main{
     
 }
 
+.text-block {
+    position: relative;
+    color: black; 
+}
+
+/*----BLACK WELCOME STRIP----*/
 .black{
     position: relative;
     background-color: black;
 }
-
 
 .halftone-left, .halftone-right{
     position: absolute;
@@ -572,6 +445,144 @@ main{
     right: 14rem;
 }
 
+/*Tagline styling*/
+.paragraph-block {
+    width: 100%;               
+    background-color: rgba(0,0,0,0.3);
+    padding: 1rem;
+    display: flex;             
+    justify-content: center;   
+    margin-top: 5em;    
+}
+
+.paragraph-block p {
+    max-width: 45%;            
+    font-size: 1.5rem;
+    font-family: 'norwester';
+    text-align: center;        
+    margin: 0;  
+    pointer-events: none;   
+    text-shadow: 0px 0px 3px rgb(29, 29, 29);           
+}
+
+/*White box background image*/
+.white-box-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /*Cover the entire box*/
+    opacity: 0.4; 
+}
+
+.text-split{
+    color: white;
+}
+
+/*----PLAY BUTTON STYLING----*/
+.gradient-border{
+    position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%); /*Rainbow gradient*/
+    border-radius: 10px;
+    width: fit-content;  
+    height: fit-content;  
+    padding: 4px;
+    margin: 1rem auto 0 auto;  
+    display: flex;  
+    justify-content: center;  
+    animation: rotate 4s linear infinite;
+    transition: all 0.3s ease;
+}
+
+/*rotating rainbow gradient animation*/
+@keyframes rotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    80% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.play-button{  
+    font-family: 'Norwester', sans-serif;
+    width: 14rem;
+    padding: 0.75rem 1rem;
+    background: rgb(48, 48, 48);
+    color: rgb(210, 210, 210);
+    border: none;
+    cursor: none; /*Disable default cursor*/
+    padding-left: 2.5rem;
+    font-size: 2rem;
+    position: relative;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/*Arrow animation on Play Button hover*/
+.play-button .arrows {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 2rem;
+    left: 3rem;
+}
+
+.play-button .arrows i {
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: all 0.3s ease;
+    color: #00f2fe;
+    position: absolute;
+}
+
+.play-button .arrows i:nth-child(1) { left: 0;   transition-delay: 0s; }
+.play-button .arrows i:nth-child(2) { left: 13px; transition-delay: 0.1s; }
+.play-button .arrows i:nth-child(3) { left: 26px; transition-delay: 0.2s; }
+
+.play-button:hover .arrows i {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.play-button:active {
+    transform: scale(0.97);
+}
+
+.play-button-link{
+    text-decoration: none;
+    color: rgb(172, 172, 172);
+    position: relative;
+}
+
+/*----POPUP FOR UNAUTHENTICATED USERS----*/
+.login-popup {
+    font-family: "norwester";
+    background-color: white;
+    color: black;
+    opacity: 0;
+    font-size: 0.5rem;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    position: absolute;
+    padding: 0.5rem 1rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow:inset 0px 0px 10px 4px rgba(61, 61, 61, 0.2);
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+/*----WEBSITE FOOTER----*/
 footer{
     background: linear-gradient(to bottom, #dddddd, black) left / 50% 100% no-repeat,
     linear-gradient(to bottom, #b4b4b4, black) right / 50% 100% no-repeat;
@@ -581,22 +592,18 @@ footer{
     margin-right: auto;
     max-width: 100rem;
     position: relative;
-
 }
 
 footer hr{
     border: none;
     border-top: 2px solid white;
-    
 }
 
 footer p{
     color: white;
     font-size: 1rem;
     text-align: center;
-
 }
-
 
 footer h2{
     font-family: 'norwester';
@@ -606,9 +613,96 @@ footer h2{
     align-items: center;
     font-size: 1rem;
     word-spacing: 2px;
-  
 }
 
+footer span{
+    color: black;
+}
+
+/*----SOCIAL MEDIA LINKS----*/
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -1.8rem;
+}
+
+ul li {
+    list-style: none;
+}
+
+ul li a {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    display: block;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #fff;
+    z-index: 1;
+}
+
+/*Social media icon*/
+ul li a .icon {
+    position: relative;
+    color: #262626;
+    transition: .5s;
+    z-index: 3;
+    top: 6px;
+}
+
+/*Social media icon hover effect*/
+ul li a:hover .icon {
+    color: #fff;
+    transform: rotateY(360deg); /*Rotate icon 360 degrees on hover*/
+}
+ul li a:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f00;
+    transition: .5s;
+    z-index: 2;
+}
+
+ul li a:hover:before {
+    top: 0;
+}
+
+/*Icon colour fills on hover*/
+ul li:nth-child(1) a:before{
+    background: #086DFF;
+}
+ul li:nth-child(2) a:before{
+    background: #000000;
+}
+ul li:nth-child(3) a:before {
+    background: #B33A8E;
+}
+ul li:nth-child(4) a:before {
+    background: #a2a006;
+}
+
+
+/*Medal icons credit (only for leaderboard.html)*/
+.credit{
+    text-decoration: none;
+    font-family: 'Lucida Sans';
+    display: flex;
+    color: rgb(0, 0, 0);
+    justify-content: center;
+    align-items: center;
+    font-size: 0.6rem;
+    position: relative;
+    opacity: 0.75;
+}
 
 .copyright{
     font-family: 'Lucida Sans';
@@ -620,28 +714,8 @@ footer h2{
     position: relative;
 }
 
-footer div{
-    margin-top: 1.5rem;
-}
 
-.credit{
-    text-decoration: none;
-    font-family: 'Lucida Sans';
-    display: flex;
-    color: rgb(0, 0, 0);
-    justify-content: center;
-    align-items: center;
-    font-size: 0.6rem;
-    position: relative;
-    opacity: 0.75;
-
-}
-
-footer span{
-    color: black;
-}
-
-
+/*----DRAGGABLE RIBBON STYLING----*/
 .ribbon {
     font-size: 1.3rem;
     font-family: 'norwester';
@@ -651,24 +725,29 @@ footer span{
     text-align: right;
     cursor: grab;
     user-select: none;
-    transition: transform 0.3s ease;
+    --f: .05em; 
+    --r: 1.2em; 
+    position: absolute;
+    bottom: 10px;
+    right: calc(-1*var(--f));
+    padding: 0.8rem 1.8rem;
+    background: black;
+    border-top: var(--f) solid #0005;
+    border-left: var(--r) solid #0000;
+    clip-path: 
+        polygon(0 100%,100% 100%,100% var(--f),calc(100% - var(--f)) 0,
+        calc(100% - var(--f)) var(--f),0 var(--f),
+        var(--r) calc(50% + var(--f)/2)); /*Create a ribbon shape with a clipped polygon*/
 }
 
-
-.ribbon {
-  --f: .05em; 
-  --r: 1.2em; 
-  position: absolute;
-  bottom: 10px;
-  right: calc(-1*var(--f));
-  padding: 0.8rem 1.8rem;
-  background: black;
-  border-top: var(--f) solid #0005;
-  border-left: var(--r) solid #0000;
-  clip-path: 
-    polygon(0 100%,100% 100%,100% var(--f),calc(100% - var(--f)) 0,
-      calc(100% - var(--f)) var(--f),0 var(--f),
-      var(--r) calc(50% + var(--f)/2));
+/*Ribbon border*/
+.ribbon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-top: 3px dotted white;
+    border-bottom: 3px dotted white;
+    clip-path: inherit; 
 }
 
 .instruction-box {
@@ -690,10 +769,9 @@ footer span{
     text-align: center;
     border: 3px solid rgb(255, 255, 255);
     border-radius: 15px;
-    
-    
 }
 
+/*Container for game tutorial video*/
 .inner-box{
     background-color: white;
     border: 5px solid black;
@@ -703,87 +781,6 @@ footer span{
     
 }
 
-.ribbon::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-top: 3px dotted white;
-  border-bottom: 3px dotted white;
-  clip-path: inherit; 
-
-}
-
-ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: -1.8rem;
-    
-}
-
-ul li {
-  list-style: none;
-}
-
-ul li a {
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: #fff;
-  text-align: center;
-  font-size: 1.5rem;
-  margin-right: 0.5rem;
-  display: block;
-  border-radius: 50%;
-  position: relative;
-  overflow: hidden;
-  border: 3px solid #fff;
-  z-index: 1;
-}
-
-ul li a .icon {
-  position: relative;
-  color: #262626;
-  transition: .5s;
-  z-index: 3;
-  top: 6px;
-}
-
-ul li a:hover .icon {
-  color: #fff;
-  transform: rotateY(360deg);
-}
-
-ul li a:before {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #f00;
-  transition: .5s;
-  z-index: 2;
-}
-
-ul li a:hover:before {
-  top: 0;
-}
-
-ul li:nth-child(1) a:before{
-  background: #086DFF;
-}
-
-ul li:nth-child(2) a:before{
-  background: #000000;
-}
-
-ul li:nth-child(3) a:before {
-  background: #B33A8E;
-}
-
-ul li:nth-child(4) a:before {
-  background: #a2a006;
-}
 
 
 .circle{
@@ -794,7 +791,6 @@ ul li:nth-child(4) a:before {
     opacity: 0;
     bottom: 0;
     z-index: -5;
-  
 }
 
 @keyframes float {
@@ -814,21 +810,4 @@ ul li:nth-child(4) a:before {
     }
 }
 
-.login-popup {
-    font-family: "norwester";
-    background-color: white;
-    color: black;
-    opacity: 0;
-    font-size: 0.5rem;
-    visibility: hidden;
-    transition: all 0.2s ease;
-    position: absolute;
-    padding: 0.5rem 1rem;
-    border: 2px solid black;
-    border-radius: 10px;
-    box-shadow:inset 0px 0px 10px 4px rgba(61, 61, 61, 0.2);
-    bottom: -1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-}
 

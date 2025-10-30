@@ -4,29 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome!</title>
+
+    <!--Favicon-->
     <link rel="icon" type="image/png" href="../Images/INVERT.png">
+
+    <!--Reference to CSS file-->
     <link rel="stylesheet" href="../css-files/index.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    
-    <script src="https://kit.fontawesome.com/4fc40ea9d1.js" crossorigin="anonymous"></script>
+
+    <!--Reference to JavaScript file for logic-->
     <script type = "text/javascript" src="../index.js" defer></script>
 
-    
+    <!--Reference to FontAwesome for icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/4fc40ea9d1.js" crossorigin="anonymous"></script>
 </head>
+
+
 <body>
+    <!--Custom cursor for the website-->
     <div id = "cursor-dot" class = "cursor-dot"></div>
     <div id = "cursor-outline"class = "cursor-outline"></div>
+
+    <!--Main header of the website-->
     <header>
         <hr class = "thick-line">
+        
+        <!--Website logo-->
         <div class = "logo">
             <img src = "../Images/INVERT.png">
         </div>
         <p id = "call-to-action">Think you can survive the switch? Join now to prove it!</p>
+        
+        <!--Signup/Login buttons or Username/Profile picture-->
         <div class = "register">
             <a style = "opacity: 1;" class = "registration" id = "login-button" href = "login.html">LOGIN</a>
             <a style = "opacity: 1;" class = "registration" id = "signup-button" href = "signup.html">SIGNUP</a>
             <p style = "opacity: 0;" id = "user" class = "user">Username</p>
+            
+            <!--User profile picture-->
             <img style = "opacity: 0;" id = "user-profile" class = "user-profile" src = "../Images/profile.jpg">
+            
+            <!--Log out button-->
             <button style = "opacity: 0;"  id = "log-out" class = "log-out">
                 <img src = "../Images/down.png">
             </button>
@@ -34,70 +52,82 @@
                 <button class="logout-dropdown-button" id="logout-dropdown-button" style = "opacity: 0;">Log Out</button>
             </div>
         </div>
-        <h1>INV<span class = "letters">ERT</span></h1>
 
+        <!--Main heading of the webpage-->
+        <h1>INV<span class = "letters">ERT</span></h1>
     </header>
 
-    
+    <!--Navigation to other webpages-->
     <nav class = "navigation">  
         <div class = "upper">
-            <hr class = "thin-line">
-            
+            <hr class = "thin-line">   
         </div>
-        
+
+        <!--Navigation links-->
         <div class = "links" style = "--items: 3;">
             <a class = "page-navigation" href="index.html">HOME</a>   
             <a id = "game-navigation-link" class = "page-navigation" href="game.html">GAME</a>  
             <a class = "page-navigation" href="leaderboard.html" style = "border-right: none;">LEADERBOARD</a>
             <span class="line"></span>
-        </div>  
-        
-        
+        </div>     
     </nav>
 
     <main>
+        <!--Central white box-->
         <div class = "white-box">
-             <img src = "../Images/white-box-image.png" alt = "black and white image" class = "white-box-image">
+            <img src = "../Images/white-box-image.png" alt = "black and white image" class = "white-box-image">
             <div class = "text-block">
+
                 <div class = "black">
                     <img src = "../Images/halftone3.png" class = "halftone-left">
                     <img src = "../Images/halftone3.png" class = "halftone-right">
                     <h2>WELCOME!</h2>
-                    
                 </div>
                 
+                <!--Tagline-->
                 <div class = "paragraph-block">
                     <p>a world split between light and <span class = "text-split">shadow - survival depends on your </span>ability to switch <span class = "text-split">between realities.</span></p>
                 </div>
+
+                <!--Play Button-->
                 <div id = "gradient-border" class = "gradient-border">
-                    <button type = "button" id = "play-button" class="play-button"><a href = "game.html" id = "play-button-link" class = "play-button-link">PLAY NOW!</a>
+                    <button type = "button" id = "play-button" class="play-button">
+                        <a href = "game.html" id = "play-button-link" class = "play-button-link">PLAY NOW!</a>
+                        <!--Animated arrows visible on hover for logged-in users-->
                         <span id = "arrows" class="arrows">
                             <i class="fas fa-angle-right"></i>
                             <i class="fas fa-angle-right"></i>
                             <i class="fas fa-angle-right"></i>
                         </span>
                     </button>
-                </div>          
+                </div> 
             </div>             
         </div>
-         <div id = login-popup class = login-popup>
+
+        <!--Popup on Play Button for unauthenticated users-->
+        <div id = login-popup class = login-popup>
             <h2>Please login to play!</h2>
         </div>
     </main>
 
+    <!--Draggable ribbon to reveal game tutorial-->
     <aside>
         <div id = "ribbon" class="ribbon">Psst.. drag me to learn how to play</div>
         <div id = "instruction-box" class = "instruction-box">
+
+            <!--Game tutorial video-->
             <div class = "inner-box">
                 <h2> VIDEO HERE! </h2>
             </div>
         </div>
     </aside>
 
+    <!--Main footer of the website-->
     <footer>
         <hr style = "width: 30rem;">
         <h2>Join The ‎ <span>INV</span>ERT Community</h2>
         
+        <!--Social media links-->
         <ul>
             <li>
                 <a href="https://www.facebook.com/InvertGame/" target="_blank"><i class="fa-brands fa-facebook-f icon"></i></a>
@@ -113,8 +143,6 @@
             </li>
         </ul>
         
-        
-  
         <p class = "copyright">©Copyright. Made by Zimmal Adnan. All Rights Reserved.</p>
     </footer>
     

@@ -1,108 +1,122 @@
+//Add floating circles to index.html
 if(window.location.pathname.includes("index.html")){
-const numberOfCircles = 20;
-const body = document.body
+    
+    const numberOfCircles = 20;
+    const body = document.body
 
 
-for(let i = 0; i < numberOfCircles; i++){
-    const circle = document.createElement("div")
-    circle.classList.add('circle');
+    for(let i = 0; i < numberOfCircles; i++){
+        const circle = document.createElement("div")
+        circle.classList.add('circle');
 
-    const circleSize = Math.floor(Math.random() * 20) + 30;
-    circle.style.width = `${circleSize}px`;
-    circle.style.height = `${circleSize}px`;
+        //Randomise circle size
+        const circleSize = Math.floor(Math.random() * 20) + 30;
+        circle.style.width = `${circleSize}px`;
+        circle.style.height = `${circleSize}px`;
 
-    let left;
-    if(Math.random() < 0.5){
-        left = Math.random() * -20 + 15;
+        //Position circles on the left and right side of the central white box
+        let left;
+        if(Math.random() < 0.5){
+            left = Math.random() * -20 + 15;
+        }
+        else{
+            left = Math.random() * 25 + 75;
+        }
+        circle.style.left = `${left}%`;
+
+        //Randomise animation duration
+        const duration = Math.random() * 10 + 10;
+        circle.style.animationDuration = `${duration}s`;
+        
+        //Radnomise delay for a floating effect
+        const delay = Math.random() * 5; 
+        circle.style.animationDelay = `${delay}s`;
+
+        body.appendChild(circle);
     }
-    else{
-        left = Math.random() * 25 + 75;
-    }
-    circle.style.left = `${left}%`;
+}
 
-    const duration = Math.random() * 10 + 10;
-    circle.style.animationDuration = `${duration}s`;
-
-    const delay = Math.random() * 5; 
-    circle.style.animationDelay = `${delay}s`;
-
-    body.appendChild(circle);
-
-
-}}
 
 const ribbon =  document.getElementById("ribbon")
 const instructionBox = document.getElementById("instruction-box")
 
 let isDragging = false;
-let initialMouseX = 0; //saves where your mouse is (horizontally) when you start pulling
-let currentTranslateX = 0; //keeps track of how the ribbon and box have moved (starts at 0)
-let lastTranslateX = 0; //stores the ribbon's last position when the user lets go
+let initialMouseX = 0; //Tracks initial horizontal mouse position when dragging starts
+let currentTranslateX = 0; //Tracks horizontal movement of ribbon and box
+let lastTranslateX = 0; //Stores the ribbon's last position when the dragging stops
+
 
 if(ribbon && instructionBox){
-    ribbon.addEventListener("mousedown", (e) => { //waits for the user to click and hold the mouse on the ribbon
+    ribbon.addEventListener("mousedown", (e) => { 
         isDragging = true;
-        initialMouseX = e.clientX - lastTranslateX; //saves the spot where your mouse is when you start dragging (in pixels)
-        
-        ribbon.style.transition = "none";
-        instructionBox.style.transition = "none";
 
+        //Saves mouse position is when dragging starts (in pixels)
+        initialMouseX = e.clientX - lastTranslateX; 
+        
         ribbon.style.cursor = "grabbing";
 
-        document.addEventListener("mousemove", handleDrag); //watches where the mouse moves while pulling
-        document.addEventListener("mouseup", stopDrag); //watches for when the user lets go of the mouse
-        e.preventDefault();//stops the browser from selecting text when pulling
+        //listeners for dragging and stopping
+        document.addEventListener("mousemove", handleDrag); 
+        document.addEventListener("mouseup", stopDrag); 
+        
+        //Prevent selecting text when dragging
+        e.preventDefault();
     })
 
-    //runs every time the mouse is moved while holding it
+    //Handle ribbon dragging
     function handleDrag(e) {
         if(!isDragging) return;
 
-        const currentMouseX =  e.clientX; //gets where the mouse is while pulling in pixels
-        const deltaX = currentMouseX - initialMouseX; //figures out how far you have pulled the ribbon to the left
+        //Tracks mouse's position while pulling (in pixels)
+        const currentMouseX =  e.clientX; 
+        
+        //Calculate how far mouse has moved to the left
+        const deltaX = currentMouseX - initialMouseX; 
     
 
-        if(deltaX < -500){ //if mouse moves than 400px to the left
+        //Dragging constraints
+        if(deltaX < -500){ 
             currentTranslateX = -500;
         }
-        else if (deltaX > 0) { //if mouse moves too far to the right
+        else if (deltaX > 0) { 
             currentTranslateX = 0;     
         } 
-        else { //otherwise follow the mouse
+        else { 
+            //Ribbon and box follow the mouse
             currentTranslateX = deltaX;
         }
     
         ribbon.style.transform = `translateX(${currentTranslateX}px)`;
         instructionBox.style.transform = `translateX(${currentTranslateX}px)`;
-        
-        
     };
 
+    //Save final position when mouse stops dragging
     function stopDrag(){
         isDragging = false;
         lastTranslateX = currentTranslateX;
+
+        //Remove drag listeners
         document.removeEventListener("mousemove", handleDrag);
         document.removeEventListener("mouseup", stopDrag);
+        
         ribbon.style.cursor = "grab";
-        ribbon.style.transition = "transform 0.3s ease"; 
-        instructionBox.style.transition = "transform 0.3s ease"; 
     };
 };
-
-
 
 
 const cursorDot = document.getElementById("cursor-dot");
 const cursorOutline = document.getElementById("cursor-outline");
 
+//Custom cursor movement logic when mouse moves
 window.addEventListener("mousemove", function(e) {
     const posX = e.clientX;
     const posY = e.clientY;
 
+    //Update inner dot position instantly
     cursorDot.style.left = `${posX}px`;
     cursorDot.style.top = `${posY}px`;
 
-
+    //Slight delay in follow to the outline
     cursorOutline.animate({
         left: `${posX}px`,
         top: `${posY}px`
@@ -112,9 +126,11 @@ window.addEventListener("mousemove", function(e) {
 const linksAndButtons = document.querySelectorAll('a, button');
 
 linksAndButtons.forEach(element =>{
-    element.style.cursor = 'none';
+    element.style.cursor = 'none'; //Disable default cursor styles on buttons and links
 });
 
+
+//Custom cursor style when hovering on buttons and links
 linksAndButtons.forEach(element => {
     element.addEventListener('mouseenter', () => {
         cursorOutline.style.borderColor = 'black';
@@ -148,6 +164,7 @@ const logOutButton = document.getElementById("logout-dropdown-button");
 
 const callToAction = document.getElementById('call-to-action');
 
+//Hide Login/Signup button when user logs in
 if(storedData && storedData.isLoggedIn === true){
     if(callToAction){
         callToAction.style.opacity = '0';
@@ -161,6 +178,7 @@ if(storedData && storedData.isLoggedIn === true){
         signupButton.style.pointerEvents = 'none';
     }
 
+    //Show username and profile picture
     if(userElement){
         userElement.textContent = storedData.username;
         userElement.style.opacity = '1';
@@ -171,6 +189,7 @@ if(storedData && storedData.isLoggedIn === true){
     }
     if(logOut){
         logOut.style.opacity = '1';
+        //Show logout dropdown button on hover
         logOut.addEventListener('mouseover', () => {
             logOutButton.style.opacity = '1';
             logOutDropDown.style.opacity = '1';
@@ -178,6 +197,7 @@ if(storedData && storedData.isLoggedIn === true){
     }
 }
 else{
+    //Show Login/Signup buttons for unauthenticated users
     if(callToAction){
         callToAction.style.opacity = '1';
     }
@@ -190,6 +210,7 @@ else{
         signupButton.style.pointerEvents = 'auto';
     }
     
+    //Hide username and profile picture
     if(userElement){
         userElement.style.opacity = '0';
     }
@@ -204,14 +225,16 @@ else{
     }
 }
 
+//Handle logout logic
 if(logOutButton){
     logOutButton.addEventListener('click', (e) => {
-        e.stopPropagation();
+        
         logOutDropDown.classList.toggle("show");
 
         const currentUser = JSON.parse(localStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('currentUser'));
         let allUsers = JSON.parse(localStorage.getItem('allUsers'));
         
+        //Remove login status and clear current user
         if(currentUser && allUsers[currentUser.username]){
             allUsers[currentUser.username].isLoggedIn = false;
             localStorage.setItem('allUsers', JSON.stringify(allUsers));
@@ -219,6 +242,7 @@ if(logOutButton){
             localStorage.removeItem('currentUser');
             sessionStorage.removeItem('currentUser');
             
+            //Refresh to show logged-out state
             window.location.reload();
         }
     });
@@ -226,13 +250,14 @@ if(logOutButton){
 
 
 
-
 if (logOut && logOutDropDown && logOutButton) {
+    //Show logout dropdown on hover
     const showBox = () => {
         logOutDropDown.style.opacity = '1';
         logOutDropDown.style.visibility = 'visible';
     };
 
+    //Hide logout dropdown when mouse leaves
     const hideBox = () => {
         logOutDropDown.style.opacity = '0';
         logOutDropDown.style.visibility = 'hidden';
@@ -247,12 +272,13 @@ if (logOut && logOutDropDown && logOutButton) {
     logOutButton.addEventListener('mouseleave', hideBox);
 }
 
+
 const playButton = document.getElementById('play-button');
 const loginPopup = document.getElementById("login-popup");
 const gameNavLink = document.getElementById("game-navigation-link");
 const gradientBorder = document.getElementById("gradient-border");
 
-
+//Handle Play Button behaviour for unauthenticated users
 if(!storedData || storedData.isLoggedIn === false){
     if(playButton && gradientBorder){
         const playButtonLink = document.getElementById("play-button-link");
@@ -263,11 +289,13 @@ if(!storedData || storedData.isLoggedIn === false){
         playButton.style.color = 'grey';
         playButtonLink.style.left = '-10px';
 
+        //Disable navigation to the game
         playButtonLink.removeAttribute('href');
         if (arrows) {
             arrows.remove(); 
         }
 
+        //Show login popup on hover for unauthenticated users
         playButton.addEventListener('mouseenter', () => {
             if (loginPopup) {
                 loginPopup.style.opacity = '1';
@@ -283,12 +311,15 @@ if(!storedData || storedData.isLoggedIn === false){
         }); 
     }
 
+    //Disable game navigation link for unauthenticated users
     if (gameNavLink) {
         gameNavLink.style.pointerEvents = 'none';
         gameNavLink.style.opacity = '0.7';
         gameNavLink.style.color = 'grey';
     }
 }
+
+//Handle Play Button behaviour for logged-in users
 else if (storedData && storedData.isLoggedIn === true){
     if(playButton && gradientBorder){
         playButton.addEventListener('mouseenter', () => {
