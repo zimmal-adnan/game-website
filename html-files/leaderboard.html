@@ -16,7 +16,7 @@
     <script type = "text/javascript" src="../index.js" defer></script>
     <script type = "text/javascript" src="../leaderboard.js" defer></script>
 
-    <!--Font Awesome for displaying icons-->
+    <!--Reference to FontAwesome for displaying icons-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/4fc40ea9d1.js" crossorigin="anonymous"></script>
 </head>
@@ -30,14 +30,22 @@
     <header>
         <hr class = "thick-line">
         <p id = "call-to-action">Think you can survive the switch? Join now to prove it!</p>
+        
+        <!--Website logo-->
         <div class = "logo">
             <img src = "../Images/INVERT.png">
         </div>
+        
+        <!--Signup/Login buttons or Username/Profile picture-->
         <div class = "register">
             <a style = "opacity: 1;" class = "registration" id = "login-button" href = "login.html">LOGIN</a>
             <a style = "opacity: 1;" class = "registration" id = "signup-button" href = "signup.html">SIGNUP</a>
             <p style = "opacity: 0;" id = "user" class = "user">Username</p>
+            
+            <!--User profile picture-->
             <img style = "opacity: 0;" id = "user-profile" class = "user-profile" src = "../Images/profile.jpg">
+            
+            <!--Log out button-->
             <button style = "opacity: 0;"  id = "log-out" class = "log-out">
                 <img src = "../Images/down.png">
             </button>
@@ -45,10 +53,13 @@
                 <button class="logout-dropdown-button" id="logout-dropdown-button" style = "opacity: 0;">Log Out</button>
             </div>
         </div>
+
+        <!--FontAwesome crown icon-->
         <div class = "crown">
             <i class="fa-solid fa-crown"></i>
         </div>
-        
+
+        <!--Main heading of the webpage-->
         <h1>LEADER<span class = "letters">BOARD</span></h1>
     </header>
 
@@ -57,6 +68,8 @@
         <div class = "upper">
             <hr class = "thin-line">
         </div>
+
+        <!--Navigation links-->
         <div class = "links" style = "--items: 3;">
             <a class = "page-navigation" href="index.html">HOME</a>   
             <a id = "game-navigation-link" class = "page-navigation" href="game.html">GAME</a>  
@@ -68,6 +81,8 @@
 
     <!--Black strip to display user's highest score-->
     <section class = "score-strip">
+
+        <!--Animated arrows on both sides of the content-->
         <div class="arrows-left">
             <i class="fas fa-angle-left"></i>
             <i class="fas fa-angle-left"></i>
@@ -78,53 +93,61 @@
             <i class="fas fa-angle-right"></i>
             <i class="fas fa-angle-right"></i>
         </div>
-        <h2 class = "highest-user-score" id = "highest-user-score">YOUR BEST</h2>
+
+        <!--Personal highest score for each difficulty-->
+        <h2 class = "highest-user-score" id = "highest-user-score">YOUR BEST</h2>   
         <div class = "highest-scores">
             <h3 id = "easy-highest-score"></h3>
             <h3 id = "normal-highest-score"></h3>
             <h3 id = "hard-highest-score"></h3>
-        </div>
-        
+        </div>    
     </section>
 
     <!--Leaderboard to display top scorers of the game-->
     <main>
         <div class = "leaderboard-box">
+
+            <!--Easy leaderboard box-->
             <h2>EASY</h2>
             <hr>
             <ol class = "username-points easy-list">
                 <li class = "points">
+                    <!--Front side to display username-->
                     <div class = "front-side">
                         <img src = "../Images/medal (1).png" class="icon-position">
                         <span class = "easy-username"></span>
                     </div>
-                    <div class = "easy-back-side"></div>
-                    
+
+                    <!--Backside to display points upon hover-->
+                    <div class = "easy-back-side"></div>     
                 </li>
+
                 <li class = "points">
                     <div class = "front-side">
                         <img src = "../Images/second-prize.png" class="icon-position">
                         <span class = "easy-username"></span>
                     </div>
-                    <div class = "easy-back-side"></div>
-                    
+                    <div class = "easy-back-side"></div> 
                 </li>
+
                 <li class = "points">
                     <div class = "front-side">
                         <img src = "../Images/third-place.png" class="icon-position">
                         <span class = "easy-username"></span>
                     </div>
                     <div class = "easy-back-side"></div>      
-                </li>
-            
+                </li>     
             </ol>
             
             
 
         </div>
         <div id = "normal-box" class = "leaderboard-box">
+
+            <!--Normal leaderboard box-->
             <h2 style = "color: white;">NORMAL</h2>
             <hr style = "border: 2px solid white">
+
             <ol class = "username-points normal-list">
                 <li class = "normal-points">
                     <div class = "front-side">
@@ -133,6 +156,7 @@
                     </div>
                     <div class = "normal-back-side"></div> 
                 </li>
+
                 <li class = "normal-points">
                     <div class = "front-side">
                         <img src = "../Images/second-prize.png" class="icon-position">
@@ -140,18 +164,21 @@
                     </div>
                     <div class = "normal-back-side"></div> 
                 </li>
+
                 <li class = "normal-points">
                     <div class = "front-side">
                         <img src = "../Images/third-place.png" class="icon-position">
                         <span class = "normal-username"></span>
                     </div>
                     <div class = "normal-back-side"></div> 
-                </li>
-                
+                </li>              
             </ol>
         </div>
 
-         <div class = "leaderboard-box">
+
+        <div class = "leaderboard-box">
+
+            <!--Hard leaderboard box-->
             <h2>HARD</h2>
             <hr>
             <ol class = "username-points hard-list">
@@ -162,6 +189,7 @@
                     </div>
                     <div class = "hard-back-side"></div> 
                 </li>
+
                 <li class = "points">
                     <div class = "front-side">
                         <img src = "../Images/second-prize.png" class="icon-position">
@@ -169,24 +197,25 @@
                     </div>
                     <div class = "hard-back-side"></div> 
                 </li>
+
                 <li class = "points">
                     <div class = "front-side">
                         <img src = "../Images/third-place.png" class="icon-position">
                         <span class = "hard-username"></span>
                     </div>
                     <div class = "hard-back-side"></div> 
-                </li>
-                
+                </li>         
             </ol>
         </div>
     </main>
 
     
-
+    <!--Main footer of the website-->
     <footer>
         <hr style = "width: 30rem;">
         <h2>Join The ‎ <span>INV</span>ERT Community</h2>
         
+        <!--Social media links-->
         <ul>
             <li>
                 <a href="https://www.facebook.com/InvertGame/" target="_blank"><i class="fa-brands fa-facebook-f icon"></i></a>
@@ -202,6 +231,7 @@
             </li>
         </ul>
         
+        <!--Medal icon references-->
         <div>
             <a href="https://www.flaticon.com/free-icons/third-place" class = "credit" title="third place icons">Third place icons created by Graficon - Flaticon</a>
             <a href="https://www.flaticon.com/free-icons/second-place" class = "credit" title="second place icons">Second place icons created by Handicon - Flaticon</a>
