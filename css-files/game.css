@@ -1,3 +1,4 @@
+/*----FONTS USED----*/
 @font-face {
   font-family: 'Blanka';
   src: url('../Fonts/Blanka-Regular.otf') format('truetype');
@@ -20,7 +21,8 @@
 }
 
 
-
+/*----GAME CONTAINER----*/
+/*Black border around the game*/
 .game-border{
     margin:  4rem 2rem;
     width: 90vw;
@@ -37,6 +39,7 @@
     box-shadow: 0 0px 25px 5px rgba(94, 94, 94, 0.4);
 }
 
+/*Main game area with full-size canvas*/
 .main-game{
     border-radius: 20px 20px 0 0;
     width: 90vw;
@@ -44,14 +47,23 @@
     position: relative;
     background-color: white;
 }
-
 .main-game canvas{
     width: 100%;
     height: 100%;
     display: block;
 }
 
+/*----NAVIGATION TO HOME PAGE----*/
+.tutorial{
+    margin-top: -1rem;
+    font-family: "norwester";
+    color: white;
+    font-size: 1rem;
+    align-self: flex-end;
+}
 
+/*----GAME START SCREEN----*/
+/*Game start and game over overlay screens*/
 .game-over-screen, .game-start-screen{
     position: absolute;
     top: 0;
@@ -66,7 +78,7 @@
     border-radius: 20px 20px 0 0;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s ease;
+    transition: all 0.4s ease; 
 }
 
 .game-start-screen{
@@ -74,6 +86,7 @@
     background: linear-gradient(120deg, rgba(30, 30, 30, 0.8) 0%, rgba(0, 0, 0, 0.55) 50%, rgba(30, 30, 30, 0.8) 100%);
 }
 
+/*Game start screen heading*/
 .select{
     font-family: 'norwester';
     letter-spacing: 3px;
@@ -84,6 +97,7 @@
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
+/*Difficulty buttons with 3D style*/
 .play-easy, .play-normal, .play-hard{
     font-family: "norwester";
     font-weight: bold;
@@ -103,6 +117,7 @@
     inset -4px -4px 0 rgba(0, 0, 0, 0.2);
 }
 
+/*Difficulty buttons colour schemes for each difficulty*/
 .play-easy {
     border: 3px solid #4a7c4a;
     color: #2d5a2d;
@@ -118,6 +133,7 @@
     color: #7a1f1f;
 }
 
+/*Hover effects for difficulty buttons*/
 .play-easy:hover, .play-normal:hover, .play-hard:hover {
     transform: translateY(2px);
     box-shadow: 0 4px 0 #666, 
@@ -137,6 +153,7 @@
     background: linear-gradient(145deg, #fff0f0, #ffe6e6);
 }
 
+/*Difficulty buttons activated effect*/
 .play-easy:active {
     transform: translateY(6px);
     box-shadow: 
@@ -145,7 +162,6 @@
     inset 4px 4px 0 rgba(0, 0, 0, 0.2), 
     inset -4px -4px 0 rgba(255, 255, 255, 0.3);
     text-shadow: 1px 1px 2px rgba(45, 90, 45, 0.7);
-    
 }
 
 .play-normal:active {
@@ -155,8 +171,7 @@
     0 0 20px rgba(184, 149, 13, 0.3),
     inset 4px 4px 0 rgba(0, 0, 0, 0.2), 
     inset -4px -4px 0 rgba(255, 255, 255, 0.3);
-    text-shadow: 1px 1px 2px rgba(138, 111, 10, 0.7);
-    
+    text-shadow: 1px 1px 2px rgba(138, 111, 10, 0.7);  
 }
 
 .play-hard:active {
@@ -166,20 +181,25 @@
     0 0 20px rgba(168, 50, 50, 0.3),
     inset 4px 4px 0 rgba(0, 0, 0, 0.2), 
     inset -4px -4px 0 rgba(255, 255, 255, 0.3);
-    text-shadow: 1px 1px 2px rgba(122, 31, 31, 0.7);
-    
+    text-shadow: 1px 1px 2px rgba(122, 31, 31, 0.7); 
 }
 
-
+/*----GAME OVER SCREEN----*/
 .game-over-screen{
     background: linear-gradient(120deg, rgba(145, 145, 145, 0.4) 0%, rgba(40, 40, 40, 0.3) 50%, rgba(145, 145, 145, 0.4) 100%);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px); /*Blurred background for frosted effect*/
     opacity: 0;
     pointer-events: none;
 }
 
 .game-over-screen.show {
     animation: fadeIn 0.8s ease-out;
+}
+
+/*Subtle fade in game over screen animation after character collides*/
+@keyframes fadeIn {
+    0% {opacity: 0; transform: translateY(20px);}
+    100% {opacity: 1; transform: translateY(0);}
 }
 
 .game-over-screen h3{
@@ -196,6 +216,29 @@
     text-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
 }
 
+/*Final score value on game over screen*/
+.final-score-bg{
+    background: linear-gradient(90deg, rgb(68, 68, 68) 0%, rgb(0, 0, 0) 50%, rgb(68, 68, 68) 100%);
+    position: relative;
+    width: 100%;
+    height: auto;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black;
+}
+.finalScore{
+    font-family: 'ignis';
+    font-size: 2.5rem;
+    color: white;
+    margin: 0.5rem 0;
+    text-align: center;
+    position: relative;
+    letter-spacing: 4px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.815); 
+}
+
+/*Restart button*/
 .restart{
     font-family: "norwester";
     background: linear-gradient(145deg, #ffffff, #f0f0f0);
@@ -217,6 +260,7 @@
     margin-top: 1.5rem;
 }
 
+/*Restart button hover effect*/
 .restart:hover {
     transform: translateY(-3px);
     box-shadow: 
@@ -235,47 +279,21 @@
 
 .restart i {
     display: inline-block; 
-    transition: transform 0.3s ease; 
+    transition: all 0.3s ease; 
 }
 
 .restart:hover i {
     animation: rotateIcon 2s linear infinite;
 }
 
+/*Rotating restart icon animation*/
 @keyframes rotateIcon {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-.final-score-bg{
-    background: linear-gradient(90deg, rgb(68, 68, 68) 0%, rgb(0, 0, 0) 50%, rgb(68, 68, 68) 100%);
-    position: relative;
-    width: 100%;
-    height: auto;  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid black;
-}
-
-.finalScore{
-    font-family: 'ignis';
-    font-size: 2.5rem;
-    color: #fff;
-    margin: 0.5rem 0;
-    text-align: center;
-    position: relative;
-    letter-spacing: 4px;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.815); 
-
-}
-
-
-@keyframes fadeIn {
-    0% {opacity: 0; transform: translateY(20px);}
-    100% {opacity: 1; transform: translateY(0);}
-}
-
+/*----LIVE GAME SCORE----*/
+/*Score display*/
 .score{
     position: absolute;
     top: 10px;
@@ -292,6 +310,7 @@
     background: rgb(227, 227, 227, 0.6);
 }
 
+/*----GAME CONTROLS----*/
 .controls{
     display: flex;
     align-items: center;
@@ -301,15 +320,14 @@
     width: 100%;
 }
 
-
 .controls p{
     color: white;
     font-family: "norwester";
     font-size: 1.3rem;
     margin: 0.5rem;
-
 }
 
+/*----ON-SCREEN CLICKABLE BUTTONS----*/
 .control-buttons{
     margin-bottom: 1rem;
     background-color: #323232;
@@ -324,12 +342,12 @@
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.top-buttons {
+/*Left and Right buttons*/
+.top-control-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .control-buttons button {
     margin: 1rem 0.5rem;
     padding: 0.7rem 2.1rem;
@@ -344,6 +362,40 @@
     overflow: hidden;
 }
 
+#left {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    color: #000;
+    border: 2px solid #000;
+}
+
+#right {
+    background: linear-gradient(145deg, #1a1a1a, #000000);
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+/*Left and Right buttons hover effect*/
+#right:hover {
+    box-shadow: 
+    0 0 8px 3px rgba(0, 0, 0, 0.5),
+    inset 0 0 5px 2px rgb(255, 255, 255, 0.4);
+}
+#left:hover {
+    box-shadow: 
+    0 0 6px 1px rgba(255, 255, 255, 0.2),
+    inset 0 0 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+/*Left and Right buttons active states*/
+#left:active {
+    background: linear-gradient(145deg, #e6e6e6, #cccccc);
+}
+#right:active {
+    background: linear-gradient(145deg, #333333, #1a1a1a);
+}
+
+
+/*Switch world button styling*/
 #switch-world {
     margin-top: 0.5rem; 
     margin-bottom: 1.3rem;
@@ -359,7 +411,6 @@
     0 6px 0 #666,
     inset 4px 4px 0 rgba(255, 255, 255, 0.4),
     inset -4px -4px 0 rgba(0, 0, 0, 0.2);
-    
 }
 
 #switch-world span {
@@ -385,21 +436,22 @@
     border-radius: 0 10px 10px 0;
 }
 
+/*Switch world button hover effects*/
 #switch-world:hover {
     transform: translateY(2px);
     box-shadow: 
-        0 4px 0 #666, 
-        inset 4px 4px 0 rgba(255, 255, 255, 0.4), 
-        inset -4px -4px 0 rgba(0, 0, 0, 0.2);
+    0 4px 0 #666, 
+    inset 4px 4px 0 rgba(255, 255, 255, 0.4), 
+    inset -4px -4px 0 rgba(0, 0, 0, 0.2);
 }
 
 #switch-world:active {
     transform: translateY(6px);
     box-shadow: 
-        inset 0 0 20px rgba(100, 100, 100, 0.5),
-        0 0 20px rgba(100, 100, 100, 0.3),
-        inset 4px 4px 0 rgba(0, 0, 0, 0.2), 
-        inset -4px -4px 0 rgba(255, 255, 255, 0.3);
+    inset 0 0 20px rgba(100, 100, 100, 0.5),
+    0 0 20px rgba(100, 100, 100, 0.3),
+    inset 4px 4px 0 rgba(0, 0, 0, 0.2), 
+    inset -4px -4px 0 rgba(255, 255, 255, 0.3);
 }
 
 #switch-world:active .left-half {
@@ -410,46 +462,8 @@
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-#left {
-    background: linear-gradient(145deg, #ffffff, #e6e6e6);
-    color: #000;
-    border: 2px solid #000;
-}
 
-#right {
-    background: linear-gradient(145deg, #1a1a1a, #000000);
-    color: #fff;
-    border: 2px solid #fff;
-}
-
-#right:hover {
-    box-shadow: 
-    0 0 8px 3px rgba(0, 0, 0, 0.5),
-    inset 0 0 5px 2px rgb(255, 255, 255, 0.4);
-}
-#left:hover {
-    box-shadow: 
-    0 0 6px 1px rgba(255, 255, 255, 0.2),
-    inset 0 0 5px 2px rgba(0, 0, 0, 0.5);
-}
-
-#left:active {
-    background: linear-gradient(145deg, #e6e6e6, #cccccc);
-}
-#right:active {
-    background: linear-gradient(145deg, #333333, #1a1a1a);
-}
-
-
-.controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    position: relative;
-    width: 100%;
-}
-
+/*----KEYBOARD CONTROLS----*/
 .keyboard-controls {
     display: flex;
     align-items: center;
@@ -475,8 +489,7 @@
     font-family: "norwester";
     font-size: 1rem;
     margin: 0;
-    margin-left: 0.5rem;
-   
+    margin-left: 0.5rem;  
 }
 
 #slash {
@@ -484,7 +497,7 @@
     width: 5px;
     height: 3rem;
     background-color: white;
-    transform: rotate(35deg);
+    transform: rotate(35deg); /*Angled slash for separation*/
 }
 
 .keyboard-text {
@@ -494,19 +507,7 @@
     margin: 0.5rem;
 }
 
-.cooldown-indicator{
-    display: none; 
-    position: absolute; 
-    top: 20px; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    color: white; 
-    font-size: 20px; 
-    background: rgba(0,0,0,0.7); 
-    padding: 10px 20px; 
-    border-radius: 5px;
-}
-
+/*----COOLDOWN TIMER----*/
 #game-feedback{
     color: black;
     font-family: 'norwester';
@@ -531,6 +532,7 @@
     transform: translateX(-50%) translateY(0);
 }
 
+/*----COUNTDOWN BEFORE GAME START----*/
 .game-countdown {
     position: absolute;
     top: 50%;
@@ -541,15 +543,8 @@
     color: rgb(198, 198, 198);
     font-weight: bold;
     pointer-events: none;
-    transition: opacity 0.3s ease;
-    -webkit-text-stroke: 0.5px black;
+    transition: all 0.3s ease;
+    -webkit-text-stroke: 0.5px black; /*Text outline*/
     text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
 }
 
-.tutorial{
-    margin-top: -1rem;
-    font-family: "norwester";
-    color: white;
-    font-size: 1rem;
-    align-self: flex-end;
-}

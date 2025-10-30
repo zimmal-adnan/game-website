@@ -11,6 +11,7 @@ import { UserInput } from './Input.js';
 
 export class Game{
     constructor(){
+        //Initialise canvas and context for rendering
         this.canvas = new Canvas();
         this.context = this.canvas.context;
 
@@ -32,6 +33,7 @@ export class Game{
         this.userInput.inputs();
     }
 
+    //Start game with a countdown sequence
     startCountdown(){
         const gameStartScreen = document.getElementById('game-start-screen');
         gameStartScreen.style.opacity = 0;
@@ -43,6 +45,7 @@ export class Game{
         let count = 3;
         countDown.textContent = count;
 
+        //Update countdown every second
         const countdownInterval = setInterval(() => {
             count--;
             if (count > 0) {
@@ -52,6 +55,7 @@ export class Game{
                 countDown.textContent = "GO!";
             }
             else {
+                //Hide countdown and start the game
                 clearInterval(countdownInterval);
                 countDown.style.opacity = 0;
                 this.start();
@@ -59,34 +63,42 @@ export class Game{
         }, 1000);
     }
 
+    //Start the game by spawning obstacles and initialising the update loop
     start() {
         this.obstacleSpawner.start();
         this.update();
     }
 
+    //Update game status
     update(){
         if (this.gameOver) return;
 
-        this.canvas.clear();
+        this.canvas.clear(); //Clear canvas for the next frame
         this.player.draw();
-        this.score.increase(0.01 * this.gameSpeed);
+        this.score.increase(0.01 * this.gameSpeed); 
 
-        this.updateObstacles();
+        this.updateObstacles(); 
 
+        //Calls the update function again for the next frame
         requestAnimationFrame(() => this.update());
 
     }
 
+    //Update obstacles and handle collisions
     updateObstacles() {
+        //Loop backwards through all obstacles
         for (let i = this.obstacles.length - 1; i >= 0; i--) {
+            //Get the current obstacle and move it down the screen
             const obs = this.obstacles[i];
             obs.update();
 
+            //Remove obstacles that move off-screen
             if (obs.y > this.canvas.element.height) {
                 this.obstacles.splice(i, 1);
                 continue;
             }
 
+            //Check for collisions with the player
             if (CollisionDetector.collide(this.player, obs)) {
                 this.endGame();
                 return;
@@ -94,10 +106,11 @@ export class Game{
         }
     }
 
+    //Handle game over
     endGame() {
         this.gameOver = true;
-        this.obstacleSpawner.stopSpawn();
-        this.gameOverManager.gameOverScreen(this);
+        this.obstacleSpawner.stopSpawn(); //Stop spawning new obstacles
+        this.gameOverManager.gameOverScreen(this); //Show game over screen
     }
 
 }

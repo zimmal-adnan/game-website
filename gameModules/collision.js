@@ -1,3 +1,4 @@
+//Handles collision detection between player and obstacles
 export class CollisionDetector{
     static collide(player, obstacle) {
         return (

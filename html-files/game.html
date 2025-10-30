@@ -4,70 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gameplay</title>
+
+    <!--Favicon-->
     <link rel="icon" type="image/png" href="../Images/INVERT.png">
+
+    <!--Reference to CSS file-->
     <link rel="stylesheet" href="../css-files/index.css">
     <link rel="stylesheet" href="../css-files/game.css">
+
+    <!--Reference to FontAwesome for icons-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/4fc40ea9d1.js" crossorigin="anonymous"></script>
+
+    <!--Reference to JavaScript file for logic-->
     <script type = "module" src = "../game.js" defer></script>
     <script type = "text/javascript" src = "../index.js" defer></script>
-    
 </head>
+
 <body>
+    <!--Custom cursor for the website-->
     <div id = "cursor-dot" class = "cursor-dot"></div>
     <div id = "cursor-outline"class = "cursor-outline"></div>
     
+    <!--Main header of the website-->
     <header>
         <hr class = "thick-line">
         <p id = "call-to-action">Think you can survive the switch? Join now to prove it!</p>
         <div class = "logo">
             <img src = "../Images/INVERT.png">
         </div>
+
+        <!--Signup/Login buttons or Username/Profile picture-->
         <div class = "register-game">
             <a style = "opacity: 1;" class = "registration" id = "login-button" href = "login.html">LOGIN</a>
             <a style = "opacity: 1;" class = "registration" id = "signup-button" href = "signup.html">SIGNUP</a>
             <p style = "opacity: 0;" id = "user" class = "user">Username</p>
+            
+            <!--User profile picture-->
             <img style = "opacity: 0;" id = "user-profile" class = "user-profile" src = "../Images/profile.jpg">
         </div>
         <h1>GAME<span class = "letters">PLAY</span></h1>
-
     </header>
 
-    
+    <!--Navigation to other webpages-->
     <nav class = "navigation">  
         <div class = "upper">
             <hr class = "thin-line">
         </div>
-        
+
+        <!--Navigation links-->
         <div class = "links" style = "--items: 3;">
             <a class = "page-navigation" href="index.html">HOME</a>   
             <a class = "page-navigation" href="game.html">GAME</a>  
             <a class = "page-navigation" href="leaderboard.html" style = "border-right: none;">LEADERBOARD</a>
             <span class="line"></span>
         </div>  
-        
-        
     </nav>
     
     <main>
+        <!--Main black box-->
         <div class = "game-border">
+
+            <!--Navigation to Home page for game tutorial-->
             <div class = "tutorial">
                 <p> Struggling to play? Check the tutorial <a href = "index.html" style = "color: white;">HERE!</a></p>
             </div>
+
+            <!--Container to hold the game-->
             <div class = "main-game">
+
+                <!--Score Counter-->
                 <div id = "score" class = "score">SCORE: 0</div>
+
+                <!--Cooldown Timer-->
                 <div id = "game-feedback"></div>
 
+                <!--Gameplay canvas-->
                 <canvas id = "canvas"></canvas>
                 
+                <!--Countdown before game starts-->
                 <div id="game-countdown" class="game-countdown"></div>
+
+                <!--Game start menu-->
                 <div id = "game-start-screen" class = "game-start-screen">
                     <h2 id = "select" class = "select">CHOOSE YOUR DIFFICULTY</h1>
+
+                    <!--Difficulty buttons-->
                     <button id = "play-easy" class = "play-easy">EASY</button>
                     <button id = "play-normal" class = "play-normal">NORMAL</button>
                     <button id = "play-hard" class = "play-hard">HARD</button>
                 </div>
                 
+                <!--Game over screen-->
                 <div id = "game-over-screen" class = "game-over-screen">    
                     <h3 id = "gameOverText" class = "game-over-text"></h3>
                     <div class = "final-score-bg">
@@ -75,26 +103,40 @@
                     </div>          
                     <button id = "restart" class = "restart">RESTART <i class="fas fa-redo"></i></button>
                 </div> 
-               
             </div>
+
+            <!--Game controls-->
             <div class="controls">
+
+                <!--On-screen Buttons-->
                 <div class="control-buttons" id="control-buttons">
+
+                    <!--Character movement-->
                     <div class="top-control-buttons">
                         <button id="left"> LEFT </button>
                         <button id="right"> RIGHT </button>
                     </div>
+
+                    <!--World switching-->
                     <button id="switch-world">
                         <span class="left-half">SWITCH</span><span class="right-half"> WORLD</span>
                     </button>           
                 </div>
+
+                <!--Keyboard Controls-->
                 <p>OR USE</p>
                 <div class="keyboard-controls">
+
+                    <!--Character movement-->
                     <div class="control-keys" id="control-keys">
                         <img src="../Images/Left_Key.png">
                         <img src="../Images/Right_Key.png">
                         <p>For movement</p>
                     </div>
+
                     <div id="slash"></div>
+
+                    <!--World Switching-->
                     <div class="switch-keys">
                         <img src="../Images/KeyB.png">
                         <p>To switch worlds</p>
@@ -106,11 +148,12 @@
     </main>
 
 
-
+    <!--Main footer of the website-->
     <footer>
         <hr style = "width: 30rem;">
         <h2>Join The ‎ <span>INV</span>ERT Community</h2>
         
+        <!--Social media links-->
         <ul>
             <li>
                 <a href="https://www.facebook.com/InvertGame/" target="_blank"><i class="fa-brands fa-facebook-f icon"></i></a>
@@ -126,7 +169,6 @@
             </li>
         </ul>
         
-
         <p class = "copyright">©Copyright. Made by Zimmal Adnan. All Rights Reserved.</p>
     </footer>
 </body>

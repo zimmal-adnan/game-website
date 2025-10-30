@@ -1,20 +1,23 @@
 import { RandomInteger } from './canvas.js';
 import { Square, Rectangle, RotatingSquare, WideRectangle } from './obstacles.js';
 
+//Handles spawning random obstacles
 export class ObstacleSpawner{
     constructor(game){
         this.game = game;
-        this.laneCount = 5;
+        this.laneCount = 5; 
         this.laneWidth = game.canvas.element.width / this.laneCount;
-        this.lastUsedLanes = [];
-        this.spawnTimer = null;
+        this.lastUsedLanes = []; //Teack lanes used by obstacles to avoid overlap
+        this.spawnTimer = null; //scheduling obstacle spawns
     }
 
+    //Start spawning obstacles
     start(){
-        this.stopSpawn();
+        this.stopSpawn(); 
         this.spawn();
     }
 
+    //Stop spawning obstacles by clearing the timer
     stopSpawn(){
         if(this.spawnTimer){
             clearTimeout(this.spawnTimer);
@@ -22,12 +25,14 @@ export class ObstacleSpawner{
         }
     }
 
+    //Main spawn method to generate obstacles
     spawn(){
         if(this.game.gameOver) return;
 
         const spawnWideRectangle = Math.random() < 0.3;
-        const spawnRotatingObstacle = Math.random() < 0.5;
+        const spawnRotatingObstacle = Math.random() < 0.4;
         
+        //Spawn different obstacle types based on possibility
         if (spawnWideRectangle) {
             this.spawnWideRectangle();
         } 
@@ -39,6 +44,7 @@ export class ObstacleSpawner{
         }
 
         let nextSpawnDelay;
+        //Spawn delay based on difficulty level
         if(this.game.difficultyName === "easy"){
             nextSpawnDelay = RandomInteger.getRandomInt(700, 1000);
         }
@@ -48,30 +54,34 @@ export class ObstacleSpawner{
         else if(this.game.difficultyName === "hard"){
             nextSpawnDelay = RandomInteger.getRandomInt(600, 700);
         }
+        //Schedule next spawn with delay
         this.spawnTimer = setTimeout(() => this.spawn(), nextSpawnDelay);
     }
 
-
+    //Spawn a wide rectangle that spans multiple lanes
     spawnWideRectangle(){
         const laneSpan = RandomInteger.getRandomInt(2, 4);
-        const maxStartLane = this.laneCount - laneSpan;
+        const maxStartLane = this.laneCount - laneSpan; //obstacle fits within canvas
         const startLane = Math.floor(Math.random() * (maxStartLane + 1));
      
-        const x = startLane * this.laneWidth;
+        const x = startLane * this.laneWidth; 
         const y = -70;
         const width = laneSpan * this.laneWidth;
         const height = RandomInteger.getRandomInt(40, 70);
         const colour = this.game.isBlackWorld ? "white" : "black";
         
+        //Create and add the wide rectangle to game obstacles
         const obstacle = new WideRectangle(this.game.canvas.context, x, y, width, height, colour, laneSpan, this.game.gameSpeed);
         this.game.obstacles.push(obstacle);
         
+        //Track the lanes used by this obstacle
         this.lastUsedLanes = []
         for(let i = 0; i < laneSpan; i++) {
             this.lastUsedLanes.push(startLane + i);
         }
     }
 
+    //Spawn multiple rotating square obstacles
     spawnRotatingObstacle(){
         const obstacleNumber = RandomInteger.getRandomInt(2, 4); // Spawn 2-4 rotating squares
         const usedLanes = new Set();
@@ -79,6 +89,7 @@ export class ObstacleSpawner{
         for (let i = 0; i < obstacleNumber; i++) {
             let laneIndex;
             
+            //Keep selecting lanes until an unused one is found
             do {
                 laneIndex = Math.floor(Math.random() * this.laneCount);
             } 
@@ -90,16 +101,19 @@ export class ObstacleSpawner{
             const size = RandomInteger.getRandomInt(40, 80);
             const colour = this.game.isBlackWorld ? "white" : "black";
 
+            //Create and add rotating square to game obstacles
             const obstacle = new RotatingSquare(this.game.canvas.context, x - size / 2, y, size, colour, this.game.gameSpeed);
             this.game.obstacles.push(obstacle);
         }
 
+        //Update last used lanes
         this.lastUsedLanes = Array.from(usedLanes);
     }
 
+    //Spawn rectangular or square obstacles in random lanes
     spawnRegularObstacles(){
         const obstacleNumber = RandomInteger.getRandomInt(1, 4);
-        const usedLanes = new Set();
+        const usedLanes = new Set(); //No duplicate lanes so multiple obstacles don't spawn in the same lane
 
         for (let i = 0; i < obstacleNumber; i++){        
             let laneIndex;
@@ -114,6 +128,7 @@ export class ObstacleSpawner{
             const y = -70; 
             const colour = this.game.isBlackWorld ? "white" : "black";
 
+            //Randomly choose between square or rectangle
             const shapeType = Math.floor(Math.random() * 2);
             let obstacle;
 
@@ -126,8 +141,11 @@ export class ObstacleSpawner{
                 const rectangleHeight = RandomInteger.getRandomInt(40, 70);
                 obstacle = new Rectangle(this.game.canvas.context, x - rectangleWidth / 2, y, rectangleWidth, rectangleHeight, colour, this.game.gameSpeed);
             }
+            //Add obstacle to the game
             this.game.obstacles.push(obstacle); 
-        }     
+        }    
+        
+        //Update last used lanes
         this.lastUsedLanes = Array.from(usedLanes);
     }
 }
