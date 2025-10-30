@@ -58,3 +58,31 @@ export class WideRectangle extends Obstacle {
         this.context.fillRect(this.x, this.y, this.width, this.height);
     }
 }
+
+// ===ROTATING SQUARE===
+export class RotatingSquare extends Obstacle {
+    constructor(context, x, y, size, colour, gameSpeed) {
+        super(context, x, y, colour, gameSpeed);
+        this.size = size;
+        this.rotation = 0;
+        this.rotationSpeed = 0.05;
+    }
+
+    update() {
+        this.y += this.velocityY;
+        this.rotation += this.rotationSpeed; 
+        this.draw();
+       
+    }
+
+    draw() {
+        this.context.save();
+        this.context.translate(this.x + this.size / 2, this.y + this.size / 2);
+        this.context.rotate(this.rotation);
+        this.context.fillStyle = this.colour;
+        this.context.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+        this.context.restore();
+
+    }
+}
+

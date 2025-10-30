@@ -30,8 +30,33 @@ export class Game{
         this.selectDifficulty.chooseDifficulty();
         this.userInput = new UserInput(this);
         this.userInput.inputs();
+    }
 
+    startCountdown(){
+        const gameStartScreen = document.getElementById('game-start-screen');
+        gameStartScreen.style.opacity = 0;
+        gameStartScreen.style.pointerEvents = 'none';
 
+        const countDown = document.getElementById('game-countdown');
+        countDown.style.opacity = 1;
+
+        let count = 3;
+        countDown.textContent = count;
+
+        const countdownInterval = setInterval(() => {
+            count--;
+            if (count > 0) {
+                countDown.textContent = count;
+            } 
+            else if (count === 0) {
+                countDown.textContent = "GO!";
+            }
+            else {
+                clearInterval(countdownInterval);
+                countDown.style.opacity = 0;
+                this.start();
+            }
+        }, 1000);
     }
 
     start() {

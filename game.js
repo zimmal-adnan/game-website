@@ -5,7 +5,6 @@ window.addEventListener("load", () => {
     const startScreen = document.getElementById("game-start-screen");
     startScreen.style.opacity = 1;
     startScreen.style.pointerEvents = "auto";
-    game.userInput.inputs();
 })
 
 

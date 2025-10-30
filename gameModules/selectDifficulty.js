@@ -27,12 +27,12 @@ export class SelectDifficulty{
                     this.game.difficultyName = "normal";
                 }
                 if(difficulty === playHard) {
-                    this.game.gameSpeed = 8;
+                    this.game.gameSpeed = 7;
                     this.game.difficultyName = "hard";
                 }
 
                 
-                this.game.start();
+                this.game.startCountdown();
             });
         });
         
