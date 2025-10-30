@@ -1,5 +1,5 @@
 
-/*----FONTS----*/
+/*----FONTS USED----*/
 @font-face {
   font-family: 'Blanka';
   src: url('../Fonts/Blanka-Regular.otf') format('truetype');
@@ -21,7 +21,6 @@
   font-style: normal;
 }
 
-/*----BASE STYLE----*/
 html, body {
     height: 100%;
     margin: 0;
@@ -35,7 +34,7 @@ body{
     display: flex;
 }
 
-/*----CURSOR----*/
+/*----CUSTOM CURSOR----*/
 .cursor-dot{
     width: 10px;
     height: 10px;
@@ -59,7 +58,6 @@ body{
 }
 
 
-/*----LAYOUT----*/
 main{
     display: flex;
     align-items: stretch;
@@ -76,10 +74,9 @@ main{
     justify-content: center;
     width: 100%;
     height: 100%;
-    z-index: -1;          
+    z-index: -1; /*Place background image behind all content*/
     overflow: hidden;
 }
-
 .background-image img {
     width: 95%;
     background-repeat: no-repeat;
@@ -90,7 +87,7 @@ main{
 }
 
 
-/*----FORM CONTAINER----*/
+/*----FORM CONTAINER ON THE LEFT SIDE----*/
 .black-box {
     background-color: black;
     border-left: 2px solid white;
@@ -108,57 +105,6 @@ main{
     overflow-x: hidden;
 }
 
-
-
-
-/*----TEXT ON THE RIGHT SIDE----*/
-.text-block {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35rem;
-    height: 36rem; 
-    box-sizing: border-box;
-}
-
-
-.translucent-box{
-    position: absolute;
-    top: -2px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 0 1rem 1rem 0;
-    border-right: 2px solid black;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    background-color: white;
-    opacity: 0.35;
-}
-
-.text{
-    position: relative;
-    z-index: 2;
-    color: black;
-    text-align: right;
-    padding: 6rem;
-}
-
-.text h1{
-    font-family: 'norwester';
-    font-size: 2.8rem;
-    text-align: right;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 0px grey;
-}
-
-.text p{
-    font-size: 1.2rem;
-    font-family: 'norwester';
-}
-
-/*----HEADING AND NAVIGATION TO HOME PAGE----*/
 .heading{
     color: white;
     font-size: 3.1rem;
@@ -170,6 +116,7 @@ main{
     text-shadow: 2px 2px 0px grey;
 }
 
+/*Navigation link to Home page*/
 .back-page{
     color: white;
     text-decoration: none;
@@ -184,6 +131,7 @@ main{
     transition: color 0.4s ease;
 }
 
+/*Navigation link hover effect*/
 .back-page::before {
     content: "";
     position: absolute;
@@ -192,21 +140,19 @@ main{
     width: 0%;
     height: 100%;
     background-color: white;
-    transition: width 0.4s ease;
+    transition: all 0.4s ease; 
     z-index: -1;
 }
-
 .back-page:hover {
     color: black;
 }
 
 .back-page:hover::before {
-    width: 100%;
+    width: 100%; /*Slides white background from left to right on hover*/
     right: auto;
     left: 0;
 }
 
-/*----FORM ON THE LEFT SIDE----*/
 .form{
     margin-top: 2rem;
 }
@@ -221,17 +167,7 @@ main{
     flex-direction: column;
 }
 
-.sign-up{
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    font-size: 1rem;
-    transition: font-size 0.4s ease;
-}
-
-.sign-up:hover{
-    font-size: 1.2rem;
-}
-
+/*Feedback for invalid credentials*/
 .feedback{
     font-family: "ignis";
     color: red;
@@ -242,7 +178,7 @@ main{
     min-height: 1rem;
 }
 
-/*----INPUT FIELDS ON FORM----*/
+/*----FORM INPUT FIELDS---*/
 .input-container{
     position:relative;
 	margin-bottom: 2rem; 
@@ -260,7 +196,6 @@ main{
     letter-spacing: 1px;
 }
 
-
 .input-container input{ 
     border:0;
     border-bottom:1px solid white;
@@ -273,12 +208,12 @@ main{
     font-family: 'norwester';
 }
 
+/*Label animation when input field is clicked on*/
 .input-container input:focus{ 
     outline:none;
     border-bottom:1px solid rgb(183, 183, 183);
     transition: all 0.3s ease;
 }
-
 .input-container input:focus ~ label,
 .input-container input:not(:placeholder-shown) ~ label {
     top: -10px;
@@ -286,11 +221,12 @@ main{
     color: rgb(183, 183, 183);
 }
 
+/*Input field placeholder styling*/
 ::placeholder{
     color: rgba(187, 187, 187, 0.3);
 }
 
-/*----PASSWORD TOGGLE----*/
+/*Password toggle*/
 .eye-toggle {
     position: absolute;
     right: 10px;
@@ -318,7 +254,7 @@ main{
     pointer-events: auto;
 }
 
-/*----PROFILE PICTURE----*/
+/*Profile picture upload*/
 .input-container-profile {
     display: flex;
     justify-content: center;
@@ -357,7 +293,7 @@ main{
     border-radius: 100rem;
     object-fit: cover;
     border: 3px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s ease;
     cursor: pointer;
     position: relative;
     flex-shrink: 0;
@@ -366,13 +302,11 @@ main{
 .profile-picture:hover {
     transform: scale(1.05);
     border-color: white;
-    box-shadow: 
-        0 6px 25px rgba(255, 255, 255, 0.3),
-        inset 0 0 30px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.3), inset 0 0 30px rgba(255, 255, 255, 0.1);
 }
 
 #input-file {
-  display: none;
+    display: none;
 }
 
 /*----SUBMIT FORM BUTTON----*/
@@ -413,7 +347,7 @@ main{
   border: 2px solid #747474;
   border-left: 4px solid #747474;
   border-bottom: 4px solid #747474;
-  animation: spin 2s 500ms forwards;
+  animation: spin 2s 500ms forwards; /*Animate button into a spinning circle*/
 }
 
 .submit-button.animate-success span {
@@ -477,6 +411,7 @@ main{
     text-shadow: 0 0 10px rgba(255, 85, 85, 0.5);
 }
 
+/*Shake input field animation if error*/
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
@@ -484,6 +419,7 @@ main{
 }
 
 
+/*----CHECKBOX FIELDS----*/
 .terms-checkbox-container, .remember-checkbox-container{
     color: white;
     position: relative;
@@ -500,13 +436,43 @@ main{
     transition: all 0.3s ease;
 }
 
+/*Custom styling for checkbox field*/
+#terms-checkbox, #remember-checkbox {
+    width: 1.1rem;
+    height: 1.1rem;
+    cursor: pointer;
+    color: white;
+    appearance: none; /*Remove default checkbox appearance*/
+    border: 2px solid white;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s ease;
+    top: 5px;
+}
+
+#terms-checkbox:checked, #remember-checkbox:checked {
+    background-color: white;
+    border-color: grey;
+}
+
+#terms-checkbox:checked::after, #remember-checkbox:checked::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 .terms{
     font-weight: bold;
     font-size: 1.1rem;
     text-decoration: underline;
 }
 
-
+/*----TERMS AND CONDITIONS BOX----*/
 .hidden-box {
     position: fixed;
     top: 65%;
@@ -526,6 +492,7 @@ main{
     z-index: 100;
 }
 
+/*Reveal terms box on hover*/
 .hidden-box.show {
     opacity: 1;
     visibility: visible;
@@ -540,7 +507,6 @@ main{
     letter-spacing: 1px;
     text-shadow: 1px 1px 0px grey;
     margin-bottom: 1rem;
-
 }
 
 .hidden-box h4 {
@@ -569,37 +535,66 @@ main{
     margin-top: 0.5rem;
 }
 
-#terms-checkbox, #remember-checkbox {
-    width: 1.1rem;
-    height: 1.1rem;
-    cursor: pointer;
-    color: white;
-    appearance: none;
-    border: 2px solid white;
-    border-radius: 4px;
-    position: relative;
-    transition: all 0.3s ease;
-    top: 5px;
-}
 
-
-#terms-checkbox:checked, #remember-checkbox:checked {
-    background-color: white;
-    border-color: grey;
-}
-
-#terms-checkbox:checked::after, #remember-checkbox:checked::after {
-    content: "✓";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: black;
-    font-size: 14px;
-    font-weight: bold;
-}
-
+/*Custom calendar styling for date field*/
 .input-container input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
-    filter: invert(1); 
+    filter: invert(1);  /*Invert calendar icon color to white*/
+}
+
+/*Navigation link to login/signup page*/
+.sign-up{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 1rem;
+    transition: font-size 0.4s ease;
+}
+
+.sign-up:hover{
+    font-size: 1.2rem;
+}
+
+/*----TEXT CONTAINER ON THE RIGHT SIDE----*/
+.text-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35rem;
+    height: 36rem; 
+    box-sizing: border-box;
+}
+.translucent-box{
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 1rem 1rem 0;
+    border-right: 2px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    background-color: white;
+    opacity: 0.35;
+}
+
+.text{
+    position: relative;
+    z-index: 2;
+    color: black;
+    text-align: right;
+    padding: 6rem;
+}
+
+.text h1{
+    font-family: 'norwester';
+    font-size: 2.8rem;
+    text-align: right;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0px grey;
+}
+
+.text p{
+    font-size: 1.2rem;
+    font-family: 'norwester';
 }
