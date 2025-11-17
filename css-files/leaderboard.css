@@ -1,4 +1,8 @@
-/*===FONTS USED===*/
+/*References:
+1. Double-sided card: https://codepen.io/nefejames/pen/RNbPZpp
+*/
+
+/*----FONTS USED----*/
 @font-face {
     font-family: 'Blanka';
     src: url('../Fonts/Blanka-Regular.otf') format('truetype');
@@ -41,7 +45,7 @@ html, body {
     top: 2.3rem;
 }
 
-/*===PERSONAL SCORE STRIP===*/
+/*----PERSONAL SCORE STRIP----*/
 .score-strip{
     background: linear-gradient(90deg, black 0%, #2a2a2a 50%, black 100%); /*Gradient background for dramatic effect*/
     color: white;
@@ -167,7 +171,7 @@ html, body {
 }
 
 
-/*===LEADERBOARD BOXES===*/
+/*----LEADERBOARD BOXES----*/
 main{
     display: flex;
     justify-content: center;
@@ -249,7 +253,9 @@ main{
     transform: rotateY(180deg);
 }
 
+
 /*Front side and back side card design*/
+/*Reference (1)*/
 .front-side, .easy-back-side, .normal-back-side, .hard-back-side{
     position: absolute;
     width: 100%;
@@ -268,7 +274,6 @@ main{
     transform: rotateY(180deg); /*Rotates to the back side 180 degrees initially so it faces the correect way*/
     border: 2px solid black;
 }
-
 
 .normal-points{
     background-color: white;

@@ -1,3 +1,9 @@
+/*References:
+1. Custom Cursor: https://youtu.be/UMdvufdewD8?si=zO9MvrGh6J8EjgK6
+2. Floating circles: https://codepen.io/bogdansandu/pen/yyLoZRb
+*/
+
+//----FLOATING BACKGROUND CIRCLES----
 //Add floating circles to index.html
 if(window.location.pathname.includes("index.html")){
     
@@ -28,7 +34,7 @@ if(window.location.pathname.includes("index.html")){
         const duration = Math.random() * 10 + 10;
         circle.style.animationDuration = `${duration}s`;
         
-        //Radnomise delay for a floating effect
+        //Randomise delay for a floating effect
         const delay = Math.random() * 5; 
         circle.style.animationDelay = `${delay}s`;
 
@@ -36,9 +42,10 @@ if(window.location.pathname.includes("index.html")){
     }
 }
 
-
+//----DRAGGABLE RIBBON AND TUTORIAL BOX----
 const ribbon =  document.getElementById("ribbon")
 const instructionBox = document.getElementById("instruction-box")
+const tutorialVideo = document.getElementById("tutorial-video")
 
 let isDragging = false;
 let initialMouseX = 0; //Tracks initial horizontal mouse position when dragging starts
@@ -75,8 +82,8 @@ if(ribbon && instructionBox){
     
 
         //Dragging constraints
-        if(deltaX < -500){ 
-            currentTranslateX = -500;
+        if(deltaX < -750){ 
+            currentTranslateX = -750;
         }
         else if (deltaX > 0) { 
             currentTranslateX = 0;     
@@ -88,6 +95,14 @@ if(ribbon && instructionBox){
     
         ribbon.style.transform = `translateX(${currentTranslateX}px)`;
         instructionBox.style.transform = `translateX(${currentTranslateX}px)`;
+
+        if(tutorialVideo){
+            if(currentTranslateX <= -400){
+                tutorialVideo.play();
+            } else {
+                tutorialVideo.pause();
+            }
+        }
     };
 
     //Save final position when mouse stops dragging
@@ -104,6 +119,8 @@ if(ribbon && instructionBox){
 };
 
 
+//----CUSTOM CURSOR LOGIC----
+/*Reference (1)*/
 const cursorDot = document.getElementById("cursor-dot");
 const cursorOutline = document.getElementById("cursor-outline");
 
@@ -149,6 +166,7 @@ linksAndButtons.forEach(element => {
 });
 
 
+//----USER AUTHENTICATION AND UI UPDATES---- 
 let currentUser = JSON.parse(localStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('currentUser'));
 const allUsers = JSON.parse(localStorage.getItem('allUsers')) || {};
 const storedData = currentUser ? allUsers[currentUser.username] : null;
@@ -248,8 +266,6 @@ if(logOutButton){
     });
 }
 
-
-
 if (logOut && logOutDropDown && logOutButton) {
     //Show logout dropdown on hover
     const showBox = () => {
@@ -273,6 +289,8 @@ if (logOut && logOutDropDown && logOutButton) {
 }
 
 
+
+//----PLAY BUTTON LOGIC----
 const playButton = document.getElementById('play-button');
 const loginPopup = document.getElementById("login-popup");
 const gameNavLink = document.getElementById("game-navigation-link");

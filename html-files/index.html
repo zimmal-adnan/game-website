@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css-files/index.css">
 
     <!--Reference to JavaScript file for logic-->
-    <script type = "text/javascript" src="../index.js" defer></script>
+    <script type = "text/javascript" src = "../javascript-files/index.js" defer></script>
 
     <!--Reference to FontAwesome for icons-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -23,7 +23,7 @@
 <body>
     <!--Custom cursor for the website-->
     <div id = "cursor-dot" class = "cursor-dot"></div>
-    <div id = "cursor-outline"class = "cursor-outline"></div>
+    <div id = "cursor-outline" class = "cursor-outline"></div>
 
     <!--Main header of the website-->
     <header>
@@ -31,7 +31,7 @@
         
         <!--Website logo-->
         <div class = "logo">
-            <img src = "../Images/INVERT.png">
+            <img src = "../Images/INVERT.png" alt = "Image of the website logo">
         </div>
         <p id = "call-to-action">Think you can survive the switch? Join now to prove it!</p>
         
@@ -42,11 +42,11 @@
             <p style = "opacity: 0;" id = "user" class = "user">Username</p>
             
             <!--User profile picture-->
-            <img style = "opacity: 0;" id = "user-profile" class = "user-profile" src = "../Images/profile.jpg">
+            <img alt = "Image of the user's profile picture" style = "opacity: 0;" id = "user-profile" class = "user-profile" src = "../Images/profile.jpg">
             
             <!--Log out button-->
             <button style = "opacity: 0;"  id = "log-out" class = "log-out">
-                <img src = "../Images/down.png">
+                <img src = "../Images/down.png" alt = "Drop-down Image">
             </button>
             <div id = "logout-dropdown" class ="logout-dropdown">
                 <button class="logout-dropdown-button" id="logout-dropdown-button" style = "opacity: 0;">Log Out</button>
@@ -79,8 +79,8 @@
             <div class = "text-block">
 
                 <div class = "black">
-                    <img src = "../Images/halftone3.png" class = "halftone-left">
-                    <img src = "../Images/halftone3.png" class = "halftone-right">
+                    <img src = "../Images/halftone3.png" class = "halftone-left" alt = "White gradient">
+                    <img src = "../Images/halftone3.png" class = "halftone-right" alt = "White gradient">
                     <h2>WELCOME!</h2>
                 </div>
                 
@@ -117,7 +117,10 @@
 
             <!--Game tutorial video-->
             <div class = "inner-box">
-                <h2> VIDEO HERE! </h2>
+                <video id="tutorial-video" loop>
+                    <source src="../Videos/Invert_Game_Tutorial.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
     </aside>

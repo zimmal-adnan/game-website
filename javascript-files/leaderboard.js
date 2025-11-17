@@ -1,6 +1,8 @@
 const allScores = JSON.parse(localStorage.getItem('allScores')) || {};
 const userScore = storedData && allScores[storedData.username] ? allScores[storedData.username] : null;
 
+
+//----PERSONAL HIGHEST SCORE----
 //DOM elements for displaying personal highest scores
 const easyHighestScore = document.getElementById("easy-highest-score");
 const normalHighestScore = document.getElementById("normal-highest-score");
@@ -18,7 +20,7 @@ if (storedData && storedData.isLoggedIn && userScore) {
     hardHighestScore.textContent = "HARD: 0";
 }
 
-
+//----LEADERBOARD RANKING TABLE----
 //Update leaderboard for each difficulty with the top 5 players
 function updateLeaderboard(difficulty, difficultyUsername, difficultyScore){
     const allScores = JSON.parse(localStorage.getItem('allScores')) || {};
@@ -48,6 +50,7 @@ function updateLeaderboard(difficulty, difficultyUsername, difficultyScore){
   
 }
 
+//----USERNAME AND SCORE CARDS----
 //Creates 5 leaderboard entries for each difficulty in the leaderboard box
 function createLeaderboard(difficulty, containerSelector, listClassName) {
     const list = document.querySelector(containerSelector)

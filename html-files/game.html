@@ -17,21 +17,21 @@
     <script src="https://kit.fontawesome.com/4fc40ea9d1.js" crossorigin="anonymous"></script>
 
     <!--Reference to JavaScript file for logic-->
-    <script type = "module" src = "../game.js" defer></script>
-    <script type = "text/javascript" src = "../index.js" defer></script>
+    <script type = "module" src = "../javascript-files/game.js"></script>
+    <script type = "text/javascript" src = "../javascript-files/index.js" defer></script>
 </head>
 
 <body>
     <!--Custom cursor for the website-->
     <div id = "cursor-dot" class = "cursor-dot"></div>
-    <div id = "cursor-outline"class = "cursor-outline"></div>
+    <div id = "cursor-outline" class = "cursor-outline"></div>
     
     <!--Main header of the website-->
     <header>
         <hr class = "thick-line">
         <p id = "call-to-action">Think you can survive the switch? Join now to prove it!</p>
         <div class = "logo">
-            <img src = "../Images/INVERT.png">
+            <img src = "../Images/INVERT.png" alt = "Image of the website logo">
         </div>
 
         <!--Signup/Login buttons or Username/Profile picture-->
@@ -41,7 +41,7 @@
             <p style = "opacity: 0;" id = "user" class = "user">Username</p>
             
             <!--User profile picture-->
-            <img style = "opacity: 0;" id = "user-profile" class = "user-profile" src = "../Images/profile.jpg">
+            <img alt = "Image of the user's profile picture" style = "opacity: 0;" id = "user-profile" class = "user-profile" src = "../Images/profile.jpg">
         </div>
         <h1>GAME<span class = "letters">PLAY</span></h1>
     </header>
@@ -87,7 +87,7 @@
 
                 <!--Game start menu-->
                 <div id = "game-start-screen" class = "game-start-screen">
-                    <h2 id = "select" class = "select">CHOOSE YOUR DIFFICULTY</h1>
+                    <h2 id = "select" class = "select">CHOOSE YOUR DIFFICULTY</h2>
 
                     <!--Difficulty buttons-->
                     <button id = "play-easy" class = "play-easy">EASY</button>
@@ -129,8 +129,8 @@
 
                     <!--Character movement-->
                     <div class="control-keys" id="control-keys">
-                        <img src="../Images/Left_Key.png">
-                        <img src="../Images/Right_Key.png">
+                        <img src="../Images/Left_Key.png" alt = "Image of a left arrow key">
+                        <img src="../Images/Right_Key.png" alt = "Image of a right arrow key">
                         <p>For movement</p>
                     </div>
 
@@ -138,7 +138,7 @@
 
                     <!--World Switching-->
                     <div class="switch-keys">
-                        <img src="../Images/KeyB.png">
+                        <img src="../Images/KeyB.png" alt = "Image of a B key on the keyboard">
                         <p>To switch worlds</p>
                     </div>
                 </div>

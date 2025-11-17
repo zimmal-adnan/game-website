@@ -1,6 +1,8 @@
+/*References:
+1. Circle on canvas: https://www.youtube.com/watch?v=9jmqhzQHtUo
+*/
 
-//----PLAYER CLASS----
-
+//Creates the player on the canvas
 export class Player{
     constructor(context, x, y, width, height, profilePictureSrc){
         this.context = context; //Canvas context used for drawing
@@ -18,6 +20,7 @@ export class Player{
 
 
     //Draw player's circular profile picture on the canvas
+    /*Reference (1)*/
     draw(){
         this.context.save();
 

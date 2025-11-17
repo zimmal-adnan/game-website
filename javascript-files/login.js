@@ -1,4 +1,8 @@
 
+/*References:
+1. Upload Profile Picture: https://stackoverflow.com/questions/73881015/upload-a-profile-picture-to-one-html-page-and-then-display-it-to-the-next-html-p
+*/
+
 //----PASSWORD VISIBILITY----
 //Toggle password visibility
 function eyeIconLogic(eyeShut, eyeOpen, passwordInput){
@@ -296,6 +300,7 @@ let inputFile = document.getElementById("input-file");
 let tempProfilePicture = null;
 
 //Click profile picture to upload image
+/*Reference (1)*/
 if(profilePicture){
     profilePicture.addEventListener("click", () => {
         inputFile.click();

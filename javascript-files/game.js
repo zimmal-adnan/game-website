@@ -1,4 +1,4 @@
-import { Game } from "./gameModules/gameStart.js";
+import { Game } from "../gameModules/gameStart.js";
 
 //Initialise game when the window finishes loading
 window.addEventListener("load", () => {

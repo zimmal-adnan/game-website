@@ -1,3 +1,12 @@
+/*References
+1. Line Navbar Hover Effect: https://codepen.io/RockStarwind/pen/WmGwwp
+2. Play Button Hover: https://codepen.io/folaad/pen/YvmRpz
+3. Social Media Icons hover effect: https://codepen.io/ephs23/pen/NeQZGx
+4. Rotating Rainbow Gradient Border: https://codepen.io/bramus/pen/rNWByYz
+5. Ribbon Shape (#12): https://css-generators.com/ribbon-shapes/
+*/
+
+
 /*----FONTS USED----*/
 @font-face {
   font-family: 'Blanka';
@@ -332,6 +341,7 @@ h1{
 }
 
 /*Navigation links hover effect*/
+/*Reference (1)*/
 .links > a {
 	color: black;
 	padding: .5em 0.8em;
@@ -481,6 +491,7 @@ main{
 }
 
 /*----PLAY BUTTON STYLING----*/
+/*Reference (4)*/
 .gradient-border{
     position: relative;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%); /*Rainbow gradient*/
@@ -526,6 +537,7 @@ main{
 }
 
 /*Arrow animation on Play Button hover*/
+/*Reference (2)*/
 .play-button .arrows {
     position: relative;
     display: inline-flex;
@@ -620,6 +632,7 @@ footer span{
 }
 
 /*----SOCIAL MEDIA LINKS----*/
+/*Reference (3)*/
 ul {
     display: flex;
     justify-content: center;
@@ -716,6 +729,7 @@ ul li:nth-child(4) a:before {
 
 
 /*----DRAGGABLE RIBBON STYLING----*/
+/*Reference (5)*/
 .ribbon {
     font-size: 1.3rem;
     font-family: 'norwester';
@@ -753,8 +767,8 @@ ul li:nth-child(4) a:before {
 .instruction-box {
     position: absolute;
     bottom: 0.6rem;
-    right: -31.3rem; 
-    width: 28rem;
+    right: -48.25rem; 
+    width: 45rem;
     height: 25rem;
     background-color: rgba(0, 0, 0, 0.7);
     color: black;
@@ -777,8 +791,15 @@ ul li:nth-child(4) a:before {
     border: 5px solid black;
     border-radius: 15px;
     height: 24rem;
-    width: 28rem;
-    
+    width: 45rem;
+    overflow: hidden;
+}
+
+.inner-box video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 

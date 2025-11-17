@@ -1,4 +1,4 @@
-//----CANVAS SETUP----
+//Holds the gameplay
 export class Canvas{
     constructor(){
         this.element = document.getElementById('canvas');
@@ -17,7 +17,7 @@ export class Canvas{
     }
 }
 
-//----RANDOM INTEGER UTILITY CLASS----
+//Utility class to get a random number
 export class RandomInteger{
     static getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;

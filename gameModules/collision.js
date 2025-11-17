@@ -1,3 +1,7 @@
+/*References: 
+1. Collision Detection: https://youtu.be/r0sy-Cr6WHY?si=1mFX8Lgo2L2tjXLh
+*/
+
 //Handles collision detection between player and obstacles
 export class CollisionDetector{
     static collide(player, obstacle) {
